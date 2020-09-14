@@ -27,7 +27,7 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', default=0)
 
-ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com"]
+ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com", "localhost"]
 
 # Application definition
 
@@ -83,6 +83,7 @@ DATABASES = {
         'NAME': os.environ.get('DATABASE_NAME'),
         'USER': os.environ.get('DATABASE_USER'),
         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': 'db',
         'PORT': 5432
     }
 }
