@@ -27,7 +27,7 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', default=0)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com"]
 
 # Application definition
 
