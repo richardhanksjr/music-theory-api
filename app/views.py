@@ -4,4 +4,4 @@ from django.views.generic import View
 
 class TestRoute(View):
     def get(self, request):
-        return HttpResponse("works")
+        return HttpResponse("Successfully deployed from GitHub")
