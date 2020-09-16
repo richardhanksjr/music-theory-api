@@ -23,4 +23,5 @@ before_install:
 
 script:
 #  - pipenv run python manage.py test
+  - docker-compse up -d --build
   - docker-compose exec web python manage.py test
