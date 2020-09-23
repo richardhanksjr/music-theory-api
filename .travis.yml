@@ -24,5 +24,4 @@ env:
 
 script:
 #  - pipenv run python manage.py test
-  - docker-compose up -d --build --no-recreate
   - docker-compose run web python manage.py test
