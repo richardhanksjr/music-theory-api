@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.views.generic import View
+from django.shortcuts import render
 
 
-class TestRoute(View):
+class LandingPageView(View):
     def get(self, request):
-        return HttpResponse("Successfully deployed from GitHub branch. Hey! This is Nathan checking in.")
+        return render(request, 'app/landing.html')

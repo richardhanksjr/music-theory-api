@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import TestRoute
+from .views import LandingPageView
 
 urlpatterns = [
-    path("", TestRoute.as_view(), name="test-route"),
+    path("", LandingPageView.as_view(), name="landing"),
 ]
