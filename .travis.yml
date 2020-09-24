@@ -16,5 +16,5 @@ script:
   - docker-compose run web python manage.py test
   - docker-compose run web coverage run manage.py test
 
-after_sucess:
-  - coveralls -v
+after_success:
+  coveralls
