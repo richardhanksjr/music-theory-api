@@ -8,16 +8,23 @@ class TestTest(TestCase):
 
 
 class QuestionsTest(TestCase):
-    def test_questions_page_exists(self):
+    def setUp(self):
         self.client = Client()
+
+
+    def test_questions_page_exists_and_correct_template_used(self):
         response = self.client.get("/questions/")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'app/questions.html')
 
     def test_question_exists_on_questions_page(self):
-        self.client = Client()
         response = self.client.get("/questions/")
-        # we'll have to adjust this to be dynamic once the questions are being dynamically generated.
-        self.assertContains(response, "What is the")
+        self.assertContains(response, 'name="question"')
+
+    def test_questions_page_contains_four_multiple_choice_answers(self):
+        response = self.client.get("/questions/")
+        self.assertContains(response, '<form')
+        self.assertContains(response, 'type="radio"', 4)
+
 
 
