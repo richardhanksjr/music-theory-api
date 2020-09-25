@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'allauth',
     'allauth.account',
-    'account',
+    'accounts.apps.AccountsConfig',
     'app',
     'api'
 ]
