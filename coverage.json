@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "version": "5.3",
+    "timestamp": "2020-09-24T22:27:13.041711",
+    "branch_coverage": false,
+    "show_contexts": false
+  },
+  "files": {
+    "api/__init__.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "api/admin.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 1,
+        "num_statements": 1,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "api/migrations/__init__.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "api/models.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 1,
+        "num_statements": 1,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "api/tests.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 1,
+        "num_statements": 1,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "app/__init__.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "app/admin.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 1,
+        "num_statements": 1,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "app/migrations/__init__.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "app/models.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 1,
+        "num_statements": 1,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "app/tests.py": {
+      "executed_lines": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "summary": {
+        "covered_lines": 4,
+        "num_statements": 4,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "app/urls.py": {
+      "executed_lines": [
+        1,
+        2,
+        4
+      ],
+      "summary": {
+        "covered_lines": 3,
+        "num_statements": 3,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "app/views.py": {
+      "executed_lines": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "summary": {
+        "covered_lines": 4,
+        "num_statements": 5,
+        "percent_covered": 80.0,
+        "missing_lines": 1,
+        "excluded_lines": 0
+      },
+      "missing_lines": [
+        7
+      ],
+      "excluded_lines": []
+    },
+    "manage.py": {
+      "executed_lines": [
+        2,
+        3,
+        4,
+        7,
+        9,
+        10,
+        11,
+        18,
+        21,
+        22
+      ],
+      "summary": {
+        "covered_lines": 10,
+        "num_statements": 12,
+        "percent_covered": 83.33333333333333,
+        "missing_lines": 2,
+        "excluded_lines": 0
+      },
+      "missing_lines": [
+        12,
+        13
+      ],
+      "excluded_lines": []
+    },
+    "music_theory_api/__init__.py": {
+      "executed_lines": [
+        1
+      ],
+      "summary": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    },
+    "music_theory_api/settings.py": {
+      "executed_lines": [
+        1,
+        13,
+        14,
+        15,
+        18,
+        23,
+        25,
+        28,
+        30,
+        34,
+        46,
+        57,
+        59,
+        75,
+        80,
+        95,
+        113,
+        115,
+        117,
+        119,
+        121,
+        126,
+        127,
+        129
+      ],
+      "summary": {
+        "covered_lines": 23,
+        "num_statements": 35,
+        "percent_covered": 65.71428571428571,
+        "missing_lines": 12,
+        "excluded_lines": 0
+      },
+      "missing_lines": [
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        140,
+        142,
+        143
+      ],
+      "excluded_lines": []
+    },
+    "music_theory_api/urls.py": {
+      "executed_lines": [
+        1,
+        16,
+        17,
+        19
+      ],
+      "summary": {
+        "covered_lines": 3,
+        "num_statements": 3,
+        "percent_covered": 100.0,
+        "missing_lines": 0,
+        "excluded_lines": 0
+      },
+      "missing_lines": [],
+      "excluded_lines": []
+    }
+  },
+  "totals": {
+    "covered_lines": 52,
+    "num_statements": 67,
+    "percent_covered": 77.61194029850746,
+    "missing_lines": 15,
+    "excluded_lines": 0
+  }
+}
