@@ -2,14 +2,13 @@ var question = "What is the fourth scale degree of Messian's 9 note symmetrical 
 
 var answer = "B"
 
-var encouragement = "You got this!"
 
-questionPage = new Vue({
+const questionPage = Vue.createApp({
     delimiters: ['[[', ']]'],
-    el: '#questionPage',
-    data: {
-        question: question,
-        encouragement: encouragement,
-        answer: answer,
+    data() {
+        return {
+            Question: question,
+            Answer: answer,
+        }
     },
  })
