@@ -26,5 +26,8 @@ class QuestionsTest(TestCase):
         self.assertContains(response, '<form')
         self.assertContains(response, 'type="radio"', 4)
 
+    def test_homepage_does_not_contain_incorrect_html(self):
+        self.assertNotContains(
+            self.response, 'Hi there! I should not be on the page.')
 
 
