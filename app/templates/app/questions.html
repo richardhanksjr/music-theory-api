@@ -18,15 +18,15 @@
         <h1 class="text-muted">Questions</h1>
         <br>
             <h2 name="question" id="question">[[ Question ]]</h2>
+        <br>
 
-            <form>
-                <fieldset class="custom-control custom-radio" id="answers">
-                    <input type="radio" value="C#" name="answer" id="first choice">C#<br>
-                    <input type="radio" value="B" name="answer" id="second choice">B<br>
-                    <input type="radio" value="Bb" name="answer" id="third choice">Bb<br>
-                    <input type="radio" value="C" name="answer" id="fourth choice">C<br>
+            <form v-for="answer in Answers">
+                <fieldset class="custom-control custom-radio">
+                    <input :key="answer.id" id="answer.id" @click="evaluateAnswer(answer.note)" type="radio" name="answer">[[ answer.note ]]<br>
                 </fieldset>
             </form>
+            <br>
+                <h5>[[ message ]]</h5>
     </div>
 </body>
 

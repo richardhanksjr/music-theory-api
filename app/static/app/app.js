@@ -8,7 +8,28 @@ const questionPage = Vue.createApp({
     data() {
         return {
             Question: question,
-            Answer: answer,
+            Answers: [
+            {id: 1, note: 'Bb'},
+            {id: 2, note: 'C#'},
+            {id: 3, note: 'B'},
+            {id: 4, note: 'C'},
+            ],
+            message: "",
+            answerVal: "",
         }
     },
+    methods: {
+        evaluateAnswer(Answer, answerVal) {
+             this.Answer = Answer;
+             if (Answer === answer) {
+                this.message = "Correct!"
+
+             }
+             else {
+                this.message = "Sorry, the correct answer is 'B'"
+             }
+
+        }
+    },
+
  })
