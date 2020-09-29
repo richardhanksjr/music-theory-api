@@ -11,8 +11,12 @@ install:
 env:
   - DOCKER_COMPOSE_VERSION=3.3
 
-
-
 script:
   - docker-compose up -d --build
   - docker-compose run web python manage.py test
+  - docker-compose run web coverage run manage.py test
+  - docker-compose run web prospector --uses django
+
+
+after_success:
+  - coveralls
