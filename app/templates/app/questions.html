@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+<!--    our native styles -->
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+
     <script src="https://unpkg.com/vue@next"></script>
 
     <title>Questions</title>
@@ -17,16 +20,17 @@
     <div id="questionPage" class="container">
         <h1 class="text-muted">Questions</h1>
         <br>
-            <h2 name="question" id="question">[[ Question ]]</h2>
+            <h2 name="question" style="color: #003366" id="question">[[ Question ]]</h2>
         <br>
 
             <form v-for="answer in Answers">
                 <fieldset class="custom-control custom-radio">
-                    <input :key="answer.id" id="answer.id" @click="evaluateAnswer(answer.note)" type="radio" name="answer">[[ answer.note ]]<br>
+                    <input class="list-group-item" v-model="answerVal" name="answer.id" :key="answer.id" id="answer.id" @click="evaluateAnswer(answer.note)" type="radio" name="answer"><label class="label">[[ answer.note ]]</label><br>
                 </fieldset>
             </form>
             <br>
-                <h5>[[ message ]]</h5>
+            <hr class="rounded">
+                <h5 style="color: darkred">[[ message ]]</h5>
     </div>
 </body>
 

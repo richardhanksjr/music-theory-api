@@ -28,7 +28,7 @@ const questionPage = Vue.createApp({
              else {
                 this.message = "Sorry, the correct answer is 'B'"
              }
-
+            this.answerVal = "";
         }
     },
 
