@@ -24,10 +24,10 @@ class QuestionsTest(TestCase):
     def test_questions_page_contains_four_multiple_choice_answers(self):
         response = self.client.get("/questions/")
         self.assertContains(response, '<form')
-        self.assertContains(response, 'type="radio"', 4)
+        self.assertContains(response, 'type="radio"')
 
     def test_homepage_does_not_contain_incorrect_html(self):
-        self.assertNotContains(
-            self.response, 'Hi there! I should not be on the page.')
+        response = self.client.get("/questions/")
+        self.assertNotContains(response, 'Hi there! I should not be on the page.')
 
 
