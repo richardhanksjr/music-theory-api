@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'accounts.apps.AccountsConfig',
     'app',
     'api'
