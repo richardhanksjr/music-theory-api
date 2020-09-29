@@ -13,6 +13,8 @@ gunicorn = "==19.9.0"
 dj-database-url = "==0.5.0"
 coverage = "*"
 django-allauth = "==0.41.0"
+python-coveralls = "<5.0"
+prospector = "*"
 
 [requires]
 python_version = "3.8"
