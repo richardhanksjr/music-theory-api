@@ -3,5 +3,5 @@ from .views import GetRandomQuestion
 
 
 urlpatterns = [
-    path('question', GetRandomQuestion.as_view(), name='random-question'),
+    path('question/', GetRandomQuestion.as_view(), name='random-question'),
  ]

@@ -20,12 +20,12 @@
     <div id="questionPage" class="container">
         <h1 class="text-muted">Questions</h1>
         <br>
-            <h2 name="question" style="color: #003366" id="question">[[ Question ]]</h2>
+            <h2 name="question" style="color: #003366" id="question">[[ questionPackage.question ]]</h2>
         <br>
 
-            <form v-for="answer in Answers">
+            <form v-for="answer in questionPackage.answer_options">
                 <fieldset class="custom-control custom-radio">
-                    <input class="list-group-item" v-model="answerVal" name="answer.id" :key="answer.id" id="answer.id" @click="evaluateAnswer(answer.note)" type="radio" name="answer"><label class="label">[[ answer.note ]]</label><br>
+                    <input class="list-group-item" v-model="answerVal" type="radio" name="questionPackage.answer_options"><label class="label">[[ answer ]]</label><br>
                 </fieldset>
             </form>
             <br>
