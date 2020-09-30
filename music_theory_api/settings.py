@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'accounts.apps.AccountsConfig',
     'app',
-    'api'
+    'api',
+    'questions',
+    'rest_framework',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -111,6 +114,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'TIMEOUT': 60 * 60,
+        'LOCATION': 'cache_table'
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
