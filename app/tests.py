@@ -1,7 +1,7 @@
 from django.test import TestCase, SimpleTestCase
 from django.urls import reverse, resolve
 
-from .views import LandingPageView
+from .views import LandingPageView, IndexPageView
 
 
 class TestTest(TestCase):
@@ -10,7 +10,7 @@ class TestTest(TestCase):
 
 class LandingPageTests(SimpleTestCase):
     def setUp(self):
-        url = reverse('landing')
+        url = reverse('app:landing')
         self.response = self.client.get(url)
 
     def test_landing_page_status_code(self):
@@ -28,8 +28,23 @@ class LandingPageTests(SimpleTestCase):
         )
 
     def test_landing_page_url_resolves_landingpageview(self):
-        view = resolve('/')
+        view = resolve('/landing/')
         self.assertEqual(
             view.func.__name__,
             LandingPageView.as_view().__name__
+        )
+
+class IndexPageTests(SimpleTestCase):
+    def setUp(self):
+        url = reverse('app:index')
+        self.response = self.client.get(url)
+
+    def test_index_page_status_code(self):
+        self.assertEqual(self.response.status_code, 302)
+
+    def test_index_page_url_resolves_indexpageview(self):
+        view = resolve('/')
+        self.assertEqual(
+            view.func.__name__,
+            IndexPageView.as_view().__name__
         )

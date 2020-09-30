@@ -141,3 +141,6 @@ if ENVIRONMENT == 'production':
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
+
+LOGIN_URL = 'app:landing'
+LOGIN_REDIRECT_URL = 'app:index'
