@@ -8,6 +8,15 @@ class Question(ABC):
         self._generate_answer()
         self._generate_answer_options()
         self._generate_help_steps_array()
+        self._generate_key()
+        self._generate_response()
+        self._add_to_cache()
+
+    def _generate_response(self):
+        raise NotImplementedError
+
+    def _add_to_cache(self):
+        raise NotImplementedError
 
     def _generate_question(self):
         raise NotImplementedError
@@ -19,6 +28,9 @@ class Question(ABC):
         raise NotImplementedError
 
     def _generate_help_steps_array(self):
+        raise NotImplementedError
+
+    def _generate_key(self):
         raise NotImplementedError
 
     @property

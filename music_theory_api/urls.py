@@ -20,14 +20,11 @@ urlpatterns = [
 
     # Django admin
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('api/', include('api.urls')),
-=======
 
     # User management
     path('accounts/', include('allauth.urls')),
 
     # Local apps
     path("", include("app.urls")),
->>>>>>> 6311cd884c8a91e50e8b2b378c653cf0b04825a7
 ]

@@ -1,4 +1,5 @@
-import random
+import uuid
+from django.core.cache import cache
 from .questions import Question
 
 
@@ -9,7 +10,20 @@ class SimpleIntervalIs(Question):
         self._question = None
         self._answer = None
         self._help_steps = None
+        self._key = None
+        self._response = None
         super().__init__()
+
+    def _generate_response(self):
+        self._response =  {'question': self.question,
+                'answer_options': self.answer_options,
+                'question_params': self.question_params,
+                'key': self.key}
+
+    def _add_to_cache(self):
+        key = self.response['key']
+        data = {**self.response, **{'answer': self.answer}}
+        cache.set(key, data)
 
     def _generate_answer(self):
         self._answer = "An interval that encompasses an octave or less"
@@ -22,6 +36,16 @@ class SimpleIntervalIs(Question):
     def _generate_help_steps_array(self):
         self._help_steps = ({'prompt': 'What is a simple interval?',
                              'answer': 'an interval of one octave or less.'},)
+
+    def _generate_key(self):
+        self._key = str(uuid.uuid4())
+
+    def _generate_question(self):
+        self._question = "A SIMPLE INTERVAL is: "
+
+    @property
+    def key(self):
+        return self._key
 
     @property
     def question(self):
@@ -47,5 +71,6 @@ class SimpleIntervalIs(Question):
     def help_steps(self):
         return self._help_steps
 
-    def _generate_question(self):
-        self._question = "A SIMPLE INTERVAL is: "
+    @property
+    def response(self):
+        return self._response
