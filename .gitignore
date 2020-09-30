@@ -131,3 +131,5 @@ dmypy.json
 staticfiles/*
 node_modules/*
 *.idea/*
+
+coverage.json
