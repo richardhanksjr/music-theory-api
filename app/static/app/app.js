@@ -2,23 +2,22 @@
 //
 //var answer = "B"
 
-
-const questionPage = Vue.createApp({
+window.onload = function () {
+const app = new Vue({
     delimiters: ['[[', ']]'],
-    export {
-    setup() {
-            const questionPackage = []
+    el: "#questionPage",
+    data: {
 
-
-            const getRandomQuestion = () => {
-            const url = "/api/question/";
-            axios.get(url)
-                .then(response => {
-                    this.questionPackage = response.data
-                    console.log(this.questionPackage)
-                })
-            }
-        }
+         questionPackage: [],
+         message: "",
+         answerVal: "",
     },
-
- })
+    mounted:
+        function () {
+            axios.get('/api/question/')
+                .then(response => {
+                this.questionPackage = response.data
+                });
+            },
+    });
+}
