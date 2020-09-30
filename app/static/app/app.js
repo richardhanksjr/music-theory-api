@@ -2,7 +2,7 @@
 //
 //var answer = "B"
 
-window.onload = function () {
+//window.onload = function () {
 const app = new Vue({
     delimiters: ['[[', ']]'],
     el: "#questionPage",
@@ -19,5 +19,5 @@ const app = new Vue({
                 this.questionPackage = response.data
                 });
             },
-    });
-}
+    })
+//}
