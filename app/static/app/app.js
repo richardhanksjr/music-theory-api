@@ -2,16 +2,15 @@
 //
 var answer = "An interval that encompasses an octave or less"
 
-import { onBeforeMount, onMounted } from '@vue/composition-api';
 //window.onload = function () {
-const questionPage = Vue.createApp({
+const app = new Vue({
     delimiters: ['[[', ']]'],
-    data() {
-        return {
+    el: "#questionPage",
+    data: {
+
          questionPackage: [],
          message: "",
          answerVal: "",
-         }
     },
     methods: {
     evaluateAnswer(Answer, answerVal) {
@@ -26,31 +25,12 @@ const questionPage = Vue.createApp({
             this.answerVal = "";
         }
     },
-
-export default {
-  setup() {
-    onBeforeMount(() => {
-      console.log('V3 beforeMount!');
+    mounted:
+        function () {
+            axios.get('/api/question/')
+                .then(response => {
+                this.questionPackage = response.data
+                });
+            },
     })
-
-    onMounted(() => {
-      console.log('V3 mounted!');
-    })
-  }
-};
-
-})
-
 //}
-
-//   export default {
-//
-//    onMounted(() =>
-//           {
-//           console.log('V3 mounted');
-//            axios.get('/api/question/')
-//                .then(response => {
-//                this.questionPackage = response.data
-//                });
-//            },
-//       }
