@@ -5,7 +5,7 @@ from .questions import Question
 
 class SimpleIntervalIs(Question):
 
-    def __init__(self, **kwargs):
+    def __init__(self):
         self._answer_options = None
         self._question = None
         self._answer = None
