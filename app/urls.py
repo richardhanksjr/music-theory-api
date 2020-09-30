@@ -6,3 +6,4 @@ urlpatterns = [
     path("landing/", LandingPageView.as_view(), name="landing"),
     path("", IndexPageView.as_view(), name="index"),
 ]
+

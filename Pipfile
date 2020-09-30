@@ -15,6 +15,8 @@ coverage = "*"
 django-allauth = "==0.41.0"
 python-coveralls = "<5.0"
 prospector = "*"
+djangorestframework = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.8"
