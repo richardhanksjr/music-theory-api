@@ -132,8 +132,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 # django-allauth config
-LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_LOGOUT_REDIRECT = 'home'
+LOGIN_REDIRECT_URL = 'app:index'
+ACCOUNT_LOGOUT_REDIRECT = 'app:landing'
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -164,4 +164,3 @@ if ENVIRONMENT == 'production':
     DATABASES['default'].update(db_from_env)
 
 LOGIN_URL = 'app:landing'
-LOGIN_REDIRECT_URL = 'app:index'
