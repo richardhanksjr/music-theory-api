@@ -15,4 +15,3 @@ class IndexPageView(LoginRequiredMixin, View):
 
     def get(self, request):
         return HttpResponse("You made it to the index page!")
-
