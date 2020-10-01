@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default=get_random_secret_key())
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', default=0)
+DEBUG = int(os.environ.get('DEBUG', default=0))
 
 ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com", "localhost", '127.0.0.1']
 
