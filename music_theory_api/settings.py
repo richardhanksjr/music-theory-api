@@ -143,8 +143,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 # django-allauth config
-LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_LOGOUT_REDIRECT = 'home'
+LOGIN_REDIRECT_URL = '/accounts/logout/'
+ACCOUNT_LOGOUT_REDIRECT = '/api/question/'
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
