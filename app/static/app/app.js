@@ -3,14 +3,15 @@
 var answer = "An interval that encompasses an octave or less"
 
 //window.onload = function () {
-const app = new Vue({
+const questionPage = Vue.createApp({
     delimiters: ['[[', ']]'],
-    el: "#questionPage",
-    data: {
 
-         questionPackage: [],
-         message: "",
-         answerVal: "",
+    data() {
+         return {
+            questionPackage: [],
+            message: "",
+            answerVal: "",
+         }
     },
     methods: {
     evaluateAnswer(Answer, answerVal) {
@@ -25,12 +26,13 @@ const app = new Vue({
             this.answerVal = "";
         }
     },
-    mounted:
-        function () {
+    mounted() {
             axios.get('/api/question/')
                 .then(response => {
                 this.questionPackage = response.data
                 });
             },
     })
+
+questionPage.mount("#questionPage");
 //}

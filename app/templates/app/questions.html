@@ -12,7 +12,8 @@
     <!-- our native styles -->
     <link rel="stylesheet" href="{% static 'app/styles.css' %}">
    <!-- Import Vue.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
 
     <title>Questions</title>
@@ -34,13 +35,10 @@
             <hr class="rounded">
                 <h5 style="color: darkred">[[ message ]]</h5>
     </div>
-</body>
-
+    <!--    import App -->
     <script type="module" src="{% static 'app/app.js' %}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
-
-<!--    <script>const mountedApp = questionPage.mount('#questionPage')</script>-->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -54,5 +52,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+
+
+</body>
 
 </html>
