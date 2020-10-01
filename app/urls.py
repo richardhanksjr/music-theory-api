@@ -1,10 +1,9 @@
-
 from django.urls import path
-
-from django.views.generic import TemplateView
+from .views import LandingPageView, IndexPageView
 
 app_name = 'app'
-
 urlpatterns = [
-    path("questions/", TemplateView.as_view(template_name='app/questions.html'), name="questions"),
+    path("landing/", LandingPageView.as_view(), name="landing"),
+    path("", IndexPageView.as_view(), name="index"),
 ]
+
