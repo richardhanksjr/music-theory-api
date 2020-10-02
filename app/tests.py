@@ -58,44 +58,14 @@ class IndexPageTests(TestCase):
         view = IndexPageView.as_view()
 
         # When user is not logged in, redirected to landing page
-        request = self.factory.get('/')
+        request = self.factory.get(reverse('app:index'))
         request.user = AnonymousUser()
         response = view(request)
         self.assertEqual(response.status_code, 302)
         self.assertEqual('/landing/?next=/', response.url)
 
         # When user is logged in, receive a status code of 200
-        request = self.factory.get('/')
-        request.user = self.user
-        response = view(request)
-        self.assertEqual(response.status_code, 200)
-
-
-class LoginRequiredMixinTests(TestCase):
-
-    factory = RequestFactory()
-
-    @classmethod
-    def setUpTestData(self):
-        self.user = User.objects.create_user(username='joe', email='joe@test.com', password='qwerty')
-
-    def test_login_required(self):
-        """
-        login_required works on a simple view which has the loginrequiredmixin
-        """
-
-        class AView(LoginRequiredMixin, View):
-            def get(self, request):
-                return HttpResponse("")
-
-        view = AView.as_view()
-
-        request = self.factory.get('/rand')
-        request.user = AnonymousUser()
-        response = view(request)
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual('/landing/?next=/rand', response.url)
-        request = self.factory.get('/rand')
+        request = self.factory.get(reverse('app:index'))
         request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
