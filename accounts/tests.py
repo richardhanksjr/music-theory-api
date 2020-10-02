@@ -66,6 +66,16 @@ class VideoTests(TestCase):
         response = self.client.get(self.login_url)
         self.assertEqual(response.status_code, 200)
 
+    def test_signup_POST(self):
+
+        user_one = User.objects.create_user(
+                                username='newuser', 
+                                email='newuser@email.com',
+                                password='testpass123')
+
+        response = self.client.post(self.signup_url, {'email:', 'newuser@email.com', 'password:', 'testpass123'})
+        self.assertEqual(response.status_code, 200)
+
 
 
 class LoginTests(TestCase):
