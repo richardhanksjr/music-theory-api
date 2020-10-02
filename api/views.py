@@ -22,6 +22,6 @@ class Answer(APIView):
             cached_response = cache.get(answer_key)
             data = {'correct': user_answer == cached_response['answer'],
                     'correct_answer': cached_response['answer']}
-        except Exception as e:
+        except Exception:
             return Response("Must supply answer and key", status=status.HTTP_400_BAD_REQUEST)
         return Response(data)
