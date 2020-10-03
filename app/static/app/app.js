@@ -1,8 +1,19 @@
-//var question = "What is the fourth scale degree of Messian's 9 note symmetrical scale, also known as the fourth mode of limited transposition, if the root is concert G?";
-//
-var answer = "An interval that encompasses an octave or less"
 
-//window.onload = function () {
+// Vue Instance
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
+
+const url = '/api/answer'
+var jabs = ["No gigs for you.",
+            "You were kidding, right?",
+            "We're all speechless at your ineptitude.",
+            "Welp, the good news is there's no money to be made in music anyway.",
+            "You jive ass turkey.",
+            "Get off the stage!",
+            "Booooooooooo!",
+            "Go study and don't forget to vote.",
+            "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
+
 const questionPage = Vue.createApp({
     delimiters: ['[[', ']]'],
 
@@ -14,20 +25,23 @@ const questionPage = Vue.createApp({
          }
     },
     methods: {
-    evaluateAnswer(Answer, answerVal) {
-             this.Answer = Answer;
-             if (Answer === answer) {
-                this.message = "Correct!"
+    evaluateAnswer(answer) {
+            axios.post(url, {"key": this.questionPackage.key, "answer": answer})
+            .then(response => {
 
-             }
-             else {
-                this.message = `Sorry, the correct answer is "${answer}"`
-             }
+                if (response.data.correct === true) {
+                    this.message = "Correct!"
+                }
+                else {
+                        var jab = jabs[Math.floor(Math.random() * jabs.length)];
+                        this.message = `'${response.data.correct_answer}' was the correct answer. ${jab}`
+                }
+            })
             this.answerVal = "";
         }
     },
     mounted() {
-            axios.get('/api/question/')
+            axios.get('/api/question')
                 .then(response => {
                 this.questionPackage = response.data
                 });

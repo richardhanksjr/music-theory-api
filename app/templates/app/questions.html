@@ -1,39 +1,28 @@
+{% extends 'app/_base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
 
-    <meta charset="UTF-8">
-     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<!--    axios -->
-<!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
-    <!-- our native styles -->
-    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
-   <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@next"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+    {% block title %}
+        Questions
+    {% endblock %}
 
-    <title>Questions</title>
-</head>
-<body>
+    {% block content %}
 <!--could put if user.is_authenticated here possibly -->
     <div id="questionPage" class="container">
         <h1 class="text-muted">Questions</h1>
         <br>
             <h2 name="question" style="color: #003366" id="question">[[ questionPackage.question ]]</h2>
-        <br>
+<!--        <h3>[[ questionPackage.key ]]</h3>-->
 
-            <form v-for="answer in questionPackage.answer_options">
-                <fieldset class="custom-control custom-radio">
+        <br>
+                <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
                     <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">[[ answer ]]</label><br>
                 </fieldset>
-            </form>
             <br>
             <hr class="rounded">
                 <h5 style="color: darkred">[[ message ]]</h5>
+            <br>
+            <button v-if="message" style="color: darkred" class="btn btn-outline-secondary" onClick="window.location.reload();">Next Question</button>
     </div>
     <!--    import App -->
     <script type="module" src="{% static 'app/app.js' %}"></script>
@@ -53,7 +42,5 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 
+{% endblock %}
 
-</body>
-
-</html>
