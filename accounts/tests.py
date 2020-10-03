@@ -14,18 +14,6 @@ class SignupTests(TestCase):
     def setUp(self):
         url = reverse('account_signup')
         self.response = self.client.get(url)
-        user_one = User.objects.create_user(
-                                username='newuser', 
-                                email='newuser@email.com',
-                                password='testpass123')
-        user_two = User.objects.create_user(
-                                username='usertwo', 
-                                email='usertwo@email.com',
-                                password='testpass222')
-        user_three = User.objects.create_user(
-                                username='userthree', 
-                                email='userthree@email.com',
-                                password='testpass333')
 
     def test_signup_template(self):
         self.assertEqual(self.response.status_code, 200)
