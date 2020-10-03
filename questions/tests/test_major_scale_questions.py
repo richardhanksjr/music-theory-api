@@ -3,7 +3,7 @@ from questions.questions.major_scale_questions import SimpleScaleDegreeMajor
 from django.core.cache import cache
 
 
-class SimpleIntervalIsTest(TestCase):
+class SimpleScaleDegreeMajorTest(TestCase):
     def setUp(self):
         self.question = SimpleScaleDegreeMajor(tonic='C', scale_degree_index=5)
 
