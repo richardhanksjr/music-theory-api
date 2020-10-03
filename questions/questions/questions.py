@@ -1,4 +1,6 @@
 from abc import ABC
+import uuid
+from django.core.cache import cache
 
 
 class Question(ABC):
@@ -9,14 +11,28 @@ class Question(ABC):
         self._generate_answer_options()
         self._generate_help_steps_array()
         self._generate_key()
+        self._generate_question_type()
+        self._generate_question_params()
         self._generate_response()
         self._add_to_cache()
 
+
     def _generate_response(self):
-        raise NotImplementedError
+        self._response = {
+            'question': self.question,
+            'answer_options': self.answer_options,
+            'question_params': self.question_params,
+            'key': self.key
+        }
 
     def _add_to_cache(self):
-        raise NotImplementedError
+        key = self.response['key']
+        data = {**self.response, **{'answer': self.answer}}
+        cache.set(key, data)
+
+    def _generate_key(self):
+        self._key = str(uuid.uuid4())
+
 
     def _generate_question(self):
         raise NotImplementedError
@@ -30,29 +46,40 @@ class Question(ABC):
     def _generate_help_steps_array(self):
         raise NotImplementedError
 
-    def _generate_key(self):
+    def _generate_question_type(self):
         raise NotImplementedError
 
-    @property
-    def question(self):
+    def _generate_question_params(self):
         raise NotImplementedError
+
 
     @property
     def answer_options(self):
-        raise NotImplementedError
+        return self._answer_options
 
     @property
     def answer(self):
-        raise NotImplementedError
+        return self._answer
 
     @property
     def question_type(self):
-        raise NotImplementedError
+        return self._question_type
 
     @property
     def question_params(self):
-        raise NotImplementedError
+        return self._question_params
 
     @property
     def help_steps(self):
-        raise NotImplementedError
+        return self._help_steps
+
+    @property
+    def response(self):
+        return self._response
+    @property
+    def key(self):
+        return self._key
+
+    @property
+    def question(self):
+        return self._question
