@@ -6,7 +6,7 @@ from ._utilities import (scale_degrees, random_pitch, random_answer_options_pitc
 
 class SimpleScaleDegreeMajor(Question):
 
-    def __init__(self, tonic=None, scale_degree_index=None, **kwargs):
+    def __init__(self, tonic=None, scale_degree_index=None):
         self.tonic = tonic if tonic else random_pitch()
         self.scale_degree_index = scale_degree_index if scale_degree_index else random.choice(range(8))
         self.scale_degree = scale_degrees[self.scale_degree_index]

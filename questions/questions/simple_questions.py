@@ -3,10 +3,6 @@ from .questions import Question
 
 class SimpleIntervalIs(Question):
 
-    def __init__(self):
-        super().__init__()
-
-
     def _generate_answer(self):
         self._answer = "An interval that encompasses an octave or less"
 
@@ -28,4 +24,3 @@ class SimpleIntervalIs(Question):
 
     def _generate_question_params(self):
         self._question_params = {'question_type': self.question_type}
-

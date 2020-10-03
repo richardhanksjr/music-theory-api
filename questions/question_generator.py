@@ -9,10 +9,9 @@ question_choices = [
 class QuestionGenerator:
 
     @staticmethod
-    def question_factory(**kwargs):
+    def question_factory():
         """
         Used to get a random question. Returns a random question instance
         from question_choices.
         """
         return random.choice(question_choices)()
-
