@@ -86,7 +86,7 @@ class IndexPageTests(TestCase):
         request = self.factory.get(reverse('app:index'))
         request.user = self.user
         response = view(request)
-        self.assertContains(response, '<form')
+        self.assertContains(response, '<input')
         self.assertContains(response, 'type="radio"')
 
     def test_homepage_does_not_contain_incorrect_html(self):
