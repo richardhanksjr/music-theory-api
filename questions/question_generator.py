@@ -1,8 +1,9 @@
 import random
 from .questions.simple_questions import SimpleIntervalIs
-question_choices = {
-    'simple-interval-is': SimpleIntervalIs,
-}
+from .questions.major_scale_questions import SimpleScaleDegreeMajor
+question_choices = [
+    SimpleIntervalIs, SimpleScaleDegreeMajor
+]
 
 
 class QuestionGenerator:
@@ -10,16 +11,8 @@ class QuestionGenerator:
     @staticmethod
     def question_factory(**kwargs):
         """
-        Used to get a question.  If no question_type is given, returns a random question, else returns
-        a question of the type given in the question_type key.
-        :param question_type: The key of the Question subclass that we are to return
-        :return: An instance of a Question
+        Used to get a random question. Returns a random question instance
+        from question_choices.
         """
-        question_type = kwargs.get('question_type')
-        print(question_type)
+        return random.choice(question_choices)()
 
-        if not question_type:
-            return question_choices[random.choice(list(question_choices.keys()))]()
-
-        del kwargs['question_type']
-        return question_choices.get(question_type)(**kwargs)
