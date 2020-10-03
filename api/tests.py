@@ -16,11 +16,12 @@ class TestAnswer(TestCase):
         user = User.objects.create_user(username="foo")
         cls.client.force_login(user)
 
-    def test_return_correct_answer_values(self):
-        pass
-
-    def test_return_incorrect_answer_values(self):
-        pass
+    def test_return_correct_json_keys(self):
+        key = self.simple_interval.key
+        answer = self.simple_interval.answer
+        url = reverse('answer')
+        response = self.client.post(url, {'key': key, 'answer': answer}).data
+        self.assertListEqual(['correct', 'correct_answer'], list(response.keys()))
 
     def test_400_on_bad_request(self):
         url = reverse('answer')
