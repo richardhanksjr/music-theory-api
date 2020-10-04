@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 
 class SignupTests(TestCase):
 
-    username = 'newuser'
-    email = 'newuser@email.com'
+    """ 
+    As a user I want a registration page so that I 
+    can register for an account with an email and password.
+    """
 
     def setUp(self):
         url = reverse('account_signup')
@@ -19,6 +21,7 @@ class SignupTests(TestCase):
         self.assertContains(self.response, 'Sign Up')
         self.assertNotContains(
             self.response, 'Hi there! I should not be on the page.')
+
 
 class LoginTests(TestCase):
 
