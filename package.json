@@ -1,0 +1,20 @@
+{
+  "name": "music-theory-api",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.com/richardhanksjr/music-theory-api.svg?token=GGd7VMz2EUJpbdYmYJaf&branch=master)](https://img.shields.io/travis/richardhanksjr/music-theory-api)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardhanksjr/music-theory-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richardhanksjr/music-theory-api/issues"
+  },
+  "homepage": "https://github.com/richardhanksjr/music-theory-api#readme"
+}

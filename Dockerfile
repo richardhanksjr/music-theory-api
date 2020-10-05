@@ -20,3 +20,7 @@ COPY . /code/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
+
