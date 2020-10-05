@@ -29,6 +29,8 @@ DEBUG = os.environ.get('DEBUG', default=0)
 
 ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com", "localhost", '127.0.0.1']
 
+INTERNAL_IPS = ['127.0.0.1', 'localhost']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'accounts.apps.AccountsConfig',
+    'debug_toolbar',
     'app',
     'api',
     'questions',
@@ -52,6 +55,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -63,6 +67,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'music_theory_api.urls'
+
 
 TEMPLATES = [
     {
@@ -96,6 +101,10 @@ DATABASES = {
     }
 }
 
+# Needed to use django_debug_toolbar with Docker.  If DEBUG, show toolbar.
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda _request: DEBUG
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
