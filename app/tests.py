@@ -12,10 +12,11 @@ class TestTest(TestCase):
     def test_tests_works(self):
         self.assertTrue(True)
 
-class LandingPageTests(SimpleTestCase):
+
+# class LandingPageTests(SimpleTestCase):
     def setUp(self):
-        url = reverse('app:landing')
-        self.response = self.client.get(url)
+        self.url = reverse('app:landing')
+        self.response = self.client.get(self.url)
 
     def test_landing_page_status_code(self):
         self.assertEqual(self.response.status_code, 200)
@@ -32,11 +33,12 @@ class LandingPageTests(SimpleTestCase):
         )
 
     def test_landing_page_url_resolves_landingpageview(self):
-        view = resolve('/landing/')
+        view = resolve(self.url)
         self.assertEqual(
             view.func.__name__,
             LandingPageView.as_view().__name__
         )
+
 
 class IndexPageTests(TestCase):
     factory = RequestFactory()
