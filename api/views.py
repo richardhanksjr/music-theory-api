@@ -8,9 +8,7 @@ from questions.question_generator import QuestionGenerator
 class GetRandomQuestion(APIView):
 
     def get(self, request):
-        print("before qquestion in view")
         question = QuestionGenerator.question_factory()
-        print("after question in view")
         data = question.response
         return Response(data)
 
