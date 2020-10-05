@@ -13,7 +13,7 @@ class TestTest(TestCase):
         self.assertTrue(True)
 
 
-# class LandingPageTests(SimpleTestCase):
+class LandingPageTests(TestCase):
     def setUp(self):
         self.url = reverse('app:landing')
         self.response = self.client.get(self.url)
