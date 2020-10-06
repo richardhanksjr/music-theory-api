@@ -51,7 +51,7 @@ class LoginTests(TestCase):
         self.assertNotContains(
             self.response, 'Hi there! I should not be on the page.')
 
-    class LogoutTests(TestCase):
+class LogoutTests(TestCase):
 
     """
     As a logged-in user I would like a logout link so that I can
