@@ -36,5 +36,5 @@
 * Create a subclass of questions.questions.Question
 * Implement all required methods.
 * question_type should return a unique, descriptive string
-* Add new question to the questions.feature file.  This will register the question
+* Add new question to the questions.fixture file.  This will register the question
 with the application.
