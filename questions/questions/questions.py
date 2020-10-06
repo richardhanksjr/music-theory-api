@@ -1,6 +1,8 @@
 from abc import ABC
 import uuid
+import os
 from django.core.cache import cache
+from questions.models import Question as QuestionModel
 
 
 class Question(ABC):
@@ -10,12 +12,12 @@ class Question(ABC):
         self._generate_answer()
         self._generate_answer_options()
         self._generate_help_steps_array()
+        self._get_tags()
         self._generate_key()
         self._generate_question_type()
         self._generate_question_params()
         self._generate_response()
         self._add_to_cache()
-
 
     def _generate_response(self):
         self._response = {
@@ -33,6 +35,11 @@ class Question(ABC):
     def _generate_key(self):
         self._key = str(uuid.uuid4())
 
+    def _get_tags(self):
+        class_name = self.__class__.__name__
+        print("class anme", class_name)
+        self._tags = QuestionModel.objects.get(class_name=class_name,
+                                             module_name=module_name).tag_set().all().values_list('name', flat=True)
 
     def _generate_question(self):
         raise NotImplementedError
@@ -51,7 +58,6 @@ class Question(ABC):
 
     def _generate_question_params(self):
         raise NotImplementedError
-
 
     @property
     def answer_options(self):
@@ -76,6 +82,7 @@ class Question(ABC):
     @property
     def response(self):
         return self._response
+
     @property
     def key(self):
         return self._key
@@ -83,3 +90,7 @@ class Question(ABC):
     @property
     def question(self):
         return self._question
+
+    @property
+    def tags(self):
+        return self._tags

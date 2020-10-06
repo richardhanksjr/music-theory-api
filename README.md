@@ -33,8 +33,10 @@
 * `js`
 
 ##Adding new questions
+* Start Docker container using the `reload` command to prepopulate db with fixture data
 * Create a subclass of questions.questions.Question
 * Implement all required methods.
 * question_type should return a unique, descriptive string
-* Add new question to the questions.fixture file.  This will register the question
-with the application.
+* Add new question to the Question model
+* Add new question to exsiting tags and create any new tags
+* run `update_fixture`
