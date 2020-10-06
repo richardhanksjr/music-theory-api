@@ -50,3 +50,18 @@ class LoginTests(TestCase):
         self.assertContains(self.response, 'Sign In')
         self.assertNotContains(
             self.response, 'Hi there! I should not be on the page.')
+
+    class LogoutTests(TestCase):
+
+    """
+    As a logged-in user I would like a logout link so that I can
+    log out of my account
+    """
+
+    def setUp(self):
+        url = reverse('account_logout')
+        self.response = self.client.get(url)
+    
+    def test_user_not_logged_in_redirected(self):
+        url = reverse('account_logout')
+        self.assertEqual(self.response.status_code, 302)
