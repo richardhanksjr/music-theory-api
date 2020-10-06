@@ -1,9 +1,21 @@
 import random
-from .questions.simple_questions import SimpleIntervalIs
-from .questions.major_scale_questions import SimpleScaleDegreeMajor
-question_choices = [
-    SimpleIntervalIs, SimpleScaleDegreeMajor
-]
+from .models import Question
+
+"""
+Questions are imported dynamically from the Question model.  The Question model
+contains a module name and a class name.  First we import all question in the db
+and then we add the class names to the list of question_choices.
+"""
+
+
+questions = Question.objects.all()
+
+# Dynamically import files
+for question in questions:
+    exec(f"from questions.questions.{question.module_name} import {question.class_name}")
+
+question_choices = questions.values_list('class_name', flat=True)
+
 
 
 class QuestionGenerator:
@@ -14,4 +26,4 @@ class QuestionGenerator:
         Used to get a random question. Returns a random question instance
         from question_choices.
         """
-        return random.choice(question_choices)()
+        return eval(random.choice(question_choices))()
