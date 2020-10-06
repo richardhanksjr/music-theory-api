@@ -7,9 +7,9 @@
 // }
 // document.body.appendChild(component());
 import Vue from 'vue';
-import Index from './Index.vue';
+import Parent from './Parent.vue';
 
 new Vue({
    el: "#hello",
-   render: h => h(Index)
+   render: h => h(Parent)
 });

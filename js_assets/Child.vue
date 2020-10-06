@@ -7,16 +7,14 @@
 </style>
 
 <template>
-  <p>{{ greeting }} Vue!</p>
+  <p> {{message}} </p>
 </template>
 
 <script>
-module.exports = {
-  data: function() {
-    return {
-      greeting: "Hello"
-    };
+  export default {
+    props: {
+        message: String
+    }
   }
-};
 </script>
 
