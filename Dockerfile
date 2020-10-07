@@ -15,13 +15,11 @@ WORKDIR /code
 COPY Pipfile Pipfile.lock /code/
 RUN pip install pipenv && pipenv lock --clear && pipenv install --system
 
-
-# Collect static files
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
-
 # Copy project
 COPY . /code/
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
 
 
