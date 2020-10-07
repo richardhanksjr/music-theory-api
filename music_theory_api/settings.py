@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'api',
     'questions',
     'rest_framework',
-    'django_extensions'
+    'django_extensions',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
