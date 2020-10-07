@@ -61,7 +61,13 @@ class LogoutTests(TestCase):
     def setUp(self):
         url = reverse('account_logout')
         self.response = self.client.get(url)
+        self.user = User.objects.create_user(
+                                username='newuser',
+                                email='newuser@email.com',
+                                password='testpass123')
+        
     
     def test_user_not_logged_in_redirected(self):
+        self.client.force_login(self.user)
         url = reverse('account_logout')
         self.assertEqual(self.response.status_code, 302)
