@@ -37,7 +37,6 @@ class Question(ABC):
 
     def _get_tags(self):
         class_name = self.__class__.__name__
-        print("class anme", class_name)
         self._tags = QuestionModel.objects.get(class_name=class_name).tag_set.all().values_list('name', flat=True)
 
     def _generate_question(self):
