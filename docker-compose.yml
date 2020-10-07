@@ -5,9 +5,6 @@ services:
     command: bash -c "python /code/manage.py collectstatic --noinput &&
       python /code/manage.py migrate &&
       python /code/manage.py createcachetable &&
-      python manage.py loaddata questions.json &&
-      npm install &&
-      npm run dev &&
       gunicorn music_theory_api.wsgi -b 0.0.0.0:8000 --worker-tmp-dir /dev/shm --workers 2"
 
     environment:
@@ -30,7 +27,5 @@ services:
     - postgres_data:/var/lib/postgresql/data/
     environment:
     - "POSTGRES_HOST_AUTH_METHOD=trust"
-
-
 volumes:
   postgres_data:

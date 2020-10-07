@@ -27,6 +27,6 @@ class Answer(LoginRequiredMixin, APIView):
                 return Response("User does not have permission to view this answer", status=status.HTTP_403_FORBIDDEN)
             data = {'correct': user_answer == cached_response['answer'],
                     'correct_answer': cached_response['answer']}
-        except Exception as e:
+        except Exception:
             return Response("Must supply answer and key", status=status.HTTP_400_BAD_REQUEST)
         return Response(data)

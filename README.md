@@ -27,10 +27,18 @@
 
 * ###Load custom commands into environment
 * `source environment.sh`
-* ### Reload docker image and bundle Vue assets
+* ###Reload docker image and bundle Vue assets
 * `reload`
-* ### Transpiple and bundle Vue assets
+* ###Transpiple and bundle Vue assets
 * `js`
+* ###Run Django test suite
+* `test`
+* ###Enter shell_plus
+* `shell`
+* ###Update the question fixture file to reflect local db
+* `update_fixture`
+* ###Update db to match state of question fixture file
+* `load_fixture`
 
 ##Adding new questions
 * Start Docker container using the `reload` command to prepopulate db with fixture data

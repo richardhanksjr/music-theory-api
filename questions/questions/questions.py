@@ -1,7 +1,6 @@
 from abc import ABC
 import uuid
 import inspect
-import os
 from django.core.cache import cache
 from questions.models import Question as QuestionModel
 
