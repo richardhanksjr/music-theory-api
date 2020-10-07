@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LandingPageView, IndexPageView
+from .views import LandingPageView, IndexPageView, ProfilePageView
 
 app_name = 'app'
 urlpatterns = [
