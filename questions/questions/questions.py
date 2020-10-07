@@ -22,12 +22,14 @@ class Question(ABC):
         self._add_to_cache()
 
 
+
     def _generate_response(self):
         self._response = {
             'question': self.question,
             'answer_options': self.answer_options,
             'question_params': self.question_params,
-            'key': self.key
+            'key': self.key,
+            'answer': self.answer
         }
 
     def _add_to_cache(self):
