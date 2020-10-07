@@ -1,10 +1,12 @@
 from django.test import TestCase
 from questions.questions.major_scale_questions import SimpleScaleDegreeMajor
 from django.core.cache import cache
+from questions.models import Question
 
 
 class SimpleScaleDegreeMajorTest(TestCase):
     def setUp(self):
+        Question.objects.create(class_name='SimpleScaleDegreeMajor')
         self.question = SimpleScaleDegreeMajor(tonic='C', scale_degree_index=5)
 
     def test_question_added_to_cache(self):

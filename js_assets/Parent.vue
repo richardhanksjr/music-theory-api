@@ -10,7 +10,7 @@
         },
         data(){
             return {
-                message: "Hello from parent!"
+                message: "Hello from parent!!"
             }
         }
     }
