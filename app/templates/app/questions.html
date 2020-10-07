@@ -11,9 +11,7 @@
     <div id="questionPage" class="container">
         <h1 class="text-muted">Questions</h1>
         <br>
-            <h2 name="question" style="color: #003366" id="question">[[ questionPackage.question ]]</h2>
-<!--        <h3>[[ questionPackage.key ]]</h3>-->
-
+            <h2 name="question" id="question">[[ questionPackage.question ]]</h2>
         <br>
                 <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
                     <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">[[ answer ]]</label><br>
@@ -22,7 +20,7 @@
             <hr class="rounded">
                 <h5 style="color: darkred">[[ message ]]</h5>
             <br>
-            <button v-if="message" style="color: darkred" class="btn btn-outline-secondary" onClick="window.location.reload();">Next Question</button>
+            <button v-if="message" style="color: darkred" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
     </div>
     <!--    import App -->
     <script type="module" src="{% static 'app/app.js' %}"></script>

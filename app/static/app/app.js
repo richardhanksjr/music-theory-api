@@ -29,7 +29,7 @@ const questionPage = Vue.createApp({
             axios.post(url, {"key": this.questionPackage.key, "answer": answer})
             .then(response => {
 
-                if (response.data.correct === true) {
+                if (response.data.correct) {
                     this.message = "Correct!"
                 }
                 else {
@@ -38,7 +38,15 @@ const questionPage = Vue.createApp({
                 }
             })
             this.answerVal = "";
-        }
+        },
+    nextQuestion() {
+        axios.get('/api/question')
+                .then(response => {
+                this.questionPackage = response.data
+                });
+            this.answerVal = "";
+            this.message = "";
+    }
     },
     mounted() {
             axios.get('/api/question')

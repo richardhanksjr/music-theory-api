@@ -70,29 +70,22 @@ class IndexPageTests(TestCase):
         response = view(request)
         self.assertEqual(response.status_code, 200)
 
-
     def test_question_exists_on_questions_page(self):
-        view = IndexPageView.as_view()
-
-        request = self.factory.get(reverse('app:index'))
-        request.user = self.user
-        response = view(request)
+        url = reverse('app:index')
+        self.client.force_login(self.user)
+        response = self.client.get(url)
         self.assertContains(response, 'name="question"')
 
-
     def test_questions_page_contains_four_multiple_choice_answers(self):
-        view = IndexPageView.as_view()
-
-        request = self.factory.get(reverse('app:index'))
-        request.user = self.user
-        response = view(request)
+        
+        url = reverse('app:index')
+        self.client.force_login(self.user)
+        response = self.client.get(url)
         self.assertContains(response, '<input')
         self.assertContains(response, 'type="radio"')
 
     def test_homepage_does_not_contain_incorrect_html(self):
-        view = IndexPageView.as_view()
-
-        request = self.factory.get(reverse('app:index'))
-        request.user = self.user
-        response = view(request)
+        url = reverse('app:index')
+        self.client.force_login(self.user)
+        response = self.client.get(url)
         self.assertNotContains(response, 'Hi there! I should not be on the page.')
