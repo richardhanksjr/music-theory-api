@@ -1,4 +1,5 @@
 import random
+import inspect
 from music21 import key
 from .questions import Question
 from ._utilities import (scale_degrees, random_pitch, random_answer_options_pitch)

@@ -26,3 +26,6 @@ class SimpleIntervalIsTest(TestCase):
 
     def test_returns_correct_tags(self):
         self.assertListEqual(['A Tag'], list(self.question.tags))
+
+    def test_correct_weight(self):
+        self.assertEqual(1, self.question.weight)

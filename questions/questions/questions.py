@@ -1,5 +1,6 @@
 from abc import ABC
 import uuid
+import inspect
 import os
 from django.core.cache import cache
 from questions.models import Question as QuestionModel
@@ -14,10 +15,12 @@ class Question(ABC):
         self._generate_help_steps_array()
         self._get_tags()
         self._generate_key()
+        self._generate_weight()
         self._generate_question_type()
         self._generate_question_params()
         self._generate_response()
         self._add_to_cache()
+
 
     def _generate_response(self):
         self._response = {
@@ -34,6 +37,12 @@ class Question(ABC):
 
     def _generate_key(self):
         self._key = str(uuid.uuid4())
+
+    def _generate_weight(self):
+        # The weight of a question is based on the length of keyword arguments
+        # passed to the constructor.  This is a proxy for the complexity of the question.
+        self._weight= len(inspect.getargspec(self.__init__).args)
+
 
     def _get_tags(self):
         class_name = self.__class__.__name__
@@ -92,3 +101,7 @@ class Question(ABC):
     @property
     def tags(self):
         return self._tags
+
+    @property
+    def weight(self):
+        return self._weight

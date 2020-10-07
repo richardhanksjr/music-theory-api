@@ -15,3 +15,6 @@ class SimpleScaleDegreeMajorTest(TestCase):
         self.assertEqual(question_from_cache['answer'], self.question.answer)
         self.assertEqual(question_from_cache['question'], self.question.question)
         self.assertListEqual(question_from_cache['answer_options'], self.question.answer_options)
+
+    def test_correct_weight(self):
+        self.assertEqual(3, self.question.weight)
