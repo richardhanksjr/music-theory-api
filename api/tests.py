@@ -9,11 +9,11 @@ from api.views import Answer, GetRandomQuestion
 User = get_user_model()
 
 
-class TestAnswer(TestCase):
-
-    def setUp(self):
-        self.factory = APIRequestFactory()
-        self.user = User.objects.create_user(username="foo", email='test@test.com', password='foo')
+# class TestAnswer(TestCase):
+#
+#     def setUp(self):
+#         self.factory = APIRequestFactory()
+#         self.user = User.objects.create_user(username="foo", email='test@test.com', password='foo')
 
     # @classmethod
     # def setUpTestData(cls):
