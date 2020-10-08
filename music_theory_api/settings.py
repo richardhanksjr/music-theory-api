@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
-import sys
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 
@@ -124,21 +123,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-if 'test' in sys.argv or 'test_coverage' in sys.argv:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'LOCATION': 'unique-snowflake',
-        }
+if 'test' in sys.arv
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'TIMEOUT': 60 * 60,
+        'LOCATION': 'cache_table'
     }
-else:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-            'TIMEOUT': 60 * 60,
-            'LOCATION': 'cache_table'
-        }
-    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
