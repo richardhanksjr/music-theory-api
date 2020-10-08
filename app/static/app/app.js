@@ -25,7 +25,7 @@ const questionPage = Vue.createApp({
                 color: 'darkred',
                 },
             styleQuestion: {
-                color: 'dark midnight blue'
+                color: 'Dark midnight blue'
                 }
 
 
