@@ -11,16 +11,16 @@
     <div id="questionPage" class="container">
         <h1 class="text-muted">Questions</h1>
         <br>
-            <h2 name="question" id="question">[[ questionPackage.question ]]</h2>
+            <h2 :style="styleQuestion" name="question" id="question">[[ questionPackage.question ]]</h2>
         <br>
                 <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
                     <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">[[ answer ]]</label><br>
                 </fieldset>
             <br>
             <hr class="rounded">
-                <h5 style="color: darkred">[[ message ]]</h5>
+                <h5 :style="styleMessage">[[ message ]]</h5>
             <br>
-            <button v-if="message" style="color: darkred" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
+            <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
         <script>
             const answers_url = "{% url 'api:answer' %}";
         </script>

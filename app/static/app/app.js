@@ -21,6 +21,14 @@ const questionPage = Vue.createApp({
             questionPackage: [],
             message: "",
             answerVal: "",
+            styleMessage: {
+                color: 'darkred',
+                },
+            styleQuestion: {
+                color: 'dark midnight blue'
+                }
+
+
          }
     },
     methods: {
