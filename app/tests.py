@@ -12,10 +12,11 @@ class TestTest(TestCase):
     def test_tests_works(self):
         self.assertTrue(True)
 
-class LandingPageTests(SimpleTestCase):
+
+class LandingPageTests(TestCase):
     def setUp(self):
-        url = reverse('app:landing')
-        self.response = self.client.get(url)
+        self.url = reverse('app:landing')
+        self.response = self.client.get(self.url)
 
     def test_landing_page_status_code(self):
         self.assertEqual(self.response.status_code, 200)
@@ -32,11 +33,12 @@ class LandingPageTests(SimpleTestCase):
         )
 
     def test_landing_page_url_resolves_landingpageview(self):
-        view = resolve('/landing/')
+        view = resolve(self.url)
         self.assertEqual(
             view.func.__name__,
             LandingPageView.as_view().__name__
         )
+
 
 class IndexPageTests(TestCase):
     factory = RequestFactory()
@@ -70,6 +72,7 @@ class IndexPageTests(TestCase):
         response = view(request)
         self.assertEqual(response.status_code, 200)
 
+
     def test_question_exists_on_questions_page(self):
         url = reverse('app:index')
         self.client.force_login(self.user)
@@ -89,3 +92,4 @@ class IndexPageTests(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(url)
         self.assertNotContains(response, 'Hi there! I should not be on the page.')
+

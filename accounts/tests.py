@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 
 class SignupTests(TestCase):
 
-    username = 'newuser'
-    email = 'newuser@email.com'
+    """ 
+    As a user I want a registration page so that I 
+    can register for an account with an email and password.
+    """
 
     def setUp(self):
         url = reverse('account_signup')
@@ -20,6 +22,7 @@ class SignupTests(TestCase):
         self.assertNotContains(
             self.response, 'Hi there! I should not be on the page.')
 
+
 class LoginTests(TestCase):
 
     """ 
@@ -28,26 +31,22 @@ class LoginTests(TestCase):
     """
 
     def setUp(self):
+        url = reverse('account_login')
+        self.response = self.client.get(url)
         self.client = Client()
         self.user = User.objects.create_user(
-                                username='newuser', 
+                                username='newuser',
                                 email='newuser@email.com',
                                 password='testpass123')
-        user_two = User.objects.create_user(
-                                username='usertwo', 
-                                email='usertwo@email.com',
-                                password='testpass222')
-        user_three = User.objects.create_user(
-                                username='userthree', 
-                                email='userthree@email.com',
-                                password='testpass333')
-
-    def test_login_returns_status_code_200(self):
-        url = reverse('account_login')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
 
     def test_login_using_email_as_id(self):
         c = Client()
         login = c.login(email='newuser@email.com', password='testpass123')
         self.assertEqual(login, True)
+
+    def test_login_template(self):
+        self.assertEqual(self.response.status_code, 200)
+        self.assertTemplateUsed(self.response, 'account/login.html')
+        self.assertContains(self.response, 'Sign In')
+        self.assertNotContains(
+            self.response, 'Hi there! I should not be on the page.')
