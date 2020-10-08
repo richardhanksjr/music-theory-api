@@ -15,7 +15,8 @@ script:
   - docker-compose up -d --build
 #  - docker-compose web python manage.py test
 #  - docker-compose run web coverage run manage.py test
-  - docker-compose exec web python manage.py check
+#  - docker-compose exec web python manage.py check
+  - docker-compose exec web python manage.py shell
   - docker-compose run web prospector --uses django
 
 
