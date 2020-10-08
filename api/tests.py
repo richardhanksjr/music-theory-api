@@ -15,11 +15,11 @@ class TestAnswer(TestCase):
         self.factory = APIRequestFactory()
         self.user = User.objects.create_user(username="foo", email='test@test.com', password='foo')
 
-    @classmethod
-    def setUpTestData(cls):
-        Question.objects.create(class_name="SimpleIntervalIs", module_name='simple_questions')
-        cls.simple_interval = SimpleIntervalIs()
-        cls.url = reverse("answer")
+    # @classmethod
+    # def setUpTestData(cls):
+    #     Question.objects.create(class_name="SimpleIntervalIs", module_name='simple_questions')
+    #     cls.simple_interval = SimpleIntervalIs()
+    #     cls.url = reverse("answer")
 
     # def test_return_correct_json_keys(self):
     #     view = Answer.as_view()
