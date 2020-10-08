@@ -8,24 +8,24 @@ services:
       gunicorn music_theory_api.wsgi -b 0.0.0.0:8000 --worker-tmp-dir /dev/shm --workers 2"
 
     environment:
-    - SECRET_KEY="${SECRET_KEY}"
-    - DEBUG="${DEBUG}"
-    - DATABASE_USER=${DATABASE_USER}
-    - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-    - DATABASE_NAME=${DATABASE_NAME}
+      - SECRET_KEY="${SECRET_KEY}"
+      - DEBUG="${DEBUG}"
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME}
 
 
     volumes:
-    - .:/code
+      - .:/code
     ports:
-    - 8000:8000
+      - 8000:8000
     depends_on:
-    - db
+      - db
   db:
     image: postgres:11
     volumes:
-    - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     environment:
-    - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
 volumes:
   postgres_data:
