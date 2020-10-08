@@ -12,7 +12,8 @@ User = get_user_model()
 class TestAnswer(TestCase):
 
     def setUp(self):
-        self.factory = APIRequestFactory()
+        pass
+        #self.factory = APIRequestFactory()
         # self.user = User.objects.create_user(username="foo", email='test@test.com', password='foo')
 
     # @classmethod
