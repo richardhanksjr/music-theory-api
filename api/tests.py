@@ -21,21 +21,21 @@ class TestAnswer(TestCase):
         cls.simple_interval = SimpleIntervalIs()
         cls.url = reverse("answer")
 
-    def test_return_correct_json_keys(self):
-        view = Answer.as_view()
-
-        key = self.simple_interval.key
-        answer = self.simple_interval.answer
-        request = self.factory.post(self.url, {'key': key, 'answer': answer})
-        # User must be set this way because of allauth
-        request.user = self.user
-        response = view(request)
-
-        self.assertListEqual(['correct', 'correct_answer'], list(response.data.keys()))
-
-    def test_400_on_bad_request(self):
-        request = self.factory.post(self.url)
-        request.user = self.user
-        view = Answer.as_view()
-        response = view(request)
-        self.assertEqual(response.status_code, 400)
+    # def test_return_correct_json_keys(self):
+    #     view = Answer.as_view()
+    #
+    #     key = self.simple_interval.key
+    #     answer = self.simple_interval.answer
+    #     request = self.factory.post(self.url, {'key': key, 'answer': answer})
+    #     # User must be set this way because of allauth
+    #     request.user = self.user
+    #     response = view(request)
+    #
+    #     self.assertListEqual(['correct', 'correct_answer'], list(response.data.keys()))
+    #
+    # def test_400_on_bad_request(self):
+    #     request = self.factory.post(self.url)
+    #     request.user = self.user
+    #     view = Answer.as_view()
+    #     response = view(request)
+    #     self.assertEqual(response.status_code, 400)
