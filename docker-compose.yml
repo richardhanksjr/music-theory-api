@@ -3,7 +3,7 @@ services:
   web:
     build: .
     command: bash -c "python /code/manage.py collectstatic --noinput &&
-      python /code/manage.py migrate &&
+      docker-compose exec web python manage.py migrate &&
       python /code/manage.py createcachetable &&
       gunicorn music_theory_api.wsgi -b 0.0.0.0:8000 --worker-tmp-dir /dev/shm --workers 2"
 
