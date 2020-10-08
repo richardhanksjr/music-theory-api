@@ -67,7 +67,13 @@ class LogoutTests(TestCase):
                                 password='testpass123')
         
     
-    def test_user_not_logged_in_redirected(self):
+    def test_user_not_logged_in_redirected_to_landing_page(self):
+        url = reverse('account_logout')
+        self.response = self.client.get(url, follow=True)
+        self.assertTemplateUsed(self.response, 'app/landing.html')
+
+    def test_logout_page_template_used(self):
         self.client.force_login(self.user)
         url = reverse('account_logout')
-        self.assertEqual(self.response.status_code, 302)
+        self.response = self.client.get(url)
+        self.assertTemplateUsed(self.response, 'account/logout.html')
