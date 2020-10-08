@@ -123,7 +123,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-if 'test' in sys.arv
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
