@@ -21,6 +21,9 @@
                 <h5 style="color: darkred">[[ message ]]</h5>
             <br>
             <button v-if="message" style="color: darkred" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
+        <script>
+            const answers_url = "{% url 'api:answer' %}";
+        </script>
     </div>
     <!--    import App -->
     <script type="module" src="{% static 'app/app.js' %}"></script>

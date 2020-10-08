@@ -3,7 +3,6 @@
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
 
-const url = '/api/answer'
 var jabs = ["No gigs for you.",
             "You were kidding, right?",
             "We're all speechless at your ineptitude.",
@@ -26,7 +25,7 @@ const questionPage = Vue.createApp({
     },
     methods: {
     evaluateAnswer(answer) {
-            axios.post(url, {"key": this.questionPackage.key, "answer": answer})
+            axios.post(answers_url, {"key": this.questionPackage.key, "answer": answer})
             .then(response => {
 
                 if (response.data.correct) {

@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import GetRandomQuestion, Answer
 
+app_name = 'api'
 
 urlpatterns = [
 
