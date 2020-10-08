@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-if 'test' in sys.arv or 'test_coverage' in sys.argv:
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
     CACHES = {
         'default': {
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
