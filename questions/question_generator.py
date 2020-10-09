@@ -1,5 +1,5 @@
 # import random
-# from .models import Question
+from .models import Question
 # from django.db.utils import ProgrammingError
 #
 # """
@@ -9,7 +9,8 @@
 # """
 #
 #
-# questions = Question.objects.all()
+questions = Question.objects.all()
+print("questions*****", questions)
 # try:
 #     print("questions******************", questions)
 # except ProgrammingError as e:
