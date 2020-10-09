@@ -1,5 +1,6 @@
 import random
 from .models import Question
+from django.db.utils import ProgrammingError
 
 """
 Questions are imported dynamically from the Question model.  The Question model
@@ -13,7 +14,11 @@ print("questions******************", questions)
 
 # Dynamically import files
 for question in questions:
-    exec(f"from questions.questions.{question.module_name} import {question.class_name}")
+    try:
+        exec(f"from questions.questions.{question.module_name} import {question.class_name}")
+    except ProgrammingError as e:
+        print("error is: ", e)
+
 
 question_choices = questions.values_list('class_name', flat=True)
 
