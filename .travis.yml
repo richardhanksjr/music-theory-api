@@ -11,15 +11,16 @@ install:
 env:
   - DOCKER_COMPOSE_VERSION=3.3
 
-before_script:
-  - docker-compose up -d --build
-  - docker-compose exec web python manage.py makemigrations
-  - docker-compose exec web python manage.py migrate
+#before_script:
+#  - docker-compose up -d --build
+#  - docker-compose exec web python manage.py makemigrations
+#  - docker-compose exec web python manage.py migrate
 
 
 
 script:
-#  - docker-compose run web python manage.py test
+  - docker-compose up -d --build
+  - docker-compose run web python manage.py test
 #  - docker-compose run web coverage run manage.py test
 #  - docker-compose exec web python manage.py check
   - docker-compose run web prospector --uses django
