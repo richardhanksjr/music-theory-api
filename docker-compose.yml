@@ -6,6 +6,9 @@ services:
     volumes:
     - postgres_data:/var/lib/postgresql/data/
     environment:
+    - DATABASE_USER=${DATABASE_USER}
+    - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    - DATABASE_NAME=${DATABASE_NAME}
     - "POSTGRES_HOST_AUTH_METHOD=trust"
   migration:
     build: .
@@ -16,16 +19,11 @@ services:
     - db
   web:
     build: .
-    command: bash -c "python /code/manage.py collectstatic --noinput &&
-      gunicorn music_theory_api.wsgi -b 0.0.0.0:8000 --worker-tmp-dir /dev/shm --workers 2"
+    command: gunicorn music_theory_api.wsgi -b 0.0.0.0:8000 --worker-tmp-dir /dev/shm --workers 2
 
     environment:
     - SECRET_KEY="${SECRET_KEY}"
     - DEBUG="${DEBUG}"
-    - DATABASE_USER=${DATABASE_USER}
-    - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-    - DATABASE_NAME=${DATABASE_NAME}
-
 
     volumes:
     - .:/code
