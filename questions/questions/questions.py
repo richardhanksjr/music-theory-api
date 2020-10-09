@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 import uuid
 import inspect
 from django.core.cache import cache
@@ -49,23 +49,29 @@ class Question(ABC):
         class_name = self.__class__.__name__
         self._tags = QuestionModel.objects.get(class_name=class_name).tag_set.all().values_list('name', flat=True)
 
+    @abstractmethod
     def _generate_question(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_answer(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_answer_options(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_help_steps_array(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_question_type(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_question_params(self):
-        raise NotImplementedError
+        pass
 
     @property
     def answer_options(self):
