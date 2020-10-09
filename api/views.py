@@ -3,14 +3,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from django.contrib.auth.mixins import LoginRequiredMixin
-from questions.question_generator import QuestionGenerator
+# from questions.question_generator import QuestionGenerator
 
 
 class GetRandomQuestion(LoginRequiredMixin, APIView):
 
     def get(self, request):
-        question = QuestionGenerator.question_factory()
-        data = question.response
+        # question = QuestionGenerator.question_factory()
+        # data = question.response
+        data = "fake data"
         return Response(data)
 
 
