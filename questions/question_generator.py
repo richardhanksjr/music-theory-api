@@ -9,9 +9,7 @@ from .models import Question, Tag
 # """
 #
 #
-print("tags", Tag.objects.all())
-questions = Question.objects.all()
-print("questions*****", questions)
+
 # try:
 #     print("questions******************", questions)
 # except ProgrammingError as e:
@@ -31,7 +29,9 @@ print("questions*****", questions)
 #
 #
 class QuestionGenerator:
-    pass
+    print("tags", Tag.objects.all())
+    questions = Question.objects.all()
+    print("questions*****", questions)
 #
 #     @staticmethod
 #     def question_factory():
