@@ -1,5 +1,5 @@
 # import random
-from .models import Question
+from .models import Question, Tag
 # from django.db.utils import ProgrammingError
 #
 # """
@@ -9,6 +9,7 @@ from .models import Question
 # """
 #
 #
+print("tags", Tag.objects.all())
 questions = Question.objects.all()
 print("questions*****", questions)
 # try:
@@ -29,7 +30,8 @@ print("questions*****", questions)
 #
 #
 #
-# class QuestionGenerator:
+class QuestionGenerator:
+    pass
 #
 #     @staticmethod
 #     def question_factory():
