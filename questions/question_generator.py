@@ -9,6 +9,7 @@ and then we add the class names to the list of question_choices.
 
 
 questions = Question.objects.all()
+print("questions******************", questions)
 
 # Dynamically import files
 for question in questions:
