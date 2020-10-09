@@ -75,6 +75,7 @@ class IndexPageTests(TestCase):
         request.user = self.user
         response = view(request)
         self.assertEqual(response.status_code, 200)
+
 class NavBarTests(TestCase):
     """
     https://github.com/pennersr/django-allauth/blob/master/allauth/account/tests.py
