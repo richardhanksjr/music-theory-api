@@ -9,7 +9,7 @@ from questions.question_generator import QuestionGenerator
 class GetRandomQuestion(LoginRequiredMixin, APIView):
 
     def get(self, request):
-        question = QuestionGenerator.question_factory()
+        # question = QuestionGenerator.question_factory()
         # data = question.response
         data = "fake data"
         return Response(data)
