@@ -10,7 +10,11 @@ and then we add the class names to the list of question_choices.
 
 
 questions = Question.objects.all()
-print("questions******************", questions)
+try:
+    print("questions******************", questions)
+except ProgrammingError as e:
+    print("top block")
+    print("e")
 
 # Dynamically import files
 for question in questions:
