@@ -4,14 +4,13 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.http import HttpResponse
-<<<<<<< HEAD
+
 
 from django.test.client import Client
 from django.test.utils import override_settings
 from allauth.utils import get_user_model
 
-=======
->>>>>>> eec3e37bbde07ac0619384ed5be510e4e76eda8c
+
 from .views import LandingPageView, IndexPageView
 
 from django.test import Client
@@ -140,21 +139,21 @@ class NavBarTests(TestCase):
 
     def test_question_exists_on_questions_page(self):
         url = reverse('app:index')
-        self.client.force_login(self.user)
+        self._create_user_and_login()
         response = self.client.get(url)
         self.assertContains(response, 'name="question"')
 
     def test_questions_page_contains_four_multiple_choice_answers(self):
         
         url = reverse('app:index')
-        self.client.force_login(self.user)
+        self._create_user_and_login()
         response = self.client.get(url)
         self.assertContains(response, '<input')
         self.assertContains(response, 'type="radio"')
 
     def test_homepage_does_not_contain_incorrect_html(self):
         url = reverse('app:index')
-        self.client.force_login(self.user)
+        self._create_user_and_login()
         response = self.client.get(url)
         self.assertNotContains(response, 'Hi there! I should not be on the page.')
 
