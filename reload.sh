@@ -9,6 +9,7 @@ echo "Building Docker container and starting in daemon mode"
 docker-compose up --build -d
 
 echo "Building JavaScript assets"
+docker-compose exec web npm install
 ./js.sh
 
 echo "Loading questions into database:"

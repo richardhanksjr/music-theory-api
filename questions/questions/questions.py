@@ -42,7 +42,7 @@ class Question(ABC):
     def _generate_weight(self):
         # The weight of a question is based on the length of keyword arguments
         # passed to the constructor.  This is a proxy for the complexity of the question.
-        self._weight= len(inspect.getargspec(self.__init__).args)
+        self._weight= len(inspect.getfullargspec(self.__init__).args)
 
 
     def _get_tags(self):

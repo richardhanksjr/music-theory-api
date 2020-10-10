@@ -29,6 +29,4 @@ class Answer(LoginRequiredMixin, APIView):
                     'correct_answer': cached_response['answer']}
         except Exception:
             return Response("Must supply answer and key", status=status.HTTP_400_BAD_REQUEST)
-        except Exception:
-            pass
         return Response(data)
