@@ -34,7 +34,7 @@ class Question(ABC):
     def _add_to_cache(self):
         key = self.response['key']
         data = {**self.response, **{'answer': self.answer}}
-        # cache.set(key, data)
+        cache.set(key, data)
 
     def _generate_key(self):
         self._key = str(uuid.uuid4())
