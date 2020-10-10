@@ -29,9 +29,10 @@ from .models import Question, Tag
 #
 #
 class QuestionGenerator:
-    print("tags", Tag.objects.all())
-    questions = Question.objects.all()
-    print("questions*****", questions)
+    print("Inside QuestionGenerator!!!!!!!!!!")
+    #print("tags", Tag.objects.all())
+    # questions = Question.objects.all()
+    #print("questions*****", questions)
 #
 #     @staticmethod
 #     def question_factory():
