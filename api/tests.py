@@ -3,14 +3,17 @@ from django.urls import reverse
 from django.test import TestCase
 from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 from questions.questions.simple_questions import SimpleIntervalIs
-from questions.models import Question
+from questions.models import Question, Tag
 from api.views import Answer, GetRandomQuestion
 
 User = get_user_model()
 
 #
-# class TestAnswer(TestCase):
+class TestAnswer(TestCase):
 #
+    def test_travis(self):
+        print("questions from test", Question.objects.all())
+        print("tags from test", Tag.objects.all())
 #     def setUp(self):
 #         pass
         #self.factory = APIRequestFactory()
