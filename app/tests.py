@@ -85,6 +85,14 @@ class NavBarTests(TestCase):
     https://github.com/pennersr/django-allauth/blob/master/allauth/account/tests.py
     """
 
+    def setUp(self):
+        url = reverse('account_logout')
+        self.response = self.client.get(url)
+        self.user = User.objects.create_user(
+                                username='newuser',
+                                email='newuser@email.com',
+                                password='testpass123')
+
 
     def _create_user(self, username="john", password="doe"):
         user = get_user_model().objects.create(username=username, is_active=True)
@@ -135,6 +143,18 @@ class NavBarTests(TestCase):
         )
         # Logged in
         self.assertEqual(response.status_code, 200)
+
+    def test_random_question_link_uses_correct_template(self):
+        user = User.objects.create(email="testuser@email", password="testpass")
+        self.client.force_login(self.user)
+        url = reverse('app:index')
+        self.response = self.client.get(url)
+        self.assertTemplateUsed(self.response, 'app/questions.html')
+
+    def test_user_not_logged_in_cannot_access_random_question(self):
+        url = reverse('app:index')
+        self.response = self.client.get(url)
+        self.assertRedirects(self.response, '/landing/?next=/')
 
 
     def test_question_exists_on_questions_page(self):
