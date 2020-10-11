@@ -1,10 +1,7 @@
 from django.urls import path
-<<<<<<< HEAD
 from .views import LandingPageView, IndexPageView, ProfilePageView
-=======
 from django.views.generic.base import TemplateView
-from .views import LandingPageView, IndexPageView
->>>>>>> master
+
 
 app_name = 'app'
 
