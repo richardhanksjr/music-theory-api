@@ -1,0 +1,38 @@
+[
+{
+    "model": "questions.question",
+    "pk": 1,
+    "fields": {
+        "class_name": "SimpleIntervalIs",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 2,
+    "fields": {
+        "class_name": "SimpleScaleDegreeMajor",
+        "module_name": "major_scale_questions"
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 3,
+    "fields": {
+        "name": "Major Scale",
+        "question": [
+            2
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 4,
+    "fields": {
+        "name": "Interval",
+        "question": [
+            1
+        ]
+    }
+}
+]

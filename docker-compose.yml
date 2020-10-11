@@ -1,11 +1,15 @@
 version: "3.3"
 services:
+  db:
+    image: postgres:11
+    volumes:
+    - postgres_data:/var/lib/postgresql/data/
+    environment:
+    - "POSTGRES_HOST_AUTH_METHOD=trust"
   web:
+    restart: always
     build: .
-    command: bash -c "python /code/manage.py collectstatic --noinput &&
-      python /code/manage.py migrate &&
-      python /code/manage.py createcachetable &&
-      gunicorn music_theory_api.wsgi -b 0.0.0.0:8000 --worker-tmp-dir /dev/shm --workers 2"
+    command: gunicorn music_theory_api.wsgi -b 0.0.0.0:8000 --worker-tmp-dir /dev/shm --workers 2
 
     environment:
     - SECRET_KEY="${SECRET_KEY}"
@@ -14,18 +18,12 @@ services:
     - DATABASE_PASSWORD=${DATABASE_PASSWORD}
     - DATABASE_NAME=${DATABASE_NAME}
 
-
     volumes:
     - .:/code
     ports:
     - 8000:8000
     depends_on:
     - db
-  db:
-    image: postgres:11
-    volumes:
-    - postgres_data:/var/lib/postgresql/data/
-    environment:
-    - "POSTGRES_HOST_AUTH_METHOD=trust"
+
 volumes:
   postgres_data:
