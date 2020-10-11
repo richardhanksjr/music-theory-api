@@ -19,7 +19,7 @@ class TestAnswer(TestCase):
     def setUpTestData(cls):
         Question.objects.create(class_name="SimpleIntervalIs", module_name='simple_questions')
         cls.simple_interval = SimpleIntervalIs()
-        cls.url = reverse("answer")
+        cls.url = reverse("api:answer")
 
     def test_return_correct_json_keys(self):
         view = Answer.as_view()
