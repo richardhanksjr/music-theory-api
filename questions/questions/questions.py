@@ -1,6 +1,8 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 import uuid
+import inspect
 from django.core.cache import cache
+from questions.models import Question as QuestionModel
 
 
 class Question(ABC):
@@ -10,11 +12,14 @@ class Question(ABC):
         self._generate_answer()
         self._generate_answer_options()
         self._generate_help_steps_array()
+        self._get_tags()
         self._generate_key()
+        self._generate_weight()
         self._generate_question_type()
         self._generate_question_params()
         self._generate_response()
         self._add_to_cache()
+
 
 
     def _generate_response(self):
@@ -22,7 +27,8 @@ class Question(ABC):
             'question': self.question,
             'answer_options': self.answer_options,
             'question_params': self.question_params,
-            'key': self.key
+            'key': self.key,
+            'answer': self.answer
         }
 
     def _add_to_cache(self):
@@ -33,25 +39,39 @@ class Question(ABC):
     def _generate_key(self):
         self._key = str(uuid.uuid4())
 
+    def _generate_weight(self):
+        # The weight of a question is based on the length of keyword arguments
+        # passed to the constructor.  This is a proxy for the complexity of the question.
+        self._weight= len(inspect.getfullargspec(self.__init__).args)
 
+
+    def _get_tags(self):
+        class_name = self.__class__.__name__
+        self._tags = QuestionModel.objects.get(class_name=class_name).tag_set.all().values_list('name', flat=True)
+
+    @abstractmethod
     def _generate_question(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_answer(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_answer_options(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_help_steps_array(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_question_type(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def _generate_question_params(self):
-        raise NotImplementedError
-
+        pass
 
     @property
     def answer_options(self):
@@ -76,6 +96,7 @@ class Question(ABC):
     @property
     def response(self):
         return self._response
+
     @property
     def key(self):
         return self._key
@@ -83,3 +104,11 @@ class Question(ABC):
     @property
     def question(self):
         return self._question
+
+    @property
+    def tags(self):
+        return self._tags
+
+    @property
+    def weight(self):
+        return self._weight

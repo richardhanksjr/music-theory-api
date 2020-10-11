@@ -1,0 +1,47 @@
+{% extends 'app/_base.html' %}
+{% load static %}
+
+
+    {% block title %}
+        Questions
+    {% endblock %}
+
+    {% block content %}
+<!--could put if user.is_authenticated here possibly -->
+    <div id="questionPage" class="container">
+        <h1 class="text-muted">Questions</h1>
+        <br>
+            <h2 :style="styleQuestion" name="question" id="question">[[ questionPackage.question ]]</h2>
+        <br>
+                <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
+                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">[[ answer ]]</label><br>
+                </fieldset>
+            <br>
+            <hr class="rounded">
+                <h5 :style="styleMessage">[[ message ]]</h5>
+            <br>
+            <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
+        <script>
+            const answers_url = "{% url 'api:answer' %}";
+        </script>
+    </div>
+    <!--    import App -->
+    <script type="module" src="{% static 'app/app.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+{% endblock %}
+
