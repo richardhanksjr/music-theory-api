@@ -7,9 +7,12 @@ docker-compose down --remove-orphans
 
 echo "Building Docker container and starting in daemon mode"
 docker-compose up --build  -d
+
 docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createcachetable
 
 echo "Building JavaScript assets"
+docker-compose exec web npm install
 ./js.sh
 
 echo "Loading questions into database:"

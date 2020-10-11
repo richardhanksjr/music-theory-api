@@ -27,6 +27,8 @@
 
 * ###Load custom commands into environment
 * `source environment.sh`
+* ###Build the entire project
+* `build`
 * ###Reload docker image and bundle Vue assets
 * `reload`
 * ###Transpiple and bundle Vue assets
