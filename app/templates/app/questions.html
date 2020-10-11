@@ -22,7 +22,7 @@
             <br>
             <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
         <script>
-            const answers_url = "{% url 'api:answer' %}";
+            var answers_url = "{% url 'api:answer' %}";
         </script>
     </div>
     <!--    import App -->
