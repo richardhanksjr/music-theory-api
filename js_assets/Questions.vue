@@ -28,53 +28,49 @@
             "Go study and don't forget to vote.",
             "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
 
-    import Child from './Child.vue'
     export default {
-        name: "Parent",
-        components: {
-            'child': Child
+        name: "Questions",
+
+        data() {
+            return {
+                questionPackage: [],
+                message: "",
+                answerVal: "",
+                styleMessage: {
+                    color: 'darkred',
+                    },
+                styleQuestion: {
+                    color: 'Dark midnight blue'
+                    }
+
+
+            }
         },
-
-    data() {
-         return {
-            questionPackage: [],
-            message: "",
-            answerVal: "",
-            styleMessage: {
-                color: 'darkred',
-                },
-            styleQuestion: {
-                color: 'Dark midnight blue'
-                }
-
-
-         }
-    },
-    methods: {
-    evaluateAnswer(answer) {
-            axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
-            .then(response => {
-
-                if (response.data.correct) {
-                    this.message = "Correct!"
-                }
-                else {
-                        var jab = jabs[Math.floor(Math.random() * jabs.length)];
-                        this.message = `'${response.data.correct_answer}' was the correct answer. ${jab}`
-                }
-            })
-            this.answerVal = "";
-        },
-    nextQuestion() {
-        axios.get('/api/question')
+        methods: {
+        evaluateAnswer(answer) {
+                axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
                 .then(response => {
-                this.questionPackage = response.data
-                });
-            this.answerVal = "";
-            this.message = "";
-    }
-    },
-    mounted() {
+
+                    if (response.data.correct) {
+                    this.message = "Correct!"
+                    }
+                    else {
+                            var jab = jabs[Math.floor(Math.random() * jabs.length)];
+                            this.message = `'${response.data.correct_answer}' was the correct answer. ${jab}`
+                    }
+                })
+                this.answerVal = "";
+            },
+        nextQuestion() {
+            axios.get('/api/question')
+                    .then(response => {
+                    this.questionPackage = response.data
+                    });
+                this.answerVal = "";
+                this.message = "";
+            }
+        },
+        mounted() {
             axios.get('/api/question')
                 .then(response => {
                 this.questionPackage = response.data

@@ -1,11 +1,5 @@
 
-<style scoped>
-    p {
-        font-size: 2em;
-        color: red;
-        background-color: black;
-    }
-</style>
+
 
 <template>
   <p> {{message}} </p>
@@ -18,3 +12,7 @@
     }
   }
 </script>
+
+<style scoped>
+
+</style>

@@ -49,3 +49,9 @@ input.radio {
     margin: 2px 0 0 2px;
 }
 
+p {
+    font-family: "Comic Sans MS";
+    font-size: large;
+    color: #67b168;
+    background-color: #2b669a ;
+}
