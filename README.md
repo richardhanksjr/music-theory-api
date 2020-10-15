@@ -52,11 +52,13 @@
 * run `update_fixture`
 
 ###vue cli and npm commands
+* docker-compose up -d --build
 * docker-compose exec web <below commands>
     * npm install 
     * npm install -g @vue/cli
     * npm install --save axios vue-axios
     * npm run dev 
+    // I think you can do some or all of the install commands at once like how line 59 is doing multiple
     
     
         // you can check the version to confirm it's installed. 

@@ -5,7 +5,7 @@ from .views import LandingPageView, IndexPageView
 app_name = 'app'
 
 urlpatterns = [
-    path("", IndexPageView.as_view(template_name="app/questions.html"), name="index"),
+    path("", IndexPageView.as_view(), name="index"),
     path("hello-vue", TemplateView.as_view(template_name="app/hello-vue.html"), name='hello-vue'),
     path("landing/", LandingPageView.as_view(), name="landing"),
 ]
