@@ -1,7 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
+from django.contrib.auth.models import User
+
 from .models import UserProfile
 
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ["user",]
+class UserProfileInline(admin.TabularInline):
+    model = UserProfile
 
-admin.site.register(UserProfile, UserProfileAdmin)
+class UserAdmin(DjangoUserAdmin):
+    inlines = (UserProfileInline,)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
