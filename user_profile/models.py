@@ -12,10 +12,10 @@ class UserProfile(models.Model):
         return f"{self.user.username}, {self.user.email}, {self.user.userprofile.premium_user}"
 
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(instance, created):
     if created:
         UserProfile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
+def save_user_profile(instance):
     instance.userprofile.save()

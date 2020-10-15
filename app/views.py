@@ -1,7 +1,6 @@
 from django.views.generic import View
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from user_profile.models import UserProfile
 
 # for all views that require user to be logged in, use LoginRequiredMixin
 
