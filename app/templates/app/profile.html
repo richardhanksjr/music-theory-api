@@ -6,6 +6,6 @@
 
 <h2>{{ user.username }}'s Profile:</h2>
 <li>Email: {{ user.email }}</li>
-<li>Premium Status: {{ user.userprofile.preferred_user }}</li>
+<li>Premium Status: {{ user.userprofile.premium_user }}</li>
 <a class="nav-link" href="{% url 'account_change_password' %}">Change Account Password</a>
 {% endblock content %}

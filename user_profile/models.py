@@ -6,10 +6,10 @@ from django.dispatch import receiver
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    preferred_user = models.BooleanField(default=False)
+    premium_user = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user.username}, {self.user.email}, {self.user.userprofile.preferred_user}"
+        return f"{self.user.username}, {self.user.email}, {self.user.userprofile.premium_user}"
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

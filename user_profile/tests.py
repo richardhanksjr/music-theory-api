@@ -11,3 +11,11 @@ class UserProfileTests(TestCase):
                                 email='newuser@email.com',
                                 password='testpass123')
         self.assertTrue(UserProfile.objects.count() == 1)
+
+    def test_user_profile_premium_status_defaults_to_false(self):
+        self.user = User.objects.create_user(
+                                username='newuser',
+                                email='newuser@email.com',
+                                password='testpass123',)
+
+        self.assertEqual(self.user.userprofile.premium_user, False)
