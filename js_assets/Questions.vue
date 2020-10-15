@@ -1,9 +1,24 @@
+<template>
+    <div>
+        <br>
+            <h2 :style="styleQuestion" name="question" id="question">{{ questionPackage.question }}</h2>
+        <br>
+                <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
+                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">{{ answer }}</label><br>
+                </fieldset>
+            <br>
+            <hr class="rounded">
+                <h5 :style="styleMessage">{{ message }}</h5>
+            <br>
+            <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
+    </div>
+</template>
 
-// Vue Instance
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
+<script>
+    axios.defaults.xsrfCookieName = 'csrftoken'
+    axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
 
-var jabs = ["No gigs for you.",
+    var jabs = ["No gigs for you.",
             "You were kidding, right?",
             "We're all speechless at your ineptitude.",
             "Welp, the good news is there's no money to be made in music anyway.",
@@ -13,8 +28,12 @@ var jabs = ["No gigs for you.",
             "Go study and don't forget to vote.",
             "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
 
-const questionPage = Vue.createApp({
-    delimiters: ['[[', ']]'],
+    import Child from './Child.vue'
+    export default {
+        name: "Parent",
+        components: {
+            'child': Child
+        },
 
     data() {
          return {
@@ -33,7 +52,7 @@ const questionPage = Vue.createApp({
     },
     methods: {
     evaluateAnswer(answer) {
-            axios.post(answers_url, {"key": this.questionPackage.key, "answer": answer})
+            axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
             .then(response => {
 
                 if (response.data.correct) {
@@ -61,7 +80,10 @@ const questionPage = Vue.createApp({
                 this.questionPackage = response.data
                 });
             },
-    })
+    };
 
-questionPage.mount("#questionPage");
-//}
+</script>
+
+<style scoped>
+
+</style>

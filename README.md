@@ -50,3 +50,20 @@
 * Add new question to the Question model
 * Add new question to exsiting tags and create any new tags
 * run `update_fixture`
+
+###vue cli and npm commands
+* docker-compose exec web <below commands>
+    * npm install 
+    * npm install -g @vue/cli
+    * npm install --save axios vue-axios
+    * npm run dev 
+    
+    
+        // you can check the version to confirm it's installed. 
+        * vue --version
+        //should be @vue/cli 4.5.7 or something close to that if much lower run:
+        * npm uninstall vue-cli -g 
+            then run * npm install -g @vue/cli
+        * vue add <my-plugin> 
+        ///if you want
+    

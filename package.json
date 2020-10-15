@@ -30,7 +30,9 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "lodash": "^4.17.20",
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "vue-axios": "^3.0.1"
   }
 }
