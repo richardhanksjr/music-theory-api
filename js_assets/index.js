@@ -8,7 +8,7 @@
 // document.body.appendChild(component());
 import Vue from 'vue';
 import Parent from './Parent.vue';
-import Questions from './Questions.vue'
+import Question from './Question.vue'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
@@ -19,6 +19,6 @@ new Vue({
 });
 
 new Vue({
-   el: "#questions",
-   render: h => h(Questions)
+   el: "#question",
+   render: h => h(Question)
 });

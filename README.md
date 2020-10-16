@@ -57,8 +57,10 @@
     * npm install 
     * npm install -g @vue/cli
     * npm install --save axios vue-axios
+        // you can install multiple packages at once like line 59: 
+            * npm install -g @vue/cli --save axios vue-axios
     * npm run dev 
-    // I think you can do some or all of the install commands at once like how line 59 is doing multiple
+        // this compiles your vue code
     
     
         // you can check the version to confirm it's installed. 

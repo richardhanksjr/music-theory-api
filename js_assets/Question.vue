@@ -1,11 +1,15 @@
 <template>
     <div>
-        <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
-                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">{{ answer }}</label><br>
-        </fieldset>
-        <answer :message="message" :styleMessage="styleMessage"></answer>
         <br>
-         <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
+            <h2 :style="styleQuestion" name="question" id="question">{{ questionPackage.question }}</h2>
+        <br>
+            <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
+                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">{{ answer }}</label><br>
+            </fieldset>
+                <answer :message="message" :styleMessage="styleMessage"></answer>
+        <br>
+            <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
+        <br>
     </div>
 </template>
 
@@ -22,33 +26,31 @@
             "Booooooooooo!",
             "Go study and don't forget to vote.",
             "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
+
     import Answer from './Answer.vue'
+
     export default {
-        name: "Choices",
+        name: "Question",
         components: {
-            answer: Answer
-        },
-        props: {
-            questionPackage: Object,
+            'answer': Answer,
+
         },
         data() {
             return {
+                questionPackage: [],
                 answerVal: "",
                 message: "",
                 styleMessage: {
                     color: 'darkred',
                 },
+                styleQuestion: {
+                    color: 'Dark midnight blue'
+                    }
             }
-
-        },
-        computed: {
-           questionObject() {
-                return this.questionPackage
-           }
         },
         methods: {
             evaluateAnswer(answer) {
-                axios.post('api/answer', {"key": this.questionObject.key, "answer": answer})
+                axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
                 .then(response => {
 
                     if (response.data.correct) {
@@ -70,8 +72,13 @@
                 this.message = "";
             }
         },
-}
-
+        mounted() {
+            axios.get('/api/question')
+                .then(response => {
+                this.questionPackage = response.data
+                });
+            },
+    };
 
 </script>
 

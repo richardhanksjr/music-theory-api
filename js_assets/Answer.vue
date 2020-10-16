@@ -3,7 +3,6 @@
         <hr class="rounded">
             <h5 :style="styleMessage">{{ message }}</h5>
         <br>
-
     </div>
 </template>
 
