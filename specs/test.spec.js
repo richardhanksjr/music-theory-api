@@ -1,4 +1,4 @@
-import TestComponent from '/js_assets/test.vue'
+import TestComponent from '/code/js_assets/test.vue'
 
 
 
