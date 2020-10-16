@@ -11,6 +11,7 @@
         <br>
             <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
         <br>
+        <help></help>
     </div>
 </template>
 
@@ -29,12 +30,12 @@
             "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
 
     import Answer from './Answer.vue'
-
+    import Help from './Help.vue'
     export default {
         name: "Question",
         components: {
             'answer': Answer,
-
+            'help' : Help
         },
         data() {
             return {
