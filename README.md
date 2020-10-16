@@ -70,4 +70,10 @@
             then run * npm install -g @vue/cli
         * vue add <my-plugin> 
         ///if you want
+### vue testing with jest
+* docker-compose exec web <below command>
+    * npm install -g yarn (then you can confirm installation yarn --version)
+    * yarn install
+    * yarn add vue-template-compiler vue-jest
+    * yarn add --dev jest
     

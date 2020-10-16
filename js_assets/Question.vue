@@ -6,6 +6,7 @@
             <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
                     <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">{{ answer }}</label><br>
             </fieldset>
+
                 <answer :message="message" :styleMessage="styleMessage"></answer>
         <br>
             <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
