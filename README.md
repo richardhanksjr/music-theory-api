@@ -76,4 +76,5 @@
     * yarn install
     * yarn add vue-template-compiler vue-jest
     * yarn add --dev jest
+    * docker-compose exec web yarn jest specs/<test-file-name.js>
     
