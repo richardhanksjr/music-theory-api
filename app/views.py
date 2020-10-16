@@ -14,3 +14,8 @@ class IndexPageView(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, 'app/questions.html')
+
+class ProfilePageView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        return render(request, 'app/profile.html')

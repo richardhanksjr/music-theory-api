@@ -11,7 +11,7 @@ from django.test.utils import override_settings
 from allauth.utils import get_user_model
 
 
-from .views import LandingPageView, IndexPageView
+from .views import LandingPageView, IndexPageView, ProfilePageView
 
 from django.test import Client
 
@@ -79,6 +79,39 @@ class IndexPageTests(TestCase):
         response = view(request)
         self.assertEqual(response.status_code, 200)
 
+class ProfilePageTests(TestCase):
+    client = Client()
+    factory = RequestFactory()
+
+    def setUp(self):
+        url = reverse('app:profile')
+        self.response = self.client.get(url)
+        self.user = User.objects.create_user(username='joe', email='joe@test.com', password='qwerty')
+
+    def test_profile_page_url_resolves_profilepageview(self):
+        view = resolve(reverse('app:profile'))
+        self.assertEqual(
+            view.func.__name__,
+            ProfilePageView.as_view().__name__
+        )
+
+    def test_login_required_on_ProfilePageView(self):
+
+        view = ProfilePageView.as_view()
+
+        # When user is not logged in, redirected to landing page
+        request = self.factory.get(reverse('app:profile'))
+        request.user = AnonymousUser()
+        response = view(request)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual('/landing/?next=/profile/', response.url)
+
+        # When user is logged in, receive a status code of 200
+        request = self.factory.get(reverse('app:profile'))
+        request.user = self.user
+        response = view(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Profile')
 
 class NavBarTests(TestCase):
     """
@@ -177,4 +210,14 @@ class NavBarTests(TestCase):
         response = self.client.get(url)
         self.assertNotContains(response, 'Hi there! I should not be on the page.')
 
+    def test_profile_link_uses_correct_template(self):
+        self.user = User.objects.create(email="testuser@email", password="testpass")
+        self.client.force_login(self.user)
+        profile_url = reverse('app:profile')
+        self.response = self.client.get(profile_url)
+        self.assertTemplateUsed(self.response, 'app/profile.html')
 
+    def test_user_not_logged_in_cannot_access_profile(self):
+        profile_url = reverse('app:profile')
+        self.response = self.client.get(profile_url)
+        self.assertRedirects(self.response, '/landing/?next=/profile/')
