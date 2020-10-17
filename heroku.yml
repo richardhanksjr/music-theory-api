@@ -7,6 +7,6 @@ build:
 release:
   image: web
   command:
-    - ./reload.sh
+    - ./heroku-release.sh
 run:
   web: gunicorn music_theory_api.wsgi
