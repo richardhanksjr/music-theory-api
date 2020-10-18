@@ -42,5 +42,26 @@
             1
         ]
     }
+},
+{
+    "model": "questions.tag",
+    "pk": 5,
+    "fields": {
+        "name": "Minor Scale",
+        "question": [
+            3
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 6,
+    "fields": {
+        "name": "Scale Degree Identification",
+        "question": [
+            2,
+            3
+        ]
+    }
 }
 ]
