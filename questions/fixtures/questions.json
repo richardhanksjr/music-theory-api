@@ -16,6 +16,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 3,
+    "fields": {
+        "class_name": "SimpleScaleDegreeMinor",
+        "module_name": "minor_scale_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
