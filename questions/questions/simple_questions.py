@@ -39,12 +39,6 @@ class InvertedQualityIs(Question):
         self._question = f"If a {self.interval_quality.lower()} interval is inverted it {self.formatted_remains} {self.interval_quality}"
 
     def _generate_answer(self):
-        # If an interval is not perfect, then the quality will not remain the same upon inversion
-        # if self.interval_quality != 'perfect':
-        #     self._answer = "False" if self.same else "True"
-        # else:
-        #     self._answer = "True" if self.same else "False"
-
         if self.interval_quality.lower() == 'perfect':
             self._answer = "True" if self.same is True else "False"
         else:
