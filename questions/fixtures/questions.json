@@ -24,6 +24,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 4,
+    "fields": {
+        "class_name": "InvertedQualityIs",
+        "module_name": "simple_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -39,7 +47,8 @@
     "fields": {
         "name": "Interval",
         "question": [
-            1
+            1,
+            4
         ]
     }
 },
@@ -61,6 +70,16 @@
         "question": [
             2,
             3
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 7,
+    "fields": {
+        "name": "Interval Quality",
+        "question": [
+            4
         ]
     }
 }
