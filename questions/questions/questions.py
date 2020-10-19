@@ -47,7 +47,10 @@ class Question(ABC):
 
     def _get_tags(self):
         class_name = self.__class__.__name__
-        self._tags = QuestionModel.objects.get(class_name=class_name).tag_set.all().values_list('name', flat=True)
+        try:
+            self._tags = QuestionModel.objects.get(class_name=class_name).tag_set.all().values_list('name', flat=True)
+        except QuestionModel.DoesNotExist:
+            self._tags = []
 
     @abstractmethod
     def _generate_question(self):
