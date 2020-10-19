@@ -28,12 +28,14 @@ class Question(ABC):
             'answer_options': self.answer_options,
             'question_params': self.question_params,
             'key': self.key,
-            'answer': self.answer
+            'answer': self.answer,
+            'help_steps': self.help_steps
         }
 
     def _add_to_cache(self):
         key = self.response['key']
         data = {**self.response, **{'answer': self.answer}}
+        help_steps = self.response['help_steps']
         cache.set(key, data)
 
     def _generate_key(self):

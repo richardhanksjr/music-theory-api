@@ -30,3 +30,11 @@ class Answer(LoginRequiredMixin, APIView):
         except Exception:
             return Response("Must supply answer and key", status=status.HTTP_400_BAD_REQUEST)
         return Response(data)
+
+class HelpSteps(LoginRequiredMixin, APIView):
+
+    def get(self, request):
+        question = QuestionGenerator.question_factory()
+        answer_key = question.response['key']
+        cached_response = cache.get(answer_key)
+        return Response(cached_response)
