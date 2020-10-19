@@ -32,6 +32,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 5,
+    "fields": {
+        "class_name": "TritoneIs",
+        "module_name": "simple_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -48,7 +56,8 @@
         "name": "Interval",
         "question": [
             1,
-            4
+            4,
+            5
         ]
     }
 },

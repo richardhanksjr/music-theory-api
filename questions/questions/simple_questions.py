@@ -57,3 +57,24 @@ class InvertedQualityIs(Question):
 
     def _generate_question_params(self):
         self._question_params = {}
+
+
+class TritoneIs(Question):
+    def _generate_question(self):
+        self._question = "A TRITONE is:"
+
+    def _generate_answer(self):
+        self._answer = "An augmented 4th"
+
+    def _generate_answer_options(self):
+        self._answer_options = ["An augmented 4th", "a three note melody", "a three tone chord", "a diminished 4th"]
+
+    def _generate_help_steps_array(self):
+        self._help_steps = ({"prompt": "What is a tritone?", "answer": "an interval of three whole tones (an augmented fourth), "
+                                                                       "as between C and F sharp."},)
+
+    def _generate_question_type(self):
+        self._question_type = 'tritone-is'
+
+    def _generate_question_params(self):
+        self._question_params = {}
