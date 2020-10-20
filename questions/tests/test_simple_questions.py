@@ -1,5 +1,5 @@
 from django.test import TestCase
-from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs
+from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval
 from django.core.cache import cache
 from questions.models import Question, Tag
 
@@ -85,4 +85,18 @@ class TritoneIsTest(TestCase):
 
     def test_answer(self):
         expected_answer = "An augmented 4th"
+        self.assertEqual(expected_answer, self.question.answer)
+
+
+class CouldBePerfectIntervalTest(TestCase):
+
+    def setUp(self):
+        self.question = CouldBePerfectInterval()
+
+    def test_question(self):
+        expected_question = "All of the following could be perfect intervals except:"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "Third"
         self.assertEqual(expected_answer, self.question.answer)

@@ -78,3 +78,23 @@ class TritoneIs(Question):
 
     def _generate_question_params(self):
         self._question_params = {}
+
+
+class CouldBePerfectInterval(Question):
+    def _generate_question(self):
+        self._question = "All of the following could be perfect intervals except:"
+
+    def _generate_answer(self):
+        self._answer = "Third"
+
+    def _generate_answer_options(self):
+        self._answer_options = ["Fourth", "Third", "Prime", "Octave"]
+
+    def _generate_help_steps_array(self):
+        self._help_steps = ({"prompt": "What is a perfect interval?", "answer": "an interval who's inversion is also perfect"},)
+
+    def _generate_question_type(self):
+        self._question_type = 'could_be_perfect_interval'
+
+    def _generate_question_params(self):
+        self._question_params = {}
