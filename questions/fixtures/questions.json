@@ -16,6 +16,38 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 3,
+    "fields": {
+        "class_name": "SimpleScaleDegreeMinor",
+        "module_name": "minor_scale_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 4,
+    "fields": {
+        "class_name": "InvertedQualityIs",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 5,
+    "fields": {
+        "class_name": "TritoneIs",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 6,
+    "fields": {
+        "class_name": "CouldBePerfectInterval",
+        "module_name": "simple_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -31,7 +63,42 @@
     "fields": {
         "name": "Interval",
         "question": [
-            1
+            1,
+            4,
+            5,
+            6
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 5,
+    "fields": {
+        "name": "Minor Scale",
+        "question": [
+            3
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 6,
+    "fields": {
+        "name": "Scale Degree Identification",
+        "question": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 7,
+    "fields": {
+        "name": "Interval Quality",
+        "question": [
+            4,
+            6
         ]
     }
 }
