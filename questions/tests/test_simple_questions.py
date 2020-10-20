@@ -1,5 +1,5 @@
 from django.test import TestCase
-from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs
+from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs
 from django.core.cache import cache
 from questions.models import Question, Tag
 
@@ -72,3 +72,17 @@ class InvertedQualityIsTest(TestCase):
     def test_not_same_augmented_true(self):
         question = InvertedQualityIs(interval_quality='augmented', same=False)
         self.assertEquals("True", question.answer)
+
+
+class TritoneIsTest(TestCase):
+
+    def setUp(self):
+        self.question = TritoneIs()
+
+    def test_question(self):
+        expected_question = "A TRITONE is:"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "An augmented 4th"
+        self.assertEqual(expected_answer, self.question.answer)
