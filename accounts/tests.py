@@ -1,6 +1,6 @@
 from django.test import Client, TestCase
 from django.urls import reverse, resolve
-
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 
 
@@ -10,6 +10,8 @@ class SignupTests(TestCase):
     As a user I want a registration page so that I 
     can register for an account with an email and password.
     """
+    username = 'newuser'
+    email = 'newuser@email.com'
 
     def setUp(self):
         url = reverse('account_signup')
@@ -22,6 +24,14 @@ class SignupTests(TestCase):
         self.assertNotContains(
             self.response, 'Hi there! I should not be on the page.')
 
+    def test_signup_form(self):
+        new_user = get_user_model().objects.create_user(
+            self.username, self.email)
+        self.assertEqual(get_user_model().objects.all().count(), 1)
+        self.assertEqual(get_user_model().objects.all()
+                         [0].username, self.username)
+        self.assertEqual(get_user_model().objects.all()
+                         [0].email, self.email)
 
 class LoginTests(TestCase):
 
