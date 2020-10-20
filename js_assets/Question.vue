@@ -52,6 +52,7 @@
         data() {
             return {
                 questionPackage: [],
+                helpPackage: [],
                 answerVal: "",
                 message: "",
                 hints: "",
@@ -101,11 +102,18 @@
                 this.hintGiven = false;
             },
             helpSteps(){
-                if (!this.answerVal) {
-                    var hint = prompts[Math.floor(Math.random() * prompts.length)];
-                    this.hints = `${hint}`;
-                    this.hintGiven = true;
-                }
+            axios.post('api/help', {"key": this.questionPackage.key})
+                .then(response => {
+                        if (response.data) {
+                            this.helpPackage = response.data;
+                            var hint = helpPackage[Math.floor(Math.random() * helpPackage.length)];
+                            this.hints = `${hint}`;
+                            this.hintGiven = true;
+                            }
+                        else {
+                            this.hints = "Sorry, we don't have any helpful hints on this one."
+                        }
+                   }
             }
         },
         mounted() {
