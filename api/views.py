@@ -22,8 +22,8 @@ class Answer(LoginRequiredMixin, APIView):
             answer_key = request.data['key']
             user = request.user
             cached_response = cache.get(answer_key)
-            expected_user_id = cached_response.get('user_id')
-            if expected_user_id and expected_user_id != user.id:
+            expected_question_key = cached_response.get('user_id')
+            if expected_question_key and expected_question_key != user.id:
                 return Response("User does not have permission to view this answer", status=status.HTTP_403_FORBIDDEN)
             data = {'correct': user_answer == cached_response['answer'],
                     'correct_answer': cached_response['answer']}
@@ -33,11 +33,20 @@ class Answer(LoginRequiredMixin, APIView):
 
 class HelpSteps(LoginRequiredMixin, APIView):
 
-    def get(self, request):
-        # question = QuestionGenerator.question_factory()
-        # answer_key = question.response['key']
-        # cached_response = cache.get(answer_key)
-        x = request.body
-        # cached_response = cache.get(question_key)
-        return Response(x)
-        # return Response(cached_response['help_steps'])
+    # def get(self, request):
+    #     question = QuestionGenerator.question_factory()
+    #     answer_key = question.response['key']
+    #     cached_response = cache.get(answer_key)
+    #     return Response(cached_response['help_steps'])
+
+    def post(self, request):
+        try:
+            question_key = request.data['key']
+            cached_response = cache.get(question_key)
+            data = {'total_package': cached_response}
+            expected_question_key = cached_response.get('key')
+            if question_key != expected_question_key:
+                return Response("User does not have permission to view this answer", status=status.HTTP_403_FORBIDDEN)
+        except Exception:
+            return Response("Must supply answer and key", status=status.HTTP_400_BAD_REQUEST)
+        return Response(data)

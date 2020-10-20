@@ -68,3 +68,6 @@ class TestHelpSteps(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'prompt')
+
+    def test_answer_key(self):
+        print(self.question.key)
