@@ -34,7 +34,10 @@ class Answer(LoginRequiredMixin, APIView):
 class HelpSteps(LoginRequiredMixin, APIView):
 
     def get(self, request):
-        question = QuestionGenerator.question_factory()
-        answer_key = question.response['key']
-        cached_response = cache.get(answer_key)
-        return Response(cached_response['help_steps'])
+        # question = QuestionGenerator.question_factory()
+        # answer_key = question.response['key']
+        # cached_response = cache.get(answer_key)
+        x = request.body
+        # cached_response = cache.get(question_key)
+        return Response(x)
+        # return Response(cached_response['help_steps'])
