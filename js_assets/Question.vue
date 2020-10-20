@@ -4,14 +4,21 @@
             <h2 :style="styleQuestion" name="question" id="question">{{ questionPackage.question }}</h2>
         <br>
             <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
-                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer)"><label class="label">{{ answer }}</label><br>
+                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer); hideHints = true;"><label class="label">{{ answer }}</label><br>
             </fieldset>
 
                 <answer :message="message" :styleMessage="styleMessage"></answer>
         <br>
             <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
         <br>
-        <help></help>
+        <br>
+            <div v-if="!hideHints">
+                    <button  :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Want a hint?</button>
+                <br>
+                    <hr v-if="hints" class="rounded">
+                <br>
+                    <h5 :style="styleMessage">{{ hints }}</h5>
+            </div>
     </div>
 </template>
 
@@ -29,19 +36,28 @@
             "Go study and don't forget to vote.",
             "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
 
+    var prompts = [
+    "Think of it this way...",
+    "Did you try this?...",
+    "The hypotenuse bro...THE HYPOTENUSE!!!",
+    "Call 1-800-ask-now1"
+   ]
+
     import Answer from './Answer.vue'
-    import Help from './Help.vue'
     export default {
         name: "Question",
         components: {
             'answer': Answer,
-            'help' : Help
         },
         data() {
             return {
                 questionPackage: [],
                 answerVal: "",
                 message: "",
+                hints: "",
+                correct: false,
+                hideHints: false,
+                hintGiven: false,
                 styleMessage: {
                     color: 'darkred',
                 },
@@ -55,8 +71,14 @@
                 axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
                 .then(response => {
 
-                    if (response.data.correct) {
-                    this.message = "Correct!"
+                    if (response.data.correct && this.hintGiven) {
+                    //they got it right but not without help
+                    this.message = "That's right, keep studying though.";
+                    }
+                    if (response.data.correct && !this.hintGiven) {
+                        //they got it right on their own
+                        this.message = "Correct!";
+                        this.correct = true;
                     }
                     else {
                             var jab = jabs[Math.floor(Math.random() * jabs.length)];
@@ -70,14 +92,26 @@
                     .then(response => {
                     this.questionPackage = response.data
                     });
+                // reset everything
                 this.answerVal = "";
                 this.message = "";
+                this.hints = "";
+                this.correct = false;
+                this.hideHints = false;
+                this.hintGiven = false;
+            },
+            helpSteps(){
+                if (!this.answerVal) {
+                    var hint = prompts[Math.floor(Math.random() * prompts.length)];
+                    this.hints = `${hint}`;
+                    this.hintGiven = true;
+                }
             }
         },
         mounted() {
             axios.get('/api/question')
                 .then(response => {
-                this.questionPackage = response.data
+                    this.questionPackage = response.data
                 });
             },
     };

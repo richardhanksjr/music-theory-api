@@ -83,6 +83,7 @@ class IndexPageTests(TestCase):
 class NavBarTests(TestCase):
     """
     https://github.com/pennersr/django-allauth/blob/master/allauth/account/tests.py
+
     """
 
     def setUp(self):
