@@ -5,7 +5,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 from questions.questions.simple_questions import SimpleIntervalIs
 from questions.models import Question, Tag
-from api.views import Answer, GetRandomQuestion
+from api.views import Answer, GetRandomQuestion, HelpSteps
 
 User = get_user_model()
 
@@ -43,6 +43,7 @@ class TestAnswer(TestCase):
 
 class TestHelpSteps(TestCase):
     def setUp(self):
+        self.factory = APIRequestFactory()
         self.test_question = Question.objects.create(class_name='SimpleIntervalIs', module_name='simple_questions')
         self.question = SimpleIntervalIs()
         self.user = User.objects.create_user(
@@ -61,13 +62,20 @@ class TestHelpSteps(TestCase):
         steps_from_cache = cache.get(cache_key)
         self.assertEqual(steps_from_cache['help_steps'], self.question.help_steps)
 
-    def test_help_steps_exist_at_correct_url(self):
-        user = User.objects.create(email="testuser@email", password="testpass")
-        self.client.force_login(self.user)
-        url = reverse('api:help-steps')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'prompt')
+    def test_return_correct_json_key(self):
+        self.url = reverse('api:help-steps')
+        key = self.question.key
+        request = self.factory.post(self.url, {'key': key})
 
-    def test_answer_key(self):
-        print(self.question.key)
+    def test_405_if_get_request(self):
+        self.url = reverse('api:help-steps')
+        request = self.factory.get(self.url)
+        request.user = self.user
+        view = HelpSteps.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, 405)
+
+    def test_keys_match(self):
+        question_key = self.question.key
+        cached_response = cache.get(question_key)
+        self.assertEqual(question_key, cached_response['key'])
