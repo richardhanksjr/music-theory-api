@@ -15,7 +15,9 @@
         "module_name": "major_scale_questions"
     }
 },
+
 {
+
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -32,6 +34,38 @@
         "name": "Interval",
         "question": [
             1
+        ]
+    }
+
+},
+{
+    "model": "questions.tag",
+    "pk": 5,
+    "fields": {
+        "name": "Minor Scale",
+        "question": [
+            3
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 6,
+    "fields": {
+        "name": "Scale Degree Identification",
+        "question": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 7,
+    "fields": {
+        "name": "Interval Quality",
+        "question": [
+            4
         ]
     }
 }
