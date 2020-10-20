@@ -13,11 +13,12 @@
         <br>
         <br>
             <div v-if="!hideHints">
-                    <button  :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Want a hint?</button>
+                    <button  :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Hint?</button>
                 <br>
-                    <hr v-if="hints" class="rounded">
+
                 <br>
-                    <h5 :style="styleMessage">{{ hints }}</h5>
+                    <h5 v-if="hints" :style="styleMessage" v-for="hint in hints">{{ hint['prompt'] }}, {{ hint['answer'] }}</h5>
+
             </div>
     </div>
 </template>
@@ -36,13 +37,6 @@
             "Go study and don't forget to vote.",
             "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
 
-    var prompts = [
-    "Think of it this way...",
-    "Did you try this?...",
-    "The hypotenuse bro...THE HYPOTENUSE!!!",
-    "Call 1-800-ask-now1"
-   ]
-
     import Answer from './Answer.vue'
     export default {
         name: "Question",
@@ -51,11 +45,10 @@
         },
         data() {
             return {
-                questionPackage: [],
-                helpPackage: [],
+                questionPackage: {},
                 answerVal: "",
                 message: "",
-                hints: "",
+                hints: {},
                 correct: false,
                 hideHints: false,
                 hintGiven: false,
@@ -72,15 +65,17 @@
                 axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
                 .then(response => {
 
-                    if (response.data.correct && this.hintGiven) {
-                    //they got it right but not without help
-                    this.message = "That's right, keep studying though.";
-                    }
-                    if (response.data.correct && !this.hintGiven) {
-                        //they got it right on their own
-                        this.message = "Correct!";
-                        this.correct = true;
-                    }
+                    if (this.answerVal === this.questionPackage.answer) {
+                        if (this.hintGiven) {
+                            //they got it right but not without help
+                            this.message = "That's right, keep studying though.";
+                                }
+                        else {
+                            // they got it right on their own
+                            this.message = "Correct!";
+                            this.correct = true;
+                            }
+                        }
                     else {
                             var jab = jabs[Math.floor(Math.random() * jabs.length)];
                             this.message = `'${response.data.correct_answer}' was the correct answer. ${jab}`
@@ -96,25 +91,22 @@
                 // reset everything
                 this.answerVal = "";
                 this.message = "";
-                this.hints = "";
+                this.hints = {};
                 this.correct = false;
                 this.hideHints = false;
                 this.hintGiven = false;
             },
             helpSteps(){
-            axios.post('api/help', {"key": this.questionPackage.key})
-                .then(response => {
-                        if (response.data) {
-                            this.helpPackage = response.data;
-                            var hint = helpPackage[Math.floor(Math.random() * helpPackage.length)];
-                            this.hints = `${hint}`;
+                        if (this.questionPackage.help_steps) {
+                            this.hints = this.questionPackage.help_steps;
                             this.hintGiven = true;
                             }
                         else {
                             this.hints = "Sorry, we don't have any helpful hints on this one."
                         }
-                   }
-            }
+
+            },
+
         },
         mounted() {
             axios.get('/api/question')
