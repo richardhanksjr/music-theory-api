@@ -40,14 +40,6 @@
     }
 },
 {
-    "model": "questions.question",
-    "pk": 6,
-    "fields": {
-        "class_name": "CouldBePerfectInterval",
-        "module_name": "simple_questions"
-    }
-},
-{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -65,8 +57,7 @@
         "question": [
             1,
             4,
-            5,
-            6
+            5
         ]
     }
 },
@@ -97,8 +88,7 @@
     "fields": {
         "name": "Interval Quality",
         "question": [
-            4,
-            6
+            4
         ]
     }
 }
