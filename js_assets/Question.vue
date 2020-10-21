@@ -12,12 +12,16 @@
             <button :style="styleMessage" v-if="message" class="btn btn-outline-secondary" @click="nextQuestion">Next Question</button>
         <br>
         <br>
-            <div v-if="!hideHints">
-                    <button  :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Hint?</button>
+            <div class="text-muted" v-if="!hideHints">
+                    <button v-if="!hintGiven" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Hint</button>
                 <br>
 
                 <br>
-                    <h5 v-if="hints" :style="styleMessage" v-for="hint in hints">{{ hint['prompt'] }}, {{ hint['answer'] }}</h5>
+                    <div v-for="hint in hints">
+                        <h5 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true;" @mouseleave="showAnswer = false;">{{ hint['prompt'] }}</h5>
+
+                        <h6 v-if="showAnswer">{{ hint['answer'] }}</h6>
+                    </div>
 
             </div>
     </div>
@@ -51,6 +55,7 @@
                 hints: {},
                 correct: false,
                 hideHints: false,
+                showAnswer: false,
                 hintGiven: false,
                 styleMessage: {
                     color: 'darkred',
