@@ -37,7 +37,7 @@ class HelpSteps(LoginRequiredMixin, APIView):
         try:
             question_key = request.data['key']
             cached_response = cache.get(question_key)
-            data = {'total_package': cached_response}
+            data = {'help_steps': cached_response['help_steps']}
             expected_question_key = cached_response.get('key')
             if question_key != expected_question_key:
                 return Response("The requested resource could not be found but may be available in the future.", status=status.HTTP_404_NOT_FOUND)
