@@ -80,4 +80,6 @@
         * yarn jest
     // run specific tests 
         * yarn jest specs/<test-file-name>.spec.js
+        
+            GREAT VUE for-loop advice: https://levelup.gitconnected.com/6-techniques-to-write-better-vuejs-v-for-loops-dc12b3a11e5
     

@@ -17,7 +17,9 @@
                 <br>
 
                 <br>
-                    <div v-for="hint in hints">
+                    <div v-for="hint in hints"
+                         :key="hint['answer']"
+                    >
                         <h5 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true;" @mouseleave="showAnswer = false;">{{ hint['prompt'] }}</h5>
 
                         <h6 v-if="showAnswer">{{ hint['answer'] }}</h6>
