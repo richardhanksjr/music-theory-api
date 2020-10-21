@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.urls import reverse
 from django.test import TestCase
 from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 from questions.questions.simple_questions import SimpleIntervalIs
 from questions.models import Question, Tag
-from api.views import Answer, GetRandomQuestion
+from api.views import Answer, GetRandomQuestion, HelpSteps
 
 User = get_user_model()
 
@@ -39,3 +40,42 @@ class TestAnswer(TestCase):
         view = Answer.as_view()
         response = view(request)
         self.assertEqual(response.status_code, 400)
+
+class TestHelpSteps(TestCase):
+    def setUp(self):
+        self.factory = APIRequestFactory()
+        self.test_question = Question.objects.create(class_name='SimpleIntervalIs', module_name='simple_questions')
+        self.question = SimpleIntervalIs()
+        self.user = User.objects.create_user(
+                                username='newuser',
+                                email='newuser@email.com',
+                                password='testpass123')
+
+    def test_help_steps(self):
+        expected_steps = ({'prompt': 'What is a simple interval?',
+                             'answer': 'an interval of one octave or less.'},)
+        actual_steps = self.question.help_steps
+        self.assertEqual(expected_steps, actual_steps)
+
+    def test_help_steps_added_to_cache(self):
+        cache_key = self.question.key
+        steps_from_cache = cache.get(cache_key)
+        self.assertEqual(steps_from_cache['help_steps'], self.question.help_steps)
+
+    def test_return_correct_json_key(self):
+        self.url = reverse('api:help-steps')
+        key = self.question.key
+        request = self.factory.post(self.url, {'key': key})
+
+    def test_405_if_get_request(self):
+        self.url = reverse('api:help-steps')
+        request = self.factory.get(self.url)
+        request.user = self.user
+        view = HelpSteps.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, 405)
+
+    def test_keys_match(self):
+        question_key = self.question.key
+        cached_response = cache.get(question_key)
+        self.assertEqual(question_key, cached_response['key'])
