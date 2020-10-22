@@ -17,12 +17,13 @@
                 <br>
 
                 <br>
-                        <p v-if="hintGiven">mouse over hint to hint's answer</p>
+                        <p v-if="hintGiven">mouse over hint for hint's answer</p>
                         <h4 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true; showNextHintButton = true;" @mouseleave="showAnswer = false;">{{ hints['prompt'] }}</h4>
 
                         <h6 v-if="showAnswer">{{ hints['answer'] }}</h6>
-                        <button v-if="showNextHintButton && questionPackage.help_steps.length > 1" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps" @mouseleave="showNextHintButton = false;">Next Hint</button>
-
+                        <button v-if="showNextHintButton && questionPackage.help_steps.length > 1 && hintIndex != questionPackage.help_steps.length" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps" @mouseleave="showNextHintButton = false;">Next Hint</button>
+                        <br>
+                        <p :style="styleQuestion">{{ noMoreHintsMessage }}</p>
                     </div>
 
             </div>
@@ -54,7 +55,9 @@
                 questionPackage: {},
                 answerVal: "",
                 message: "",
+                noMoreHintsMessage: "",
                 hints: {},
+                hintIndex: 0,
                 correct: false,
                 hideHints: false,
                 showAnswer: false,
@@ -104,11 +107,15 @@
                 this.hideHints = false;
                 this.hintGiven = false;
                 this.showNextHintButton = false;
+                this.hintIndex = 0;
+                this.noMoreHintsMessage = "";
             },
             helpSteps(){
                         if (this.questionPackage.help_steps) {
-                            this.hints = this.questionPackage.help_steps[Math.floor(Math.random() * this.questionPackage.help_steps.length)];
-
+                            this.hints = this.questionPackage.help_steps[this.hintIndex];
+                            if(this.hintIndex < this.questionPackage.help_steps.length) {
+                                    this.hintIndex++;
+                                }
                             this.hintGiven = true;
                             }
                         else {
@@ -117,6 +124,13 @@
 
             },
 
+        },
+        computed : {
+            noMoreHints() {
+                if(this.hintIndex === this.questionPackage.help_steps.length) {
+                    return this.noMoreHintsMessage = "We're not giving out any more hints on this one";
+                }
+            }
         },
         mounted() {
             axios.get('/api/question')
