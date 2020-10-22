@@ -74,13 +74,24 @@
 * docker-compose exec web <below command>
     * npm install -g yarn (then you can confirm installation yarn --version)
     * yarn install
-    * yarn add vue-template-compiler vue-jest
+    * yarn add vue-template-compiler vue-jest 
     * yarn add --dev jest
+    * yarn add @vue/test-utils
     // Run all tests 
         * yarn jest
     // run specific tests 
         * yarn jest specs/<test-file-name>.spec.js
-        
-            GREAT VUE for-loop advice: https://levelup.gitconnected.com/6-techniques-to-write-better-vuejs-v-for-loops-dc12b3a11e5
-            VUE DOCS FANTASTIC: https://vuejs.org/v2/guide/list.html
+    
+    IMPORTANT NOTE:
+        1) run: docker-compose exec web yarn jest specs/test.spec.js
+            1a) if you get this error:  
+                "FAIL  specs/test.spec.js
+                    ● Test suite failed to run
+
+                      Cannot find module 'babel-core'...."
+                proceed to step 2).
+        2) Navigate here in Project GUI: node_modules/vue-jest/lib/compilers/babel-compiler.js
+        3) Change line 1 of babel-compiler.js <<<  const babel = require(‘babel-core’)  >>> to <<<  const babel = require(‘@babel/core’)  >>>
+        4) go back to 1), test should now pass. You might need to repeat anytime yarn add is run     
+           
 

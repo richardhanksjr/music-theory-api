@@ -31,6 +31,9 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    import VueAxios from 'vue-axios';
+
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
 
