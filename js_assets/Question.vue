@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div name="question" id="question">
         <br>
-            <h2 :style="styleQuestion" name="question" id="question">{{ questionPackage.question }}</h2>
+            <h2 :style="styleQuestion">{{ questionPackage.question }}</h2>
         <br>
             <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
                     <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer); hideHints = true;"><label class="label">{{ answer }}</label><br>
@@ -17,12 +17,12 @@
                 <br>
 
                 <br>
-                    <div v-for="hint in hints"
-                         :key="hint['answer']"
-                    >
-                        <h5 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true;" @mouseleave="showAnswer = false;">{{ hint['prompt'] }}</h5>
+                        <p v-if="hintGiven">mouse over hint to hint's answer</p>
+                        <h5 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true; showNextHintButton = true;" @mouseleave="showAnswer = false;">{{ hints['prompt'] }}</h5>
 
-                        <h6 v-if="showAnswer">{{ hint['answer'] }}</h6>
+                        <h6 v-if="showAnswer">{{ hints['answer'] }}</h6>
+                        <button v-if="showNextHintButton && questionPackage.help_steps.length > 1" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps" @mouseleave="showNextHintButton = false;">Next Hint</button>
+
                     </div>
 
             </div>
@@ -58,6 +58,7 @@
                 correct: false,
                 hideHints: false,
                 showAnswer: false,
+                showNextHintButton: false,
                 hintGiven: false,
                 styleMessage: {
                     color: 'darkred',
@@ -102,10 +103,12 @@
                 this.correct = false;
                 this.hideHints = false;
                 this.hintGiven = false;
+                this.showNextHintButton = false;
             },
             helpSteps(){
                         if (this.questionPackage.help_steps) {
-                            this.hints = this.questionPackage.help_steps;
+                            this.hints = this.questionPackage.help_steps[Math.floor(Math.random() * this.questionPackage.help_steps.length)];
+
                             this.hintGiven = true;
                             }
                         else {
