@@ -57,7 +57,7 @@ class LoginTests(TestCase):
     def test_login_template(self):
         self.assertEqual(self.response.status_code, 200)
         self.assertTemplateUsed(self.response, 'account/login.html')
-        self.assertContains(self.response, 'Sign In')
+        self.assertContains(self.response, 'Log In')
         self.assertNotContains(
             self.response, 'Hi there! I should not be on the page.')
 
