@@ -70,12 +70,13 @@
             then run * npm install -g @vue/cli
         * vue add <my-plugin> 
         ///if you want
+        
 ### vue testing with jest
 * docker-compose exec web <below command>
     * npm install -g yarn (then you can confirm installation yarn --version)
     * yarn install
-    * yarn add vue-template-compiler vue-jest 
-    * yarn add --dev jest
+    * yarn add vue-template-compiler vue-jest <<<<< or npm install --save-dev vue-jest vue-template-compiler
+    * yarn add --dev jest <<<< or npm install --dev jest
     * yarn add @vue/test-utils
     // Run all tests 
         * yarn jest
@@ -92,6 +93,21 @@
                 proceed to step 2).
         2) Navigate here in Project GUI: node_modules/vue-jest/lib/compilers/babel-compiler.js
         3) Change line 1 of babel-compiler.js <<<  const babel = require(‘babel-core’)  >>> to <<<  const babel = require(‘@babel/core’)  >>>
-        4) go back to 1), test should now pass. You might need to repeat anytime yarn add is run     
+        4) go back to 1), test should now pass. You might need to repeat anytime yarn add is run
+        5) If error: 
+            5a)   ✕ mount question component (95 ms)
+
+                    ● mount question component
+
+                    PrettyFormatPluginError: plugins[p].test is not a functionTypeError: plugins[p].test is not a function
+
+                         test('mount question component', () => {
+                         const wrapper = mount(Question)
+                          expect(wrapper.html()).toMatchSnapshot()
+                                                 ^
+                        })
+        6) check node_modules folder for jest-serializer-vue folder
+            6a) If not there install above packages with npm instead of yarn and check again
+   
            
 

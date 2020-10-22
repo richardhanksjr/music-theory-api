@@ -8,5 +8,5 @@ import Question from '/code/js_assets/Question.vue'
 
 test('mount question component', () => {
     const wrapper = mount(Question)
-    expect(wrapper.html()).toMatchSnapshot
+    expect(wrapper.html()).toMatchSnapshot()
  })

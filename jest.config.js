@@ -11,6 +11,6 @@ module.exports = {
 
   },
   snapshotSerializers: [
-    "<rootDir>/node_modules/jest-serializer"
+    "<rootDir>/node_modules/jest-serializer-vue"
   ]
 }
