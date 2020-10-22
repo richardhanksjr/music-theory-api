@@ -30,3 +30,17 @@ class Answer(LoginRequiredMixin, APIView):
         except Exception:
             return Response("Must supply answer and key", status=status.HTTP_400_BAD_REQUEST)
         return Response(data)
+
+class HelpSteps(LoginRequiredMixin, APIView):
+
+    def post(self, request):
+        try:
+            question_key = request.data['key']
+            cached_response = cache.get(question_key)
+            data = {'total_package': cached_response}
+            expected_question_key = cached_response.get('key')
+            if question_key != expected_question_key:
+                return Response("The requested resource could not be found but may be available in the future.", status=status.HTTP_404_NOT_FOUND)
+        except Exception:
+            return Response("Must supply question key", status=status.HTTP_400_BAD_REQUEST)
+        return Response(data)
