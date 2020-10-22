@@ -18,7 +18,7 @@
 
                 <br>
                         <p v-if="hintGiven">mouse over hint to hint's answer</p>
-                        <h5 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true; showNextHintButton = true;" @mouseleave="showAnswer = false;">{{ hints['prompt'] }}</h5>
+                        <h4 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true; showNextHintButton = true;" @mouseleave="showAnswer = false;">{{ hints['prompt'] }}</h4>
 
                         <h6 v-if="showAnswer">{{ hints['answer'] }}</h6>
                         <button v-if="showNextHintButton && questionPackage.help_steps.length > 1" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps" @mouseleave="showNextHintButton = false;">Next Hint</button>
