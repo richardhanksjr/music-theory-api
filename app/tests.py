@@ -191,20 +191,6 @@ class NavBarTests(TestCase):
         self.assertRedirects(self.response, '/landing/?next=/')
 
 
-    def test_question_exists_on_questions_page(self):
-        url = reverse('app:index')
-        self._create_user_and_login()
-        response = self.client.get(url)
-        self.assertContains(response, 'name="question"')
-
-    def test_questions_page_contains_four_multiple_choice_answers(self):
-        
-        url = reverse('app:index')
-        self._create_user_and_login()
-        response = self.client.get(url)
-        self.assertContains(response, '<input')
-        self.assertContains(response, 'type="radio"')
-
     def test_homepage_does_not_contain_incorrect_html(self):
         url = reverse('app:index')
         self._create_user_and_login()
