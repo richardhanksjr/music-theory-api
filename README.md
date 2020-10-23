@@ -82,6 +82,7 @@
         * yarn jest
     // run specific tests 
         * yarn jest specs/<test-file-name>.spec.js
+        *** yarn jest specs/<test-file-name>.spec.js -u <<<<<<< if you update your code
     
     IMPORTANT NOTE:
         1) run: docker-compose exec web yarn jest specs/test.spec.js
@@ -107,7 +108,11 @@
                                                  ^
                         })
         6) check node_modules folder for jest-serializer-vue folder
-            6a) If not there install above packages with npm instead of yarn and check again
+            6a) If not there install it 
+            6b) npm install --save-dev jest-serializer-vue
+        7) it's a custom package and needs to be installed separate
+            7a) that package also allows optionally to remove the .html() method call for snapshots
+        
    
            
 

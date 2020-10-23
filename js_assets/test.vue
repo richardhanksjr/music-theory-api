@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello {{ value }}</h1>
+    <h1>{{ value }}</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
     props: {
       value: {
         type: String,
-        default: 'Test'
+        default: 'RichardHanks2020'
       }
     }
   }
