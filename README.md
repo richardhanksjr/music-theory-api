@@ -54,13 +54,8 @@
 ###vue cli and npm commands
 * docker-compose up -d --build
 * docker-compose exec web <below commands>
-    * npm install 
-    * npm install -g @vue/cli
-    * npm install --save axios vue-axios
-        // you can install multiple packages at once like line 59: 
-            * npm install -g @vue/cli --save axios vue-axios
-    * npm run dev 
-        // this compiles your vue code
+    >>> npm.sh * npm install 
+    >>> vue-axios.sh * npm install -g @vue/cli --save axios vue-axios
     
     
         // you can check the version to confirm it's installed. 
@@ -73,11 +68,12 @@
         
 ### vue testing with jest
 * docker-compose exec web <below command>
-    * npm install -g yarn (then you can confirm installation yarn --version)
-    * yarn install
-    * yarn add vue-template-compiler vue-jest <<<<< or npm install --save-dev vue-jest vue-template-compiler
-    * yarn add --dev jest <<<< or npm install --dev jest
-    * yarn add @vue/test-utils
+    >>> npm_yarn.sh * npm install -g yarn (then you can confirm installation yarn --version)
+    >>> yarn.sh * yarn install
+    >>> vue_jest.sh *  npm install --save-dev vue-jest vue-template-compiler --dev jest
+    >>> yarn_vue_test_utils * yarn add @vue/test-utils
+                                                
+                                                
     // Run all tests 
         * yarn jest
     // run specific tests 
