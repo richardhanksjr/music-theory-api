@@ -52,7 +52,9 @@
 * run `update_fixture`
 
 ###JS Testing 
-* `test-js.sh` or 
+* `js-test`
+###To test particular JS test file
+`docker-compose exec web yarn jest specs/<file-name>.spec.js`
         
    
            
