@@ -27,7 +27,7 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 DEBUG = os.environ.get('DEBUG', default=0)
 
 ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com", "theory-dojo.herokuapp.com", "localhost", '127.0.0.1',
-                 'theorydojo.com']
+                 '.theorydojo.com']
 
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
