@@ -24,5 +24,12 @@ RUN python manage.py collectstatic --noinput
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
+# Install JS dependencies
+RUN npm install
+RUN npm install babel-core@^7.0.0-bridge.0 --save-dev --dev jest --save-dev vue-jest vue-template-compiler --save-dev jest-serializer-vue -g yarn
+RUN yarn install
+RUN yarn add @vue/test-utils
+
+
 
 
