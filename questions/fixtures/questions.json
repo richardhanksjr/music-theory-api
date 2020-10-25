@@ -97,6 +97,7 @@
     "fields": {
         "name": "Interval Quality",
         "question": [
+            4,
             6
         ]
     }
