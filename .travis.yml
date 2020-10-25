@@ -8,7 +8,8 @@ install:
   - pip install pipenv
   - pipenv install
   - npm install
-  - npm install babel-core@^7.0.0-bridge.0 --save-dev --dev jest --save-dev vue-jest vue-template-compiler --save-dev jest-serializer-vue -g yarn
+  - npm install babel-core@^7.0.0-bridge.0 --save-dev --dev jest --save-dev vue-jest vue-template-compiler --save-dev jest-serializer-vue
+  - npm install -g yarn
   - yarn install
   - yarn add @vue/test-utils
 
