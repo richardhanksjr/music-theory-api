@@ -48,6 +48,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 7,
+    "fields": {
+        "class_name": "TwoWaysOfSoundingIntervals",
+        "module_name": "simple_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -66,7 +74,8 @@
             1,
             4,
             5,
-            6
+            6,
+            7
         ]
     }
 },
