@@ -202,4 +202,4 @@ if ENVIRONMENT == 'production':
 
 LOGIN_URL = 'app:landing'
 
-DEFAULT_FROM_EMAIL = 'admin@musictheorydojo.com'
+DEFAULT_FROM_EMAIL = 'admin@theorydojo.com'
