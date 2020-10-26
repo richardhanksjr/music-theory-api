@@ -98,3 +98,26 @@ class CouldBePerfectInterval(Question):
 
     def _generate_question_params(self):
         self._question_params = {}
+
+
+class TwoWaysOfSoundingIntervals(Question):
+    def _generate_question(self):
+        self._question = "The two ways of sounding intervals are:"
+
+    def _generate_answer(self):
+        self._answer = "Harmonic, melodic"
+
+    def _generate_answer_options(self):
+        self._answer_options = ["Vertical, linear", "Harmonic, melodic", "Enharmonic, chromatic", "Simple, compound"]
+
+    def _generate_help_steps_array(self):
+        self._help_steps = ({"prompt": "If the two pitches of a dyad sound at the same time, the interval between them is a ________ interval.",
+                             "answer": "harmonic"},
+                            {"prompt": "If the two pitches of a dyad sound back-to-back, the interval between them is a _______ interval.",
+                             "answer": "melodic"},)
+
+    def _generate_question_type(self):
+        self._question_type = 'two_ways_of_sounding_intervals'
+
+    def _generate_question_params(self):
+        self._question_params = {}
