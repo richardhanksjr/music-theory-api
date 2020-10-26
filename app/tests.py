@@ -32,7 +32,7 @@ class LandingPageTests(TestCase):
         self.assertTemplateUsed(self.response, 'app/landing.html')
 
     def test_landing_page_contains_correct_html(self):
-        self.assertContains(self.response, 'Music Theory Dojo')
+        self.assertContains(self.response, 'TheoryDojo')
 
     def test_landing_page_does_not_contain_incorrect_html(self):
         self.assertNotContains(
