@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose exec web yarn jest
+docker-compose exec web jest

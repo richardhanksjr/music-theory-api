@@ -54,7 +54,7 @@
 ###JS Testing 
 * `js-test`
 ###To test particular JS test file
-`docker-compose exec web yarn jest specs/<file-name>.spec.js`
+`docker-compose exec web jest specs/<file-name>.spec.js`
         
    
            
