@@ -177,7 +177,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_SUBJECT_PREFIX = 'theorydojo.com'
+DEFAULT_FROM_EMAIL = 'admin@theorydojo.com'
 
 if ENVIRONMENT in ('staging', 'production'):
     SECURE_SSL_REDIRECT = True
@@ -199,7 +199,4 @@ if ENVIRONMENT == 'production':
     DEBUG = False
 
 
-
 LOGIN_URL = 'app:landing'
-
-DEFAULT_FROM_EMAIL = 'admin@theorydojo.com'
