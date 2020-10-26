@@ -1,5 +1,5 @@
 from django.test import TestCase
-from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval
+from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals
 from django.core.cache import cache
 from questions.models import Question, Tag
 
@@ -99,4 +99,18 @@ class CouldBePerfectIntervalTest(TestCase):
 
     def test_answer(self):
         expected_answer = "Third"
+        self.assertEqual(expected_answer, self.question.answer)
+
+
+class TwoWaysOfSoundingIntervalsTest(TestCase):
+
+    def setUp(self):
+        self.question = TwoWaysOfSoundingIntervals()
+
+    def test_question(self):
+        expected_question = "The two ways of sounding intervals are:"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "Harmonic, melodic"
         self.assertEqual(expected_answer, self.question.answer)
