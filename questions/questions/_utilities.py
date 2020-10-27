@@ -25,3 +25,17 @@ def random_answer_options_pitch(len_of_list=4, correct_answer=None):
             random_answer_list.append(random_pitch_inner)
     random.shuffle(random_answer_list)
     return random_answer_list
+
+
+def random_numbers_answer_options(correct_answer, len_of_list=4):
+    highest_number = 10
+    initial_list = [correct_answer]
+    incorrect_answers = []
+    while len(incorrect_answers) < len_of_list - 1:
+        random_int = random.randint(1, highest_number)
+        if random_int == correct_answer:
+            random_int = (random_int + 1) % highest_number
+        incorrect_answers.append(random_int)
+    answer_options = initial_list + incorrect_answers
+    random.shuffle(answer_options)
+    return answer_options
