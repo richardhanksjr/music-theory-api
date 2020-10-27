@@ -8,12 +8,8 @@ exports[`mount question component 1`] = `
     <h5 style="color: darkred;"></h5> <br>
   </div> <br>
   <!----> <br> <br>
-  <div class="text-muted"><button class="btn btn-outline-secondary">Hint</button> <br> <br>
+  <div class="text-muted"><button class="btn btn-outline-secondary">Hint</button>
     <!---->
-    <h4 style="color: darkred;"></h4>
-    <!---->
-    <!----> <br>
-    <p></p>
   </div>
 </div>
 `;
