@@ -34,7 +34,7 @@ class SemitonesInInterval(Question):
 
     def _generate_help_steps_array(self):
         self._help_steps = [{'prompt': "What is another name for a semitone?", 'answer': 'half step'},
-                            {'prompt': f"How many half steps are there in a {self._interval.niceName}", 'answer': self.answer]
+                            {'prompt': f"How many half steps are there in a {self._interval.niceName}", 'answer': self.answer}]
 
     def _generate_question_type(self):
         self._question_type = 'semitones-in-interval'

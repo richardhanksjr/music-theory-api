@@ -28,12 +28,12 @@ def random_answer_options_pitch(len_of_list=4, correct_answer=None):
 
 
 def random_numbers_answer_options(correct_answer, len_of_list=4):
-    highest_number = 10
+    highest_number = 22
     initial_list = [correct_answer]
     incorrect_answers = []
     while len(incorrect_answers) < len_of_list - 1:
         random_int = random.randint(1, highest_number)
-        if random_int == correct_answer:
+        while random_int in incorrect_answers or random_int in initial_list:
             random_int = (random_int + 1) % highest_number
         incorrect_answers.append(random_int)
     answer_options = initial_list + incorrect_answers
