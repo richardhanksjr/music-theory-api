@@ -1,5 +1,5 @@
 import random
-from music21 import *
+from music21 import interval
 from questions.questions.questions import Question
 from ._utilities import random_numbers_answer_options
 
