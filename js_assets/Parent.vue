@@ -1,3 +1,4 @@
+
 <template>
     <child :message="message"></child>
 </template>
@@ -14,9 +15,7 @@
             }
         }
     }
-
 </script>
 
 <style scoped>
-
 </style>

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mount question component 1`] = `
+<div name="question" id="question"><br>
+  <h2></h2> <br>
+  <div>
+    <hr class="rounded">
+    <h5 style="color: darkred;"></h5> <br>
+  </div> <br>
+  <!----> <br> <br>
+  <div class="text-muted"><button class="btn btn-outline-secondary">Hint</button>
+    <!---->
+  </div>
+</div>
+`;

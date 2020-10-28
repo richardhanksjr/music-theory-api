@@ -7,6 +7,10 @@ services:
 install:
   - pip install pipenv
   - pipenv install
+  - npm install
+  - npm install babel-core@^7.0.0-bridge.0 --save-dev --dev jest --save-dev vue-jest vue-template-compiler --save-dev jest-serializer-vue
+
+
 
 env:
   - DOCKER_COMPOSE_VERSION=3.3
@@ -15,6 +19,7 @@ script:
   - docker-compose run web python manage.py migrate
   - docker-compose run web python manage.py test
   - docker-compose run web prospector --uses django
+  - docker-compose run web jest -u
 
 
 after_success:

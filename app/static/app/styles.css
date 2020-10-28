@@ -37,7 +37,7 @@ label {
     clear: none;
     display: block;
     padding: 0px 1em 0px 8px;
-    font-family: "MV Boli";
+    font-family: "Indie Flower";
 
 }
 
@@ -49,3 +49,9 @@ input.radio {
     margin: 2px 0 0 2px;
 }
 
+p {
+    font-family: "Indie Flower";
+    font-size: medium;
+    color: midnightblue;
+
+}

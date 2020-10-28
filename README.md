@@ -50,3 +50,12 @@
 * Add new question to the Question model
 * Add new question to exsiting tags and create any new tags
 * run `update_fixture`
+
+###JS Testing 
+* `js-test`
+###To test particular JS test file
+`docker-compose exec web yarn jest specs/<file-name>.spec.js`
+        
+   
+           
+

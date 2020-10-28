@@ -7,3 +7,7 @@ alias test='./test.sh'
 alias shell='./shell_plus.sh'
 alias update_fixture='./update_fixture.sh'
 alias load_fixture='./load_fixture.sh'
+alias test-js='./test-js.sh'
+
+
+
