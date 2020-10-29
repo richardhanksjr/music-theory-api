@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from django.test.client import Client
 from django.test.utils import override_settings
 from allauth.utils import get_user_model
-from django.core import mail
+from django.core.mail import send_mail, outbox
 
 from allauth.account.models import (
     EmailAddress,
@@ -215,57 +215,3 @@ class NavBarTests(TestCase):
         profile_url = reverse('app:profile')
         self.response = self.client.get(profile_url)
         self.assertRedirects(self.response, '/landing/?next=/profile/')
-
-class AccountSetupTests(TestCase):
-
-    def test_login_using_unverified_email_address_is_prohibited(self):
-        user = get_user_model().objects.create(
-            username="john", email="john@example.org", is_active=True
-        )
-        user.set_password("doe")
-        user.save()
-
-        EmailAddress.objects.create(
-            user=user, email="john@example.org", primary=True, verified=True
-        )
-        EmailAddress.objects.create(
-            user=user, email="john@example.com", primary=True, verified=False
-        )
-
-        resp = self.client.post(
-            reverse("account_login"), {"login": "john@example.com", "password": "doe"}
-        )
-        self.assertRedirects(
-            resp,
-            reverse("account_email_verification_sent"),
-            fetch_redirect_response=False,
-        )
-        self.assertEqual(len(mail.outbox), 1)
-        assert mail.outbox[0].to == ["john@example.com"]
-
-
-
-    def test_login_unverified_account_mandatory(self):
-        """Tests login behavior when email verification is mandatory."""
-        user = get_user_model().objects.create(username="john")
-        user.set_password("doe")
-        user.save()
-        EmailAddress.objects.create(
-            user=user, email="user@example.com", primary=True, verified=False
-        )
-        resp = self.client.post(
-            reverse("account_login"), {"login": "john", "password": "doe"}
-        )
-        """
-        right now, once the user gets the email and clicks the link to verify, they
-        get directed right to the "/" which is the same as logging in.
-        
-        What I might like to have happen in the future, can't quite figure it out, 
-        is they get redirected once they click the link on the email to a page that says
-        "you're verified, thanks!" then click a link to continue to site. In that case
-        this test would be like a Redirect test. 
-        
-        """
-        self.assertRedirects(resp, reverse("account_email_verification_sent"))
-
-
