@@ -56,14 +56,6 @@
     }
 },
 {
-    "model": "questions.question",
-    "pk": 8,
-    "fields": {
-        "class_name": "SemitonesInInterval",
-        "module_name": "intervals"
-    }
-},
-{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
