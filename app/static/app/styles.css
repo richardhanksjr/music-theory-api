@@ -1,25 +1,30 @@
+/*body {*/
+    /*padding-top: 65px;*/
+/*}*/
+
 /* Rounded border */
 hr.rounded {
-  border-top: 8px solid #bbb;
-  border-radius: 5px;
+    border-top: 8px solid #bbb;
+    border-radius: 5px;
 }
 
 /*this stuff is from Rich's todo app applied here to the radio inputs for the questions.html page*/
-.shadow{
+.shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.shadow-inset{
-        box-shadow: inset 0 0 10px #000000;
+.shadow-inset {
+    box-shadow: inset 0 0 10px #000000;
 
 }
 
-.list-group-item{
+.list-group-item {
     transition: transform 1s;
     float: left;
     clear: none;
 }
-.list-group-item:hover{
+
+.list-group-item:hover {
     transform: scale(1.05, 1.4);
     background-color: #eeeeee;
     border-radius: 20px !important;
@@ -28,9 +33,8 @@ hr.rounded {
 }
 
 fieldset {
-      overflow: hidden
+    overflow: hidden
 }
-
 
 label {
     float: left;
@@ -42,7 +46,6 @@ label {
 }
 
 input[type=radio],
-
 input.radio {
     float: left;
     clear: none;
@@ -54,4 +57,100 @@ p {
     font-size: medium;
     color: midnightblue;
 
+}
+
+.splash {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    height: 30vh;
+    width: 100%;
+    text-align: center;
+    animation-name: move_nav_up, colorChange;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+
+@keyframes move_nav_up {
+    from {
+        height: 100vh;
+        background-color: black !important;
+    }
+    to {
+        height: 6vh;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes colorChange {
+    from {
+        background-color: black;
+    }
+    to {
+        background-color: #E3F2FD;
+    }
+}
+
+
+.fadeInText {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+.logo {
+    height: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.logo-splash {
+    animation-name: fadeIn, logoLoad;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+
+.logo-spin {
+    animation-name: spinLogo;
+    height: 20rem;
+    animation-delay: .5s;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes spinLogo {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+        height: 10rem;
+    }
+}
+
+.navbar {
+    min-height: 8rem;
+    margin-bottom: 4rem;
+}
+
+
+#questions{
+    margin-top: 15%;
 }
