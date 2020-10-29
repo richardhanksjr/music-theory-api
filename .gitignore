@@ -134,3 +134,4 @@ node_modules/*
 
 coverage.json
 specs
+index-bundle.js
