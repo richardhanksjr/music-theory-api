@@ -1,37 +1,6 @@
 {% extends 'app/_base.html' %}
 {% load static %}
 
-{% block navbar %}
-    <nav class="navbar navbar-expand-lg splash" style="background-color: #e3f2fd;">
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav fadeInText">
-            <li class="nav-item">
-                <a class="navbar-brand" href="{% url 'account_logout' %}">Logout</a>
-            </li>
-            <li class="nav-item">
-                <a class="navbar-brand" href="{% url 'app:profile' %}">Profile</a>
-            </li>
-        </ul>
-        <a class="navbar-brand fadeInText" href="{% url 'app:index' %}">Random Question</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        {% else %}
-        <ul class="navbar-nav fadeInText">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-            </li>
-        </ul>
-        {% endif %}
-        <div class="ml-auto" id="logo-div">
-            <img class="logo logo-splash logo-spin" src="{% static 'app/images/logo.png' %}" alt="logo">
-        </div>
-    </nav>
-{% endblock %}
 
 {% block content %}
 <!-- any Django or other non Vue stuff here -->
@@ -39,7 +8,12 @@
 <h1 class="text-muted" id="questions">Questions</h1>
 
 <!-- import Questions Vue App -->
-<div id="question" class="container"></div>
+<div id="question" class="container">
+    <div id="loading-wrapper">
+        <div id="loading-text">LOADING</div>
+        <div id="loading-content"></div>
+    </div>
+</div>
 
 
 <script src="{% static 'index-bundle.js' %}"></script>

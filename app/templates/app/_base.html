@@ -17,41 +17,52 @@
     <!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
     <!-- our native styles -->
     <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
 
     <title>{% block title %} TheoryDojo {% endblock title %}</title>
 </head>
 <body>
-    {% block navbar %}
-    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="navbar-brand" href="{% url 'account_logout' %}">Logout</a>
-            </li>
-            <li class="nav-item">
-                <a class="navbar-brand" href="{% url 'app:profile' %}">Profile</a>
-            </li>
-        </ul>
-        <a class="navbar-brand" href="{% url 'app:index' %}">Random Question</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        {% else %}
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-            </li>
-        </ul>
-        {% endif %}
-        <div class="ml-auto" id="logo-div">
-            <img class="logo" src="{% static 'app/images/logo.png' %}" alt="logo">
-        </div>
-    </nav>
-    {% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="navbar-brand" href="{% url 'account_logout' %}">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="navbar-brand" href="{% url 'app:profile' %}">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="navbar-brand" href="{% url 'app:index' %}">Random Question</a>
+        </li>
+    </ul>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    {% else %}
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+        </li>
+    </ul>
+    {% endif %}
+    <div class="ml-auto" id="logo-div">
+        <img class="logo" src="{% static 'app/images/logo.png' %}" alt="logo">
+    </div>
+</nav>
+{% endblock %}
 <div class="container">
     {% block content %}
     {% endblock content %}
