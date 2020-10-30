@@ -1,25 +1,30 @@
+/*body {*/
+    /*padding-top: 65px;*/
+/*}*/
+
 /* Rounded border */
 hr.rounded {
-  border-top: 8px solid #bbb;
-  border-radius: 5px;
+    border-top: 8px solid #bbb;
+    border-radius: 5px;
 }
 
 /*this stuff is from Rich's todo app applied here to the radio inputs for the questions.html page*/
-.shadow{
+.shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.shadow-inset{
-        box-shadow: inset 0 0 10px #000000;
+.shadow-inset {
+    box-shadow: inset 0 0 10px #000000;
 
 }
 
-.list-group-item{
+.list-group-item {
     transition: transform 1s;
     float: left;
     clear: none;
 }
-.list-group-item:hover{
+
+.list-group-item:hover {
     transform: scale(1.05, 1.4);
     background-color: #eeeeee;
     border-radius: 20px !important;
@@ -28,9 +33,8 @@ hr.rounded {
 }
 
 fieldset {
-      overflow: hidden
+    overflow: hidden
 }
-
 
 label {
     float: left;
@@ -42,7 +46,6 @@ label {
 }
 
 input[type=radio],
-
 input.radio {
     float: left;
     clear: none;
@@ -55,3 +58,85 @@ p {
     color: midnightblue;
 
 }
+
+
+.logo {
+    height: 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+
+
+.navbar {
+    min-height: 8rem;
+    margin-bottom: 4rem;
+}
+
+
+#questions{
+    margin-top: 15%;
+}
+
+
+  #loading-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  #loading-text {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: rgb(20, 121, 60);
+    width: 100px;
+    height: 30px;
+    margin: -7px 0 0 -45px;
+    text-align: center;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 20px;
+  }
+
+  #loading-content {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 170px;
+    height: 170px;
+    margin: -85px 0 0 -85px;
+    border: 3px solid #F00;
+  }
+
+  #loading-content {
+    border: 3px solid transparent;
+    border-top-color: rgb(121, 61, 185);
+    border-bottom-color: rgb(121, 61, 185);
+    border-radius: 50%;
+    -webkit-animation: loader 2s linear infinite;
+    -moz-animation: loader 2s linear infinite;
+    -o-animation: loader 2s linear infinite;
+    animation: loader 2s linear infinite;
+  }
+
+  @keyframes loader {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
