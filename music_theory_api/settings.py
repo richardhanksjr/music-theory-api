@@ -205,4 +205,3 @@ if ENVIRONMENT == 'production':
 
 
 LOGIN_URL = 'app:landing'
-
