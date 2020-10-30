@@ -206,11 +206,11 @@ class NavBarTests(TestCase):
 
 class EmailTests(TestCase):
 
-    def test_email_verification(self):
-        user = get_user_model().objects.create(username="johndoe")
+    def test_email_verification_set_to_mandatory(self):
+        user = get_user_model().objects.create(username="mike")
         email = EmailAddress.objects.create(
             user=user,
-            email="john@example.com",
+            email="mike@example.",
         )
         c = Client()
         # Signup
@@ -220,10 +220,33 @@ class EmailTests(TestCase):
             {
                 "username": user,
                 "email": email,
-                "password1": "johndoe",
+                "password1": "mikey",
             },
             follow=True
         )
-        # Logged in, should fail since EmailAddress defaults to primary=False, verified=False
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'account/signup.html')
+
+        self.assertContains(response, 'ACCOUNT_EMAIL_VERIFICATION')
+        self.assertContains(response, 'mandatory')
+        self.assertContains(response, 'ACCOUNT_EMAIL_REQUIRED')
+        self.assertContains(response, 'True')
+
+    # def test_user_cannot_login_with_unverified_email(self):
+    #     user = get_user_model().objects.create(username="johndoe")
+    #     email = EmailAddress.objects.create(
+    #         user=user,
+    #         email="john@example.com",
+    #     )
+    #     c = Client()
+    #     # Signup
+    #     c.get(reverse("account_login"))
+    #     response = c.post(
+    #         reverse("account_login"),
+    #         {
+    #             "username": user,
+    #             "email": email,
+    #             "password1": "johndoe",
+    #         },
+    #         follow=True
+    #     )
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'account/confirm_email.html')
