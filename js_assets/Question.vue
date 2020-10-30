@@ -147,7 +147,7 @@
                                 }
             },
         },
-        computed : {sghtea
+        computed : {
             noMoreHints() {
                 if(this.hintCount === this.hintLength) {
                     return this.noMoreHintsMessage = "We're not giving out any more hints on this one";
