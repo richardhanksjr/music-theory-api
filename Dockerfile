@@ -23,7 +23,7 @@ RUN apt-get install -y nodejs
 
 RUN npm install
 RUN npm install babel-core@^7.0.0-bridge.0 --save-dev --dev jest --save-dev vue-jest vue-template-compiler --save-dev jest-serializer-vue -g yarn
-RUN npm run dev
+#RUN npm run dev
 
 # Collect static files
 RUN python manage.py collectstatic --noinput

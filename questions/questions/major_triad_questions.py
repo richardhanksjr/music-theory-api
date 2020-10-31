@@ -11,22 +11,22 @@ class SimpleMajorTriad(Question):
         super().__init__()
 
     def _generate_question(self):
-        self._question = f"What is the {self.chord_degree}" \
-                         f"of a {self.triad.root()} major triad?"
+        self._question = f"What is the {self.chord_degree} " \
+                         f" of a {self.triad.root().unicodeName} major triad?"
 
     def _generate_answer(self):
         if self.chord_degree == triad_degrees[1]:
-            self._answer = self.triad.third
+            self._answer = self.triad.third.unicodeName
         else:
-            self._answer = self.triad.fifth
+            self._answer = self.triad.fifth.unicodeName
 
     def _generate_answer_options(self):
         self._answer_options = random_answer_options_pitch(correct_answer=self._answer)
 
     def _generate_help_steps_array(self):
-        self._help_steps = ({'prompt': 'What is the root of this triad?', 'answer': self.triad.root()},
-                           {'prompt': f'Starting on {self.triad.root()},'
-                                      f' count up the {self.triad.root()} major until you reach the '
+        self._help_steps = ({'prompt': 'What is the root of this triad?', 'answer': f"{self.triad.root().unicodeName}"},
+                           {'prompt': f'Starting on {self.triad.root().unicodeName},'
+                                      f' and counting that note as \"one\", count up the major scale until you reach the '
                                       f'{self.chord_degree} scale degree. What is this note?',
                             'answer': self._answer})
 

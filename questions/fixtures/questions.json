@@ -49,7 +49,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 7,
+    "pk": 9,
     "fields": {
         "class_name": "TwoWaysOfSoundingIntervals",
         "module_name": "simple_questions"
@@ -57,10 +57,10 @@
 },
 {
     "model": "questions.question",
-    "pk": 8,
+    "pk": 13,
     "fields": {
         "class_name": "SimpleMajorTriad",
-        "module_name": "simple-major-triad"
+        "module_name": "major_triad_questions"
     }
 },
 {
@@ -82,8 +82,7 @@
             1,
             4,
             5,
-            6,
-            7
+            6
         ]
     }
 },
