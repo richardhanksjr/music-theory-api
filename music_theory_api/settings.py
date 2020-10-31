@@ -26,7 +26,8 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', default=0)
 
-ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com", "theory-dojo.herokuapp.com", "localhost", '127.0.0.1']
+ALLOWED_HOSTS = ["infinite-woodland-69556.herokuapp.com", "theory-dojo.herokuapp.com", "localhost", '127.0.0.1',
+                 '.theorydojo.com']
 
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
@@ -56,9 +57,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -153,6 +154,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
 # django-crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -164,13 +170,20 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER')
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT')
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
+
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'TheoryDojo: '
+DEFAULT_FROM_EMAIL = 'admin@theorydojo.com'
 
 if ENVIRONMENT in ('staging', 'production'):
     SECURE_SSL_REDIRECT = True
@@ -190,7 +203,6 @@ if ENVIRONMENT in ('staging', 'production'):
 
 if ENVIRONMENT == 'production':
     DEBUG = False
-
 
 
 LOGIN_URL = 'app:landing'

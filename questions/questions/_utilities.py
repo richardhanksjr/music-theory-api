@@ -32,3 +32,17 @@ def random_root_position_major_triad():
     tc = analysis.transposition.TranspositionChecker(pList)
     transposed_triads = tc.getChordsOfDistinctTranspositions()
     return random.choice(transposed_triads)
+
+
+def random_numbers_answer_options(correct_answer, len_of_list=4):
+    highest_number = 22
+    initial_list = [correct_answer]
+    incorrect_answers = []
+    while len(incorrect_answers) < len_of_list - 1:
+        random_int = random.randint(1, highest_number)
+        while random_int in incorrect_answers or random_int in initial_list:
+            random_int = (random_int + 1) % highest_number
+        incorrect_answers.append(random_int)
+    answer_options = initial_list + incorrect_answers
+    random.shuffle(answer_options)
+    return answer_options

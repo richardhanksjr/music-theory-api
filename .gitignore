@@ -133,3 +133,5 @@ node_modules/*
 *.idea/*
 
 coverage.json
+specs
+index-bundle.js

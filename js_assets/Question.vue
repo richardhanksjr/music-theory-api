@@ -13,19 +13,28 @@
         <br>
         <br>
             <div class="text-muted" v-if="!hideHints">
+
+
                     <button v-if="!hintGiven" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Hint</button>
-                <br>
-
-                <br>
-                        <p v-if="hintGiven">mouse over hint for hint's answer</p>
-                        <h4 v-if="hints" :style="styleMessage"  @mouseover="showAnswer = true; showNextHintButton = true;" @mouseleave="showAnswer = false;">{{ hints['prompt'] }}</h4>
-
-                        <h6 v-if="showAnswer">{{ hints['answer'] }}</h6>
-                        <button v-if="showNextHintButton && questionPackage.help_steps.length > 1 && hintIndex != questionPackage.help_steps.length" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps" @mouseleave="showNextHintButton = false;">Next Hint</button>
+                    <div v-if="hintGiven">
+                        <h3 class="text-muted">Hints</h3>
                         <br>
-                        <p :style="styleQuestion">{{ noMoreHintsMessage }}</p>
+                            <h4 :style="styleMessage">{{ questionPackage.help_steps[0]['prompt'] }}</h4>
+                        <br>
+                            <h6 v-if="showAnswer">{{ questionPackage.help_steps[0]['answer'] }}</h6>
+                        <br>
+                            <button v-if="showAnswerButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showAnswer = true; showAnswerButton = false; showNextHintButton = true;">Show Hint's Answer</button>
+                        <br>
+                            <button v-if="hintLength > 1 && showNextHintButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showNextHint = true; showNextAnswerButton = true; showNextHintButton = false; hintCount++;">Show Next Hint</button>
+                        <br>
+                            <h4 v-if="showNextHint" :style="styleMessage">{{ questionPackage.help_steps[hintIndex]['prompt'] }}</h4>
+                        <br>
+                            <h6 v-if="showNextAnswer">{{ questionPackage.help_steps[hintIndex]['answer'] }}</h6>
+                        <br>
+                            <button v-if="showNextAnswerButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showNextAnswer = true; showNextAnswerButton = false;">Show Hint's Answer</button>
+                        <br>
+                            <p>{{ noMoreHintsMessage }}</p>
                     </div>
-
             </div>
     </div>
 </template>
@@ -33,10 +42,8 @@
 <script>
     import axios from 'axios';
     import VueAxios from 'vue-axios';
-
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
-
     var jabs = ["No gigs for you.",
             "You were kidding, right?",
             "We're all speechless at your ineptitude.",
@@ -46,7 +53,6 @@
             "Booooooooooo!",
             "Go study and don't forget to vote.",
             "Look, why not just give up? You're parents wanted you to be a lawyer anyway."]
-
     import Answer from './Answer.vue'
     export default {
         name: "Question",
@@ -59,11 +65,16 @@
                 answerVal: "",
                 message: "",
                 noMoreHintsMessage: "",
-                hints: {},
-                hintIndex: 0,
                 correct: false,
+                hintIndex: 0,
+                hintLength: 0,
+                hintCount: 0,
                 hideHints: false,
                 showAnswer: false,
+                showAnswerButton: false,
+                showNextAnswer: false,
+                showNextAnswerButton: false,
+                showNextHint: false,
                 showNextHintButton: false,
                 hintGiven: false,
                 styleMessage: {
@@ -78,7 +89,6 @@
             evaluateAnswer(answer) {
                 axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
                 .then(response => {
-
                     if (this.answerVal === this.questionPackage.answer) {
                         if (this.hintGiven) {
                             //they got it right but not without help
@@ -105,32 +115,41 @@
                 // reset everything
                 this.answerVal = "";
                 this.message = "";
-                this.hints = {};
+
                 this.correct = false;
+                this.showAnswer = false;
+                this.showAnswerButton = false;
+                this.showNextAnswer = false;
+                this.showNextAnswerButton = false;
                 this.hideHints = false;
                 this.hintGiven = false;
+                this.showNextHint = false;
                 this.showNextHintButton = false;
-                this.hintIndex = 0;
                 this.noMoreHintsMessage = "";
+                this.multipleHints = false;
+                this.hintIndex = 0;
+                this.hintCount = 0;
             },
-            helpSteps(){
-                        if (this.questionPackage.help_steps) {
-                            this.hints = this.questionPackage.help_steps[this.hintIndex];
-                            if(this.hintIndex < this.questionPackage.help_steps.length) {
+             helpSteps(){
+                         this.hintLength = Object.keys(this.questionPackage.help_steps).length;
+                            if(this.hintLength){
+                                if(this.hintLength === 1) {
+                                    this.hintGiven = true;
+                                    this.showAnswerButton = true;
+                                    this.hintCount++;
+                                    }
+                                else {
+                                    this.hintGiven = true;
+                                    this.showAnswerButton = true;
                                     this.hintIndex++;
+                                    this.hintCount++;
+                                    }
                                 }
-                            this.hintGiven = true;
-                            }
-                        else {
-                            this.hints = "Sorry, we don't have any helpful hints on this one."
-                        }
-
             },
-
         },
         computed : {
             noMoreHints() {
-                if(this.hintIndex === this.questionPackage.help_steps.length) {
+                if(this.hintCount === this.hintLength) {
                     return this.noMoreHintsMessage = "We're not giving out any more hints on this one";
                 }
             }
@@ -142,9 +161,7 @@
                 });
             },
     };
-
 </script>
 
 <style scoped>
-
 </style>
