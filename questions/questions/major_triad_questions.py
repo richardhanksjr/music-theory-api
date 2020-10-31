@@ -1,5 +1,4 @@
 import random
-from music21 import chord, analysis
 from .questions import Question
 from ._utilities import (triad_degrees, random_answer_options_pitch, random_root_position_major_triad)
 
@@ -35,5 +34,3 @@ class SimpleMajorTriad(Question):
 
     def _generate_question_params(self):
         self._question_params =  {}
-
-

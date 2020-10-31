@@ -1,5 +1,5 @@
 import random
-from music21 import pitch, chord, analysis
+from music21 import pitch, analysis
 
 pitch_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 accidentals = ['-', '--', '#', '##', '']
