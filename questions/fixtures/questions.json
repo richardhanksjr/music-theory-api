@@ -57,10 +57,34 @@
 },
 {
     "model": "questions.question",
-    "pk": 13,
+    "pk": 14,
     "fields": {
         "class_name": "SimpleMajorTriad",
-        "module_name": "major_triad_questions"
+        "module_name": "simple_triad_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 15,
+    "fields": {
+        "class_name": "SimpleMinorTriad",
+        "module_name": "simple_triad_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 16,
+    "fields": {
+        "class_name": "SimpleDiminishedTriad",
+        "module_name": "simple_triad_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 17,
+    "fields": {
+        "class_name": "SimpleAugmentedTriad",
+        "module_name": "simple_triad_questions"
     }
 },
 {

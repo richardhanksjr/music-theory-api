@@ -31,7 +31,7 @@
                         <br>
                             <h6 v-if="showNextAnswer">{{ questionPackage.help_steps[hintIndex]['answer'] }}</h6>
                         <br>
-                            <button v-if="showNextAnswerButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showNextAnswer = true; showNextAnswerButton = false;">Show Hint's Answer</button>
+                            <button v-if="showNextAnswerButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showNextAnswer = true; showNextAnswerButton = false; showNextHint = true;">Show Hint's Answer</button>
                         <br>
                             <p>{{ noMoreHintsMessage }}</p>
                     </div>

@@ -27,8 +27,3 @@ RUN npm install babel-core@^7.0.0-bridge.0 --save-dev --dev jest --save-dev vue-
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
-
-
-
-
-
