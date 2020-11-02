@@ -98,7 +98,8 @@ class IntervalRaisedLoweredIs(Question):
                                             self._upper_direction).unicodeNameWithOctave
             },
             {
-                'prompt': f"What is the interval between {self._alter_pitch(self._lower_pitch, self._lower_pitch_num_octaves, self._lower_direction).unicodeNameWithOctave} "
+                'prompt': f"What is the interval between {self._alter_pitch(self._lower_pitch, self._lower_pitch_num_octaves,"
+                          f" self._lower_direction).unicodeNameWithOctave} "
                           f"and {self._alter_pitch(self._upper_pitch, self._upper_pitch_num_octaves, self._upper_direction).unicodeNameWithOctave}?",
                 'answer': self.answer
             }]
