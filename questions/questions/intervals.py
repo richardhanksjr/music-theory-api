@@ -49,6 +49,7 @@ class IntervalRaisedLoweredIs(Question):
     MIN_NUM_OCTAVES = 2
     MAX_NUM_OCTAVES = 4
 
+    # pylint: disable=too-many-arguments
     def __init__(self, lower_pitch=None, upper_pitch=None, lower_direction=None, upper_direction=None,
                  lower_pitch_num_octaves=None, upper_pitch_num_octaves=None):
         self._lower_pitch = pitch.Pitch(lower_pitch if lower_pitch is not None else random_pitch_with_octave(max_octave=2))
