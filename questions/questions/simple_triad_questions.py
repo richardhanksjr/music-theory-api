@@ -1,6 +1,10 @@
 import random
 from .questions import Question
-from ._utilities import (triad_degrees, random_answer_options_pitch, random_root_position_major_triad, random_root_position_minor_triad, random_root_position_diminished_triad, random_root_position_augmented_triad)
+from ._utilities import (triad_degrees, random_answer_options_pitch,
+                         random_root_position_major_triad,
+                         random_root_position_minor_triad,
+                         random_root_position_diminished_triad,
+                         random_root_position_augmented_triad)
 
 class SimpleMajorTriad(Question):
 
@@ -90,12 +94,15 @@ class SimpleDiminishedTriad(Question):
 
     def _generate_help_steps_array(self):
         self._help_steps = ({'prompt': 'What is the relationship of a chord degree to it\'s root is based on?',
-                             'answer': 'How many alphabetical letters separate the root from the chord degree counting the root as \"one\".'},
+                             'answer': 'How many alphabetical letters separate the root from the chord'
+                                ' degree counting the root as \"one\".'},
                             {
-                            'prompt': 'A diminished triad is built by stacking two minor thirds. How many semitones/half steps are in a minor third?',
+                            'prompt': 'A diminished triad is built by stacking two minor thirds. How many semitones/half'
+                            ' steps are in a minor third?',
                             'answer': '3'},
-                           {'prompt': f' Starting on {self.triad.root().name}, and counting that note as \"one\", count the number of alphabetical letters on your fingers while thinking the note names ' 
-                                      f'until you reach the {self.chord_degree} scale degree. What is this note?',
+                           {'prompt': f' Starting on {self.triad.root().name}, and counting that note as \"one\", '
+                                f'count the number of alphabetical letters on your fingers while thinking the note names ' 
+                                f'until you reach the {self.chord_degree} scale degree. What is this note?',
                             'answer': self._answer},)
 
     def _generate_question_type(self):
@@ -126,12 +133,14 @@ class SimpleAugmentedTriad(Question):
 
     def _generate_help_steps_array(self):
         self._help_steps = ({'prompt': 'What is the relationship of a chord degree to it\'s root is based on?',
-                             'answer': 'How many alphabetical letters separate the root from the chord degree counting the root as \"one\".'},
-                            {'prompt': 'An augmented triad is built by stacking two major thirds. How many semitones/half steps are in a major third?',
+                             'answer': 'How many alphabetical letters separate the root from the'
+                                ' chord degree counting the root as \"one\".'},
+                            {'prompt': 'An augmented triad is built by stacking two major thirds. '
+                                'How many semitones/half steps are in a major third?',
                             'answer': '4'},
                            {'prompt': f'Starting on {self.triad.root().name},'
-                                      f' and counting that note as \"one\", count the number of alphabetical letters on your fingers while thinking the note names ' 
-                                      f'until you reach the {self.chord_degree} scale degree. What is this note?',
+                                f' and counting that note as \"one\", count the number of alphabetical letters on your fingers while thinking the note names ' 
+                                f'until you reach the {self.chord_degree} scale degree. What is this note?',
                             'answer': self._answer},)
 
     def _generate_question_type(self):
