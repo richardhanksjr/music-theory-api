@@ -1,5 +1,5 @@
 import random
-from music21 import pitch, analysis
+from music21 import *
 
 pitch_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 accidentals = ['-', '--', '#', '##', '']
@@ -14,8 +14,13 @@ scale_degrees = [{'name': "first"},
 
 triad_degrees = ["root", "third", "fifth"]
 
+diatonic_modes = ['dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian']
+
 def random_pitch():
     return random.choice(pitch_names) + random.choice(accidentals)
+
+def random_mode():
+    return random.choice(diatonic_modes)
 
 
 def random_answer_options_pitch(len_of_list=4, correct_answer=None):
@@ -24,6 +29,17 @@ def random_answer_options_pitch(len_of_list=4, correct_answer=None):
         random_pitch_inner = pitch.Pitch(random_pitch()).unicodeName
         if random_pitch_inner not in random_answer_list:
             random_answer_list.append(random_pitch_inner)
+    random.shuffle(random_answer_list)
+    return random_answer_list
+
+def random_answer_options_accidentals(len_of_list=4, correct_answer=None):
+    random_number = random.choice(range(7))
+    random_type = random.choice(['sharps', 'flats'])
+    random_answer_list = [correct_answer] if correct_answer else []
+    while len(random_answer_list) < len_of_list:
+        random_accidentals = f"{random_number} {random_type}"
+        if random_accidentals not in random_answer_list:
+            random_answer_list.append(random_accidentals)
     random.shuffle(random_answer_list)
     return random_answer_list
 

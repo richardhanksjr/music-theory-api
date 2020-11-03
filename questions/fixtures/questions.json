@@ -88,6 +88,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 18,
+    "fields": {
+        "class_name": "ModalKeySignatures",
+        "module_name": "modal_key_signatures"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
