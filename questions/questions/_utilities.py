@@ -12,10 +12,30 @@ scale_degrees = [{'name': "first"},
                  {'name': "seventh"},
                  {'name': "eighth"}]
 
+interval_qualities = ['P', 'M', 'm', 'd', 'A']
+
 
 def random_pitch():
     return random.choice(pitch_names) + random.choice(accidentals)
 
+def random_pitch_with_octave(min_octave=None, max_octave=None):
+    min_octave = min_octave if min_octave is not None else 1
+    max_octave = max_octave if max_octave is not None else 4
+
+    return f"{random_pitch()}{random.randint(min_octave, max_octave)}"
+
+
+def random_intervals_with_octaves(correct_answer, len_of_list=4):
+    correct_answer_list = [correct_answer]
+    incorrect_answers = []
+    while len(incorrect_answers) < len_of_list - 1:
+        random_interval = f"{random.choice(interval_qualities)}{random.randint(1, 40)}"
+        while random_interval in incorrect_answers or random_interval in correct_answer_list:
+            random_interval = f"{random.choice(interval_qualities)}{random.randint(1, 40)}"
+        incorrect_answers.append(random_interval)
+    answer_options = correct_answer_list + incorrect_answers
+    random.shuffle(answer_options)
+    return answer_options
 
 def random_answer_options_pitch(len_of_list=4, correct_answer=None):
     random_answer_list = [correct_answer] if correct_answer else []

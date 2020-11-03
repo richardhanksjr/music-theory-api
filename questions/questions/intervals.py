@@ -1,8 +1,8 @@
 import random
-from music21 import interval
+from music21 import interval, pitch
 from questions.questions.questions import Question
-from ._utilities import random_numbers_answer_options
-
+from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
+                         random_intervals_with_octaves)
 
 
 class SemitonesInInterval(Question):
@@ -34,10 +34,78 @@ class SemitonesInInterval(Question):
 
     def _generate_help_steps_array(self):
         self._help_steps = [{'prompt': "What is another name for a semitone?", 'answer': 'half step'},
-                            {'prompt': f"How many half steps are there in a {self._interval.niceName}", 'answer': self.answer}]
+                            {'prompt': f"How many half steps are there in a {self._interval.niceName}",
+                             'answer': self.answer}]
 
     def _generate_question_type(self):
         self._question_type = 'semitones-in-interval'
+
+    def _generate_question_params(self):
+        self._question_params = {}
+
+
+class IntervalRaisedLoweredIs(Question):
+    directions = ['raised', 'lowered']
+    MIN_NUM_OCTAVES = 2
+    MAX_NUM_OCTAVES = 4
+
+    # pylint: disable=too-many-arguments
+    def __init__(self, lower_pitch=None, upper_pitch=None, lower_direction=None, upper_direction=None,
+                 lower_pitch_num_octaves=None, upper_pitch_num_octaves=None):
+        self._lower_pitch = pitch.Pitch(
+            lower_pitch if lower_pitch is not None else random_pitch_with_octave(max_octave=2))
+        self._upper_pitch = pitch.Pitch(
+            upper_pitch if upper_pitch is not None else random_pitch_with_octave(min_octave=3))
+        self._lower_direction = lower_direction if lower_direction is not None else random.choice(self.directions)
+        self._upper_direction = upper_direction if upper_direction is not None else random.choice(self.directions)
+        self._lower_pitch_num_octaves = lower_pitch_num_octaves if lower_pitch_num_octaves is not None else random.randint(
+            self.MIN_NUM_OCTAVES, self.MAX_NUM_OCTAVES)
+        self._upper_pitch_num_octaves = upper_pitch_num_octaves if upper_pitch_num_octaves is not None else random.randint(
+            self.MIN_NUM_OCTAVES, self.MAX_NUM_OCTAVES)
+        super().__init__()
+
+    def _generate_question(self):
+        self._question = f"The interval {self._lower_pitch.unicodeNameWithOctave} to {self._upper_pitch.unicodeNameWithOctave} becomes " \
+                         f"which interval when {self._lower_pitch.unicodeNameWithOctave} is {self._lower_direction} " \
+                         f"{self._lower_pitch_num_octaves} octave(s) and {self._upper_pitch.unicodeNameWithOctave} is " \
+                         f"{self._upper_direction} {self._upper_pitch_num_octaves} octave(s)?"
+
+    def _alter_pitch(self, pitch, num_octaves, direction):
+        direction_modifier = "-" if direction == 'lowered' else ""
+        for _ in range(num_octaves):
+            pitch = pitch.transpose(f"{direction_modifier}P8")
+        return pitch
+
+    def _generate_answer(self):
+        lower_pitch = self._alter_pitch(self._lower_pitch, self._lower_pitch_num_octaves, self._lower_direction)
+        upper_pitch = self._alter_pitch(self._upper_pitch, self._upper_pitch_num_octaves, self._upper_direction)
+        self._answer = interval.Interval(noteStart=lower_pitch, noteEnd=upper_pitch).name
+
+    def _generate_answer_options(self):
+        self._answer_options = random_intervals_with_octaves(self.answer)
+
+    def _generate_help_steps_array(self):
+        self._help_steps = [{
+            'prompt': f"What is {self._lower_pitch.unicodeNameWithOctave} "
+                      f"{self._lower_direction} {self._lower_pitch_num_octaves} octaves?",
+            'answer': self._alter_pitch(self._lower_pitch, self._lower_pitch_num_octaves,
+                                        self._lower_direction).unicodeNameWithOctave
+            },
+            {
+                'prompt': f"What is {self._upper_pitch.unicodeNameWithOctave} "
+                          f"{self._upper_direction} {self._upper_pitch_num_octaves} octaves?",
+                'answer': self._alter_pitch(self._upper_pitch, self._upper_pitch_num_octaves,
+                                            self._upper_direction).unicodeNameWithOctave
+            },
+            {
+                'prompt': f"What is the interval between "
+                          f"{self._alter_pitch(self._lower_pitch, self._lower_pitch_num_octaves, self._lower_direction).unicodeNameWithOctave} "
+                          f"and {self._alter_pitch(self._upper_pitch, self._upper_pitch_num_octaves, self._upper_direction).unicodeNameWithOctave}?",
+                'answer': self.answer
+            }]
+
+    def _generate_question_type(self):
+        self._question_type = 'interval-raised-lowered-is'
 
     def _generate_question_params(self):
         self._question_params = {}
