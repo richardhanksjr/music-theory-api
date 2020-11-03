@@ -80,6 +80,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 11,
+    "fields": {
+        "class_name": "TwoDifferentIntervalsSpelledDifferentlySameSound",
+        "module_name": "simple_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -102,7 +110,8 @@
             7,
             8,
             9,
-            10
+            10,
+            11
         ]
     }
 },
