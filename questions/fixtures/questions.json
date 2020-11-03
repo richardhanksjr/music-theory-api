@@ -72,6 +72,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 10,
+    "fields": {
+        "class_name": "SmallestDistanceBetweenTwoPitches",
+        "module_name": "simple_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -93,7 +101,8 @@
             6,
             7,
             8,
-            9
+            9,
+            10
         ]
     }
 },
@@ -124,9 +133,9 @@
     "fields": {
         "name": "Interval Quality",
         "question": [
+            9,
             4,
-            6,
-            9
+            6
         ]
     }
 }
