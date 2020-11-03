@@ -1,10 +1,22 @@
 {% extends 'app/_base.html' %}
-{% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %} Filtered Questions {% endblock title %}
 
 {% block content %}
 
-<h1>Filtered Questions By Category:</h1>
+<h1>Filtered Questions</h1>
+<h4>Categories Selected:</h4>
+
+<!-- import Questions Vue App -->
+<div id="question" class="container">
+    <div id="loading-wrapper">
+        <div id="loading-text">LOADING</div>
+        <div id="loading-content"></div>
+    </div>
+</div>
+
+
+<script src="{% static 'index-bundle.js' %}"></script>
 
 {% endblock content %}
