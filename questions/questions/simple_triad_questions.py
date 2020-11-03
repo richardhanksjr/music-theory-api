@@ -11,20 +11,20 @@ class SimpleMajorTriad(Question):
 
     def _generate_question(self):
         self._question = f"What is the {self.chord_degree} " \
-                         f" of a {self.triad.root().unicodeName} major triad?"
+                         f" of a {self.triad.root().name} major triad?"
 
     def _generate_answer(self):
         if self.chord_degree == triad_degrees[1]:
-            self._answer = self.triad.third.unicodeName
+            self._answer = self.triad.third.name
         else:
-            self._answer = self.triad.fifth.unicodeName
+            self._answer = self.triad.fifth.name
 
     def _generate_answer_options(self):
         self._answer_options = random_answer_options_pitch(correct_answer=self._answer)
 
     def _generate_help_steps_array(self):
-        self._help_steps = ({'prompt': 'What is the root of this triad?', 'answer': f"{self.triad.root().unicodeName}"},
-                           {'prompt': f'Starting on {self.triad.root().unicodeName},'
+        self._help_steps = ({'prompt': 'What is the root of this triad?', 'answer': f"{self.triad.root().name}"},
+                           {'prompt': f'Starting on {self.triad.root().name},'
                                       f' and counting that note as \"one\", count up the major scale until you reach the '
                                       f'{self.chord_degree} scale degree. What is this note?',
                             'answer': self._answer})
@@ -44,20 +44,20 @@ class SimpleMinorTriad(Question):
 
     def _generate_question(self):
         self._question = f"What is the {self.chord_degree} " \
-                         f" of a {self.triad.root().unicodeName} minor triad?"
+                         f" of a {self.triad.root().name} minor triad?"
 
     def _generate_answer(self):
         if self.chord_degree == triad_degrees[1]:
-            self._answer = self.triad.third.unicodeName
+            self._answer = self.triad.third.name
         else:
-            self._answer = self.triad.fifth.unicodeName
+            self._answer = self.triad.fifth.name
 
     def _generate_answer_options(self):
         self._answer_options = random_answer_options_pitch(correct_answer=self._answer)
 
     def _generate_help_steps_array(self):
-        self._help_steps = ({'prompt': 'What is the root of this triad?', 'answer': f"{self.triad.root().unicodeName}"},
-                           {'prompt': f'Starting on {self.triad.root().unicodeName},'
+        self._help_steps = ({'prompt': 'What is the root of this triad?', 'answer': f"{self.triad.root().name}"},
+                           {'prompt': f'Starting on {self.triad.root().name},'
                                       f' and counting that note as \"one\", count up the minor scale until you reach the '
                                       f'{self.chord_degree} scale degree. What is this note?',
                             'answer': self._answer})
@@ -77,13 +77,13 @@ class SimpleDiminishedTriad(Question):
 
     def _generate_question(self):
         self._question = f"What is the {self.chord_degree} " \
-                         f" of a {self.triad.root().unicodeName} diminished triad?"
+                         f" of a {self.triad.root().name} diminished triad?"
 
     def _generate_answer(self):
         if self.chord_degree == triad_degrees[1]:
-            self._answer = self.triad.third.unicodeName
+            self._answer = self.triad.third.name
         else:
-            self._answer = self.triad.fifth.unicodeName
+            self._answer = self.triad.fifth.name
 
     def _generate_answer_options(self):
         self._answer_options = random_answer_options_pitch(correct_answer=self._answer)
@@ -94,7 +94,7 @@ class SimpleDiminishedTriad(Question):
                             {
                             'prompt': 'A diminished triad is built by stacking two minor thirds. How many semitones/half steps are in a minor third?',
                             'answer': '3'},
-                           {'prompt': f' Starting on {self.triad.root().unicodeName}, and counting that note as \"one\", count the number of alphabetical letters on your fingers while thinking the note names ' 
+                           {'prompt': f' Starting on {self.triad.root().name}, and counting that note as \"one\", count the number of alphabetical letters on your fingers while thinking the note names ' 
                                       f'until you reach the {self.chord_degree} scale degree. What is this note?',
                             'answer': self._answer},)
 
@@ -113,13 +113,13 @@ class SimpleAugmentedTriad(Question):
 
     def _generate_question(self):
         self._question = f"What is the {self.chord_degree} " \
-                         f" of a {self.triad.root().unicodeName} augmented triad?"
+                         f" of a {self.triad.root().name} augmented triad?"
 
     def _generate_answer(self):
         if self.chord_degree == triad_degrees[1]:
-            self._answer = self.triad.third.unicodeName
+            self._answer = self.triad.third.name
         else:
-            self._answer = self.triad.fifth.unicodeName
+            self._answer = self.triad.fifth.name
 
     def _generate_answer_options(self):
         self._answer_options = random_answer_options_pitch(correct_answer=self._answer)
@@ -129,7 +129,7 @@ class SimpleAugmentedTriad(Question):
                              'answer': 'How many alphabetical letters separate the root from the chord degree counting the root as \"one\".'},
                             {'prompt': 'An augmented triad is built by stacking two major thirds. How many semitones/half steps are in a major third?',
                             'answer': '4'},
-                           {'prompt': f'Starting on {self.triad.root().unicodeName},'
+                           {'prompt': f'Starting on {self.triad.root().name},'
                                       f' and counting that note as \"one\", count the number of alphabetical letters on your fingers while thinking the note names ' 
                                       f'until you reach the {self.chord_degree} scale degree. What is this note?',
                             'answer': self._answer},)
@@ -138,4 +138,4 @@ class SimpleAugmentedTriad(Question):
         self._question_type = 'simple-diminished-triad'
 
     def _generate_question_params(self):
-        self._question_params =  {}
+        self._question_params = {}

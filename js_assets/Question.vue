@@ -17,22 +17,19 @@
 
                     <button v-if="!hintGiven" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Hint</button>
                     <div v-if="hintGiven">
-                        <h3 class="text-muted">Hints</h3>
-                        <br>
-                            <h4 :style="styleMessage">{{ questionPackage.help_steps[0]['prompt'] }}</h4>
-                        <br>
-                            <h6 v-if="showAnswer">{{ questionPackage.help_steps[0]['answer'] }}</h6>
-                        <br>
-                            <button v-if="showAnswerButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showAnswer = true; showAnswerButton = false; showNextHintButton = true;">Show Hint's Answer</button>
-                        <br>
-                            <button v-if="hintLength > 1 && showNextHintButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showNextHint = true; showNextAnswerButton = true; showNextHintButton = false; hintCount++;">Show Next Hint</button>
-                        <br>
-                            <h4 v-if="showNextHint" :style="styleMessage">{{ questionPackage.help_steps[hintIndex]['prompt'] }}</h4>
-                        <br>
-                            <h6 v-if="showNextAnswer">{{ questionPackage.help_steps[hintIndex]['answer'] }}</h6>
-                        <br>
-                            <button v-if="showNextAnswerButton" :style="styleQuestion" class="btn btn-outline-secondary" @click="showNextAnswer = true; showNextAnswerButton = false; showNextHint = true;">Show Hint's Answer</button>
-                        <br>
+                    <h3 class="text-muted">Hints</h3>
+                        <div v-for="(hint, index) in hints">
+
+                            <br>
+                                <h4 :style="styleMessage">{{ hint['prompt'] }}</h4>
+                            <br>
+                                <h6 v-if="hintIndex > index">{{ hint['answer'] }}</h6>
+
+                                <button v-if="hintIndex === index" :style="styleQuestion" class="btn btn-outline-secondary" @click="hintIndex++; showNextHintButton = true;">Show Hint's Answer</button>
+                            <br>
+                                <button v-if="hintIndex === (index + 1) && showNextHintButton && hintLength > 1" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Show Next Hint</button>
+                            <br>
+                        </div>
                             <p>{{ noMoreHintsMessage }}</p>
                     </div>
             </div>
@@ -64,18 +61,17 @@
                 questionPackage: {},
                 answerVal: "",
                 message: "",
+                hints: [],
                 noMoreHintsMessage: "",
                 correct: false,
+// the inchworm that inches ahead of the index in the for loop:
                 hintIndex: 0,
+// the length of the current state of the array:
                 hintLength: 0,
+// how many hints user requested:
                 hintCount: 0,
-                hideHints: false,
-                showAnswer: false,
-                showAnswerButton: false,
-                showNextAnswer: false,
-                showNextAnswerButton: false,
-                showNextHint: false,
                 showNextHintButton: false,
+                hideHints: false,
                 hintGiven: false,
                 styleMessage: {
                     color: 'darkred',
@@ -115,41 +111,31 @@
                 // reset everything
                 this.answerVal = "";
                 this.message = "";
-
+                this.hints = [];
                 this.correct = false;
-                this.showAnswer = false;
-                this.showAnswerButton = false;
-                this.showNextAnswer = false;
-                this.showNextAnswerButton = false;
-                this.hideHints = false;
                 this.hintGiven = false;
-                this.showNextHint = false;
+                this.hideHints = false;
                 this.showNextHintButton = false;
                 this.noMoreHintsMessage = "";
-                this.multipleHints = false;
                 this.hintIndex = 0;
                 this.hintCount = 0;
+                this.hintLength = 0;
             },
              helpSteps(){
                          this.hintLength = Object.keys(this.questionPackage.help_steps).length;
                             if(this.hintLength){
-                                if(this.hintLength === 1) {
-                                    this.hintGiven = true;
-                                    this.showAnswerButton = true;
-                                    this.hintCount++;
-                                    }
-                                else {
-                                    this.hintGiven = true;
-                                    this.showAnswerButton = true;
-                                    this.hintIndex++;
-                                    this.hintCount++;
-                                    }
+                                const oneHint = this.questionPackage.help_steps.pop();
+                                this.hints.push(oneHint);
+                                this.hintGiven = true;
+                                this.showAnswerButton = true;
+                                this.showNextHintButton = false;
+                                this.hintCount++;
                                 }
             },
         },
         computed : {
             noMoreHints() {
-                if(this.hintCount === this.hintLength) {
+                if(this.hintLength === 1) {
                     return this.noMoreHintsMessage = "We're not giving out any more hints on this one";
                 }
             }
