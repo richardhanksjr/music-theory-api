@@ -56,6 +56,4 @@
 ###To test particular JS test file
 `docker-compose exec web yarn jest specs/<file-name>.spec.js`
         
-   
-           
-
+chmod +x <filename>
