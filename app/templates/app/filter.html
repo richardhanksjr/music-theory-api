@@ -1,16 +1,18 @@
 {% extends 'app/_base.html' %}
-{% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %} Filter Questions {% endblock title %}
 
 {% block content %}
 
 <h1>Filter Questions By Category:</h1>
-<form method="get">
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
     {% for tag in tags %}
     <input type="checkbox">  {{ tag.name }}<br>
     {% endfor %}
-    <br><input type="submit" value="Submit">
+    <br><input type="submit" value="Give me the filtered questions!">
 </form>
 
 {% endblock content %}

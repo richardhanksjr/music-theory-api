@@ -27,3 +27,6 @@ class FilterPageView(LoginRequiredMixin, View):
     def get(self, request):
         tags = Tag.objects.all()
         return render(request, 'app/filter.html', {"tags": tags})
+
+    def post(self, request):
+        return render(request, 'app/filtered.html')
