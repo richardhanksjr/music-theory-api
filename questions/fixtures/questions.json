@@ -68,7 +68,7 @@
     "pk": 9,
     "fields": {
         "class_name": "IntervalRaisedLoweredIs",
-        "module_name": "intervals"    
+        "module_name": "intervals"
     }
 },
 {
@@ -76,10 +76,11 @@
     "pk": 10,
     "fields": {
         "class_name": "SmallestDistanceBetweenTwoPitches",
-        "module_name": "simple_questions"       
+        "module_name": "simple_questions"
     }
 },
-{    "model": "questions.tag",
+{
+    "model": "questions.tag",
     "pk": 3,
     "fields": {
         "name": "Major Scale",
@@ -101,7 +102,7 @@
             7,
             8,
             9,
-            10,
+            10
         ]
     }
 },
@@ -132,9 +133,9 @@
     "fields": {
         "name": "Interval Quality",
         "question": [
+            9,
             4,
-            6,
-            9
+            6
         ]
     }
 }
