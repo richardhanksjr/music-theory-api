@@ -121,3 +121,25 @@ class TwoWaysOfSoundingIntervals(Question):
 
     def _generate_question_params(self):
         self._question_params = {}
+
+class SmallestDistanceBetweenTwoPitches(Question):
+    def _generate_question(self):
+        self._question = "In Western music, the smallest distance between two pitches is a(n):"
+
+    def _generate_answer(self):
+        self._answer = "both half step and semitone"
+
+    def _generate_answer_options(self):
+        self._answer_options = ["half step", "semitone", "accidental", "both half step and semitone"]
+
+    def _generate_help_steps_array(self):
+        self._help_steps = ({"prompt": "What is the smallest musical interval used in Western music?",
+                             "answer": "A semitone"},
+                            {"prompt": "A semitone is also called:",
+                             "answer": "a half step"},)
+
+    def _generate_question_type(self):
+        self._question_type = 'smallest_distance_between_two_pitches'
+
+    def _generate_question_params(self):
+        self._question_params = {}
