@@ -4,6 +4,13 @@
 {% block title %} Filter Questions {% endblock title %}
 
 {% block content %}
-Filter Questions By Category:
+
+<h1>Filter Questions By Category:</h1>
+<form method="get">
+    {% for tag in tags %}
+    <input type="checkbox">  {{ tag.name }}<br>
+    {% endfor %}
+    <br><input type="submit" value="Submit">
+</form>
 
 {% endblock content %}
