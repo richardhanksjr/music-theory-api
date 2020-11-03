@@ -9,9 +9,18 @@ from django.http import HttpResponse
 from django.test.client import Client
 from django.test.utils import override_settings
 from allauth.utils import get_user_model
+from allauth.account.decorators import verified_email_required
 
+
+
+from allauth.account.models import (
+    EmailAddress,
+    EmailConfirmation,
+    EmailConfirmationHMAC,
+)
 
 from .views import LandingPageView, IndexPageView, ProfilePageView
+
 
 from django.test import Client
 
@@ -163,20 +172,6 @@ class NavBarTests(TestCase):
         response = c.get(reverse("account_login"))
         self.assertRedirects(response, "/", fetch_redirect_response=False)
 
-    def test_optional_email_verification(self):
-        c = Client()
-        # Signup
-        c.get(reverse("account_signup"))
-        response = c.post(
-            reverse("account_signup"),
-            {
-                "username": "johndoe",
-                "email": "john@example.com",
-                "password1": "johndoe",
-            },
-        )
-        # Logged in
-        self.assertEqual(response.status_code, 200)
 
     def test_random_question_link_uses_correct_template(self):
         user = User.objects.create(email="testuser@email", password="testpass")
@@ -208,3 +203,29 @@ class NavBarTests(TestCase):
         profile_url = reverse('app:profile')
         self.response = self.client.get(profile_url)
         self.assertRedirects(self.response, '/landing/?next=/profile/')
+
+class EmailTests(TestCase):
+
+    def test_email_verification_set_to_mandatory(self):
+        user = get_user_model().objects.create(username="mike")
+        email = EmailAddress.objects.create(
+            user=user,
+            email="mike@example.",
+        )
+        c = Client()
+        # Signup
+        c.get(reverse("account_login"))
+        response = c.post(
+            reverse("account_signup"),
+            {
+                "username": user,
+                "email": email,
+                "password1": "mikey",
+            },
+            follow=True
+        )
+
+        self.assertContains(response, 'ACCOUNT_EMAIL_VERIFICATION')
+        self.assertContains(response, 'mandatory')
+        self.assertContains(response, 'ACCOUNT_EMAIL_REQUIRED')
+        self.assertContains(response, 'True')
