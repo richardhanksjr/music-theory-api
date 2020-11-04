@@ -4,7 +4,7 @@
             <h2 :style="styleQuestion">{{ questionPackage.question }}</h2>
         <br>
             <fieldset v-for="answer in questionPackage.answer_options" class="custom-control custom-radio">
-                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer); hideHints = true;"><label class="label">{{ answer }}</label><br>
+                    <input class="list-group-item" v-model="answerVal" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer), logAttempt(answer); hideHints = true;"><label class="label">{{ answer }}</label><br>
             </fieldset>
 
                 <answer :message="message" :styleMessage="styleMessage"></answer>
@@ -106,6 +106,12 @@
                     }
                 })
                 this.answerVal = "";
+            },
+            logAttempt(answer) {
+                axios.post('api/attempt', {"key": this.questionPackage.key, "answer": answer})
+                .then(response => {
+                    console.log(response);
+                })
             },
             nextQuestion() {
             axios.get('/api/question')
