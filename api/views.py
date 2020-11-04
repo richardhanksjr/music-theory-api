@@ -4,6 +4,8 @@ from rest_framework.views import APIView
 from rest_framework import status
 from django.contrib.auth.mixins import LoginRequiredMixin
 from questions.question_generator import QuestionGenerator
+from questions.models import Attempt, Tag, Question
+from django.contrib.auth.models import User
 
 
 class GetRandomQuestion(LoginRequiredMixin, APIView):
@@ -44,3 +46,24 @@ class HelpSteps(LoginRequiredMixin, APIView):
         except Exception:
             return Response("Must supply question key", status=status.HTTP_400_BAD_REQUEST)
         return Response(data)
+
+
+class LogAttempt(LoginRequiredMixin, APIView):
+    def post(self, request):
+        try:
+            user_answer = request.data['answer']
+            key = request.data['key']
+            user = request.user
+            cached_response = cache.get(key)
+            class_name = cached_response['class_name']
+            correct_answer = cached_response['answer']
+            question_instance = Question.objects.get(class_name=class_name)
+            user_instance = User.objects.get(username=user)
+            if user_answer == correct_answer:
+                Attempt.objects.create(question=question_instance, user=user_instance, correct=True)
+            else:
+                Attempt.objects.create(question=question_instance, user=user_instance, correct=False)
+
+        except Exception:
+            return Response("Nope, this didn't work", status=status.HTTP_400_BAD_REQUEST)
+        return Response()
