@@ -6,13 +6,23 @@ from ._utilities import (triad_degrees, random_answer_options_pitch,
                          random_root_position_diminished_triad,
                          random_root_position_augmented_triad)
 
+
 class SimpleMajorTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_major_triad()
-        self.root = self.triad.root().unicodeName if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural' else self.triad.root().name
-        self.third = self.triad.third.unicodeName if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural' else self.triad.third.name
-        self.fifth = self.triad.fifth.unicodeName if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural' else self.triad.fifth.name
+        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+            self.root = self.triad.root().unicodeName
+        else:
+            self.root = self.triad.root().name
+        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+            self.third = self.triad.third.unicodeName
+        else:
+            self.third = self.triad.third.name
+        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+            self.fifth = self.triad.fifth.unicodeName
+        else:
+            self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
         super().__init__()
 
@@ -41,15 +51,25 @@ class SimpleMajorTriad(Question):
         self._question_type = 'simple-major-triad'
 
     def _generate_question_params(self):
-        self._question_params =  {}
+        self._question_params = {}
+
 
 class SimpleMinorTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_minor_triad()
-        self.root = self.triad.root().unicodeName if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural' else self.triad.root().name
-        self.third = self.triad.third.unicodeName if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural' else self.triad.third.name
-        self.fifth = self.triad.fifth.unicodeName if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural' else self.triad.fifth.name
+        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+            self.root = self.triad.root().unicodeName
+        else:
+            self.root = self.triad.root().name
+        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+            self.third = self.triad.third.unicodeName
+        else:
+            self.third = self.triad.third.name
+        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+            self.fifth = self.triad.fifth.unicodeName
+        else:
+            self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
         super().__init__()
 
@@ -78,15 +98,25 @@ class SimpleMinorTriad(Question):
         self._question_type = 'simple-minor-triad'
 
     def _generate_question_params(self):
-        self._question_params =  {}
+        self._question_params = {}
+
 
 class SimpleDiminishedTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_diminished_triad()
-        self.root = self.triad.root().unicodeName if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural' else self.triad.root().name
-        self.third = self.triad.third.unicodeName if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural' else self.triad.third.name
-        self.fifth = self.triad.fifth.unicodeName if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural' else self.triad.fifth.name
+        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+            self.root = self.triad.root().unicodeName
+        else:
+            self.root = self.triad.root().name
+        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+            self.third = self.triad.third.unicodeName
+        else:
+            self.third = self.triad.third.name
+        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+            self.fifth = self.triad.fifth.unicodeName
+        else:
+            self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
         super().__init__()
 
@@ -121,13 +151,23 @@ class SimpleDiminishedTriad(Question):
     def _generate_question_params(self):
         self._question_params = {}
 
+
 class SimpleAugmentedTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_augmented_triad()
-        self.root = self.triad.root().unicodeName if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural' else self.triad.root().name
-        self.third = self.triad.third.unicodeName if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural' else self.triad.third.name
-        self.fifth = self.triad.fifth.unicodeName if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural' else self.triad.fifth.name
+        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+            self.root = self.triad.root().unicodeName
+        else:
+            self.root = self.triad.root().name
+        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+            self.third = self.triad.third.unicodeName
+        else:
+            self.third = self.triad.third.name
+        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+            self.fifth = self.triad.fifth.unicodeName
+        else:
+            self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
         super().__init__()
 
