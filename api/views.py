@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from django.contrib.auth.mixins import LoginRequiredMixin
 from questions.question_generator import QuestionGenerator
-from questions.models import Attempt, Tag, Question
+from questions.models import Attempt, Question
 from django.contrib.auth.models import User
 
 

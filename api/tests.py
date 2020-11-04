@@ -5,7 +5,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 from questions.questions.simple_questions import SimpleIntervalIs
 from questions.models import Question, Tag, Attempt
-from api.views import Answer, GetRandomQuestion, HelpSteps
+from api.views import Answer, GetRandomQuestion, HelpSteps, LogAttempt
 
 User = get_user_model()
 
@@ -82,6 +82,7 @@ class TestHelpSteps(TestCase):
 
 
 class TestAttempt(TestCase):
+
     def setUp(self):
         self.test_question = Question.objects.create(class_name='SimpleIntervalIs', module_name='simple_questions')
         self.question = SimpleIntervalIs()
@@ -89,14 +90,39 @@ class TestAttempt(TestCase):
                                 username='newuser',
                                 email='newuser@email.com',
                                 password='testpass123')
+        # self.test_attempt = Attempt.objects.create(
+        #                         class_name='SimpleIntervalIs', 
+        #                         module_name='simple_questions',
+        #                         correct=True)
 
     def test_class_name_added_to_cache(self):
         cache_key = self.question.key
-        name_from_cache = cache.get(cache_key)
-        self.assertEqual(name_from_cache['class_name'], self.question.class_name)
+        cache_items = cache.get(cache_key)
+        self.assertEqual(cache_items['class_name'], self.question.class_name)
+        self.assertEqual(cache_items['answer'], self.question.answer)
+
+    def test_attempt_is_created(self):
+    
+        self.attempts = Attempt.objects.all()
+        # self.assertEqual(self.attempts, 0)
+
+
+        cache_key = self.question.key
+        cache_items = cache.get(cache_key)
+
+        print(self.attempts)
+     
+
 
     def test_return_correct_json_keys(self):
-        pass
+        
+        view = LogAttempt.as_view()
+        self.url = reverse('api:attempt')
+        class_name = self.question.class_name
+        user = self.user
 
-    def test_400_on_bad_request(self):
-        pass
+        self.factory = APIRequestFactory()
+        request = self.factory.post(self.url, {'class_name': class_name, 'user': user})
+        request.user = self.user
+        response = view(request)
+        
