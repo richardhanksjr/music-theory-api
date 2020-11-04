@@ -90,12 +90,10 @@ class TestAttempt(TestCase):
                                 email='newuser@email.com',
                                 password='testpass123')
 
-    def test_question_type_added_to_cache(self):
+    def test_class_name_added_to_cache(self):
         cache_key = self.question.key
-        type_from_cache = cache.get(cache_key)
-        self.assertEqual(type_from_cache['question_type'], self.question.question_type)
-        print(type_from_cache['question_type'])
-        print(self.question)
+        name_from_cache = cache.get(cache_key)
+        self.assertEqual(name_from_cache['class_name'], self.question.class_name)
 
     def test_return_correct_json_keys(self):
         pass
