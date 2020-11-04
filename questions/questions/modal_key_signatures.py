@@ -1,4 +1,4 @@
-from music21 import key
+from music21 import key, pitch
 from .questions import Question
 from ._utilities import (random_mode, random_pitch, random_answer_options_accidentals)
 
@@ -11,12 +11,15 @@ class ModalKeySignatures(Question):
         self.mode = mode if mode else key.Key(pitch, m)
         self.key_signature = self.mode.sharps
         key_sig = key_sig if key_sig else key.KeySignature(self.key_signature)
-        self.parent_scale = parent_scale if parent_scale else key_sig.getScale('major').name
+        self.parent_scale = parent_scale if parent_scale else key_sig.getScale('major')
+        self.parent_scale_name = self.parent_scale.tonic.unicodeName if self.parent_scale.tonic.accidental else self.parent_scale.tonic.name
         super().__init__()
 
 
     def _generate_question(self):
-        self._question = f"What is the key signature of {self.mode.name}?"
+        # handle case of naturals
+        mode_name = self.mode.tonic.unicodeName if self.mode.tonic.accidental else self.mode.tonic.name
+        self._question = f"What is the key signature of {mode_name} {self.mode.type}?"
 
 
     def _generate_answer(self):
@@ -26,7 +29,7 @@ class ModalKeySignatures(Question):
             number_of_flats = -(self.key_signature)
             self._answer = f"{number_of_flats} flats"
         else:
-            self._answer = f"{self.key_signature} sharps."
+            self._answer = f"{self.key_signature} sharps"
 
 
 
@@ -42,14 +45,15 @@ class ModalKeySignatures(Question):
             ks = f"{number_of_flats} flats"
         else:
             ks = f"{self.key_signature} sharps."
-        self._help_steps = ({'prompt': 'What is the major scale of this mode?', 'answer': self.parent_scale},
-                           {'prompt': f'What is the key signature of {self.parent_scale}',
-                            'answer': ks})
+        self._help_steps = ({'prompt': f'What is the key signature of {self.parent_scale_name} major',
+                            'answer': ks},
+                            {'prompt': 'What is the parent major scale of this mode?',
+                             'answer': f"{self.parent_scale_name} major"},)
 
     def _generate_question_type(self):
         self._question_type = 'modal-key-signatures'
 
 
     def _generate_question_params(self):
-        self._question_params =  {'question_type': self.question_type,
-                'mode': self.mode, 'parent_scale': self.parent_scale}
+        self._question_params = {'question_type': self.question_type,
+                'mode': self.mode.name, 'parent_scale': self.parent_scale_name}

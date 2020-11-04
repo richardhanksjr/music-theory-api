@@ -33,11 +33,11 @@ def random_answer_options_pitch(len_of_list=4, correct_answer=None):
     return random_answer_list
 
 def random_answer_options_accidentals(len_of_list=4, correct_answer=None):
-    random_number = random.choice(range(7))
-    random_type = random.choice(['sharps', 'flats'])
     random_answer_list = [correct_answer] if correct_answer else []
     while len(random_answer_list) < len_of_list:
-        random_accidentals = f"{random_number} {random_type}"
+        random_number = random.choice(range(7))
+        random_sign = random.choice(['sharps', 'flats'])
+        random_accidentals = f"{random_number} {random_sign}"
         if random_accidentals not in random_answer_list:
             random_answer_list.append(random_accidentals)
     random.shuffle(random_answer_list)
