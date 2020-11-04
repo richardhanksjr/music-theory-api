@@ -1,6 +1,10 @@
 import random
 from .questions import Question
-from ._utilities import (triad_degrees, random_answer_options_pitch, random_root_position_major_triad, random_root_position_minor_triad, random_root_position_diminished_triad, random_root_position_augmented_triad)
+from ._utilities import (triad_degrees, random_answer_options_pitch,
+                         random_root_position_major_triad,
+                         random_root_position_minor_triad,
+                         random_root_position_diminished_triad,
+                         random_root_position_augmented_triad)
 
 class SimpleMajorTriad(Question):
 

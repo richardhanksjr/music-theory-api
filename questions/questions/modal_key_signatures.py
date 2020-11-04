@@ -1,4 +1,4 @@
-from music21 import key, pitch
+from music21 import key
 from .questions import Question
 from ._utilities import (random_mode, random_pitch, random_answer_options_accidentals)
 
