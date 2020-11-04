@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.test import TestCase
 from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 from questions.questions.simple_questions import SimpleIntervalIs
-from questions.models import Question, Tag
+from questions.models import Question, Tag, Attempt
 from api.views import Answer, GetRandomQuestion, HelpSteps
 
 User = get_user_model()
@@ -79,3 +79,26 @@ class TestHelpSteps(TestCase):
         question_key = self.question.key
         cached_response = cache.get(question_key)
         self.assertEqual(question_key, cached_response['key'])
+
+
+class TestAttempt(TestCase):
+    def setUp(self):
+        self.test_question = Question.objects.create(class_name='SimpleIntervalIs', module_name='simple_questions')
+        self.question = SimpleIntervalIs()
+        self.user = User.objects.create_user(
+                                username='newuser',
+                                email='newuser@email.com',
+                                password='testpass123')
+
+    def test_question_type_added_to_cache(self):
+        cache_key = self.question.key
+        type_from_cache = cache.get(cache_key)
+        self.assertEqual(type_from_cache['question_type'], self.question.question_type)
+        print(type_from_cache['question_type'])
+        print(self.question)
+
+    def test_return_correct_json_keys(self):
+        pass
+
+    def test_400_on_bad_request(self):
+        pass
