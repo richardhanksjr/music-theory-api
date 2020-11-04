@@ -26,7 +26,7 @@ class ModalKeySignatures(Question):
         if self.key_signature == 0:
             self._answer = "No sharps or flats"
         elif self.key_signature < 0:
-            number_of_flats = -(self.key_signature)
+            number_of_flats = -(int(self.key_signature))
             self._answer = f"{number_of_flats} flats"
         else:
             self._answer = f"{self.key_signature} sharps"
@@ -41,7 +41,7 @@ class ModalKeySignatures(Question):
         if self.key_signature == 0:
             ks = "No sharps or flats."
         elif self.key_signature < 0:
-            number_of_flats = -(self.key_signature)
+            number_of_flats = -(int(self.key_signature))
             ks = f"{number_of_flats} flats"
         else:
             ks = f"{self.key_signature} sharps."

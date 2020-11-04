@@ -116,10 +116,10 @@ class SimpleDiminishedTriad(Question):
                             ' counting the root as \"one\".'})
 
     def _generate_question_type(self):
-            self._question_type = 'simple-minor-triad'
+        self._question_type = 'simple-minor-triad'
 
     def _generate_question_params(self):
-            self._question_params = {}
+        self._question_params = {}
 
 class SimpleAugmentedTriad(Question):
 
