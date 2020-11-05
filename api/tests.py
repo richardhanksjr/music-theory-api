@@ -80,49 +80,33 @@ class TestHelpSteps(TestCase):
         cached_response = cache.get(question_key)
         self.assertEqual(question_key, cached_response['key'])
 
-
 class TestAttempt(TestCase):
 
     def setUp(self):
-        self.test_question = Question.objects.create(class_name='SimpleIntervalIs', module_name='simple_questions')
-        self.question = SimpleIntervalIs()
-        self.user = User.objects.create_user(
-                                username='newuser',
-                                email='newuser@email.com',
-                                password='testpass123')
-        # self.test_attempt = Attempt.objects.create(
-        #                         class_name='SimpleIntervalIs', 
-        #                         module_name='simple_questions',
-        #                         correct=True)
+        self.factory = APIRequestFactory()
+        self.user = User.objects.create_user(username="foo", email='test@test.com', password='foo')
+
+    @classmethod
+    def setUpTestData(cls):
+        Question.objects.create(class_name="SimpleIntervalIs", module_name='simple_questions')
+        cls.question = SimpleIntervalIs()
+        cls.url = reverse("api:attempt")
+
+    def test_400_on_bad_request(self):
+        request = self.factory.post(self.url)
+        request.user = self.user
+        view = LogAttempt.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, 400)
+
+    def test_405_if_get_request(self):
+        request = self.factory.get(self.url)
+        request.user = self.user
+        view = LogAttempt.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, 405)
 
     def test_class_name_added_to_cache(self):
         cache_key = self.question.key
         cache_items = cache.get(cache_key)
         self.assertEqual(cache_items['class_name'], self.question.class_name)
-        self.assertEqual(cache_items['answer'], self.question.answer)
-
-    def test_attempt_is_created(self):
-    
-        self.attempts = Attempt.objects.all()
-        # self.assertEqual(self.attempts, 0)
-
-
-        cache_key = self.question.key
-        cache_items = cache.get(cache_key)
-
-        print(self.attempts)
-     
-
-
-    def test_return_correct_json_keys(self):
-        
-        view = LogAttempt.as_view()
-        self.url = reverse('api:attempt')
-        class_name = self.question.class_name
-        user = self.user
-
-        self.factory = APIRequestFactory()
-        request = self.factory.post(self.url, {'class_name': class_name, 'user': user})
-        request.user = self.user
-        response = view(request)
-        
