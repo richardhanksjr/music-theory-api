@@ -2,7 +2,7 @@ import random
 from music21 import interval, pitch
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
-                         random_intervals_with_octaves)
+                         random_intervals_with_octaves, interval_qualities)
 
 
 class SemitonesInInterval(Question):
@@ -106,6 +106,55 @@ class IntervalRaisedLoweredIs(Question):
 
     def _generate_question_type(self):
         self._question_type = 'interval-raised-lowered-is'
+
+    def _generate_question_params(self):
+        self._question_params = {}
+
+
+class IntervalChangedByStepBecomesQuality(Question):
+
+    def __init__(self, interval=None, direction=None, step_size=None):
+        """
+
+        :param interval: String in the form of "P5", "m3", etc.
+        :param direction: String either "larger" or "smaller"
+        """
+        self._interval = IntervalChangedByStepBecomesQuality._generate_random_interval(interval_string=interval)
+        self._direction = direction if direction is not None else random.choice(["larger", "smaller"])
+        super().__init__()
+
+    @staticmethod
+    def _generate_random_interval(interval_string=None):
+        interval_string = interval_string if interval_string is not None else f"{random.choice(interval_qualities)}{random.randint(1, 8)}"
+        interval_obj = None
+        while interval_obj is None:
+            try:
+                interval_obj = interval.Interval(interval_string)
+            except interval.IntervalException:
+                interval_string = f"{random.choice(interval_qualities)}{random.randint(1, 8)}"
+                interval_obj = interval.Interval(interval_string)
+        return interval_obj
+
+    def _generate_question(self):
+        """
+        i = interval.Interval('p5')
+        i.specifier.name
+        :return:
+        """
+        self._question = f"A {self._interval.niceName} made {self._direction} by a half step becomes what" \
+                         f" type of interval?"
+
+    def _generate_answer(self):
+        self._answer = ""
+
+    def _generate_answer_options(self):
+        self._answer_options = []
+
+    def _generate_help_steps_array(self):
+        self._help_steps = []
+
+    def _generate_question_type(self):
+        self._question_type = 'interval-changed-by-step-becomes-quality'
 
     def _generate_question_params(self):
         self._question_params = {}
