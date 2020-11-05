@@ -23,7 +23,7 @@ class SimpleMajorTriadTest(TestCase):
 class SimpleMinorTriadTest(TestCase):
     def setUp(self):
         Question.objects.create(class_name='SimpleMinorTriad')
-        self.question = SimpleMajorTriad(triad=random_root_position_minor_triad(), chord_degree='third')
+        self.question = SimpleMinorTriad(triad=random_root_position_minor_triad(), chord_degree='third')
 
     def test_question_added_to_cache(self):
         cache_key = self.question.key
@@ -38,7 +38,7 @@ class SimpleMinorTriadTest(TestCase):
 class SimpleDiminishedTriadTest(TestCase):
     def setUp(self):
         Question.objects.create(class_name='SimpleDiminishedTriad')
-        self.question = SimpleMajorTriad(triad=random_root_position_diminished_triad(), chord_degree='third')
+        self.question = SimpleDiminishedTriad(triad=random_root_position_diminished_triad(), chord_degree='third')
 
     def test_question_added_to_cache(self):
         cache_key = self.question.key
@@ -53,7 +53,7 @@ class SimpleDiminishedTriadTest(TestCase):
 class SimpleAugmentedTriadTest(TestCase):
     def setUp(self):
         Question.objects.create(class_name='SimpleAugmentedTriad')
-        self.question = SimpleMajorTriad(triad=random_root_position_augmented_triad(), chord_degree='third')
+        self.question = SimpleAugmentedTriad(triad=random_root_position_augmented_triad(), chord_degree='third')
 
     def test_question_added_to_cache(self):
         cache_key = self.question.key
