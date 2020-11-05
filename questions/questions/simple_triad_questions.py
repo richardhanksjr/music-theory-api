@@ -11,15 +11,15 @@ class SimpleMajorTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_major_triad()
-        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+        if 'natural' not in self.triad.root().fullName:
             self.root = self.triad.root().unicodeName
         else:
             self.root = self.triad.root().name
-        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.third.fullName:
             self.third = self.triad.third.unicodeName
         else:
             self.third = self.triad.third.name
-        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.fifth.fullName:
             self.fifth = self.triad.fifth.unicodeName
         else:
             self.fifth = self.triad.fifth.name
@@ -58,15 +58,15 @@ class SimpleMinorTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_minor_triad()
-        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+        if 'natural' not in self.triad.root().fullName:
             self.root = self.triad.root().unicodeName
         else:
             self.root = self.triad.root().name
-        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.third.fullName:
             self.third = self.triad.third.unicodeName
         else:
             self.third = self.triad.third.name
-        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.fifth.fullName:
             self.fifth = self.triad.fifth.unicodeName
         else:
             self.fifth = self.triad.fifth.name
@@ -105,15 +105,15 @@ class SimpleDiminishedTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_diminished_triad()
-        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+        if 'natural' not in self.triad.root().fullName:
             self.root = self.triad.root().unicodeName
         else:
             self.root = self.triad.root().name
-        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.third.fullName:
             self.third = self.triad.third.unicodeName
         else:
             self.third = self.triad.third.name
-        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.fifth.fullName:
             self.fifth = self.triad.fifth.unicodeName
         else:
             self.fifth = self.triad.fifth.name
@@ -156,15 +156,15 @@ class SimpleAugmentedTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_augmented_triad()
-        if self.triad.root().accidental is not None and self.triad.root().accidental.fullName != 'natural':
+        if 'natural' not in self.triad.root().fullName:
             self.root = self.triad.root().unicodeName
         else:
             self.root = self.triad.root().name
-        if self.triad.third.accidental is not None and self.triad.third.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.third.fullName:
             self.third = self.triad.third.unicodeName
         else:
             self.third = self.triad.third.name
-        if self.triad.fifth.accidental is not None and self.triad.fifth.accidental.fullName != 'natural':
+        if 'natural' not in self.triad.fifth.fullName:
             self.fifth = self.triad.fifth.unicodeName
         else:
             self.fifth = self.triad.fifth.name
