@@ -74,8 +74,7 @@ class SimpleMinorTriad(Question):
         super().__init__()
 
     def _generate_question(self):
-        self._question = f"What is the {self.chord_degree} " \
-                         f" of a {self.root} minor triad?"
+        self._question = f"What is the {self.chord_degree} of a {self.root} minor triad?"
 
     def _generate_answer(self):
         if self.chord_degree == triad_degrees[1]:
