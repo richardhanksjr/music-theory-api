@@ -13,6 +13,7 @@ scale_degrees = [{'name': "first"},
                  {'name': "eighth"}]
 
 interval_qualities = ['P', 'M', 'm', 'd', 'A']
+qualities = ['Major', 'Minor', 'Augmented', 'Diminished', 'Perfect']
 
 
 def random_pitch():
@@ -59,3 +60,13 @@ def random_numbers_answer_options(correct_answer, len_of_list=4):
     answer_options = initial_list + incorrect_answers
     random.shuffle(answer_options)
     return answer_options
+
+
+def random_answer_options_quality(len_of_list=4, correct_answer=None):
+     random_answer_list = [correct_answer] if correct_answer else []
+     while len(random_answer_list) < len_of_list:
+         choices = random.choice(qualities)
+         if choices not in random_answer_list:
+             random_answer_list.append(choices)
+     random.shuffle(random_answer_list)
+     return random_answer_list 

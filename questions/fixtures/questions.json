@@ -80,6 +80,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 11,
+    "fields": {
+        "class_name": "InvertedInterval",
+        "module_name": "intervals"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -102,7 +110,8 @@
             7,
             8,
             9,
-            10
+            10,
+            11
         ]
     }
 },
@@ -135,7 +144,8 @@
         "question": [
             9,
             4,
-            6
+            6,
+            11
         ]
     }
 }
