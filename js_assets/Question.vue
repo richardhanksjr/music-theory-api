@@ -109,9 +109,7 @@
             },
             logAttempt(answer) {
                 axios.post('api/attempt', {"key": this.questionPackage.key, "answer": answer})
-                .then(response => {
-                    console.log(response);
-                })
+                .then(response => {})
             },
             nextQuestion() {
             axios.get('/api/question')

@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from questions.question_generator import QuestionGenerator
 from questions.models import Attempt, Question
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 
 class GetRandomQuestion(LoginRequiredMixin, APIView):
@@ -57,13 +58,11 @@ class LogAttempt(LoginRequiredMixin, APIView):
             cached_response = cache.get(key)
             class_name = cached_response['class_name']
             correct_answer = cached_response['answer']
-            question_instance = Question.objects.get(class_name=class_name)
-            user_instance = User.objects.get(username=user)
-            if user_answer == correct_answer:
-                Attempt.objects.create(question=question_instance, user=user_instance, correct=True)
-            else:
-                Attempt.objects.create(question=question_instance, user=user_instance, correct=False)
+            question_instance = get_object_or_404(Question, class_name=class_name)
+            user_instance = get_object_or_404(User, username=user)
+            user_correct = bool(user_answer == correct_answer)
+            Attempt.objects.create(question=question_instance, user=user_instance, correct=user_correct)
 
         except Exception:
-            return Response("Nope, this didn't work", status=status.HTTP_400_BAD_REQUEST)
+            return Response("I'm sorry, we could not process your request", status=status.HTTP_400_BAD_REQUEST)
         return Response()
