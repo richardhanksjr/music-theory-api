@@ -2,7 +2,7 @@ import random
 from music21 import interval, pitch
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
-                         random_intervals_with_octaves, random_answer_options_quality)
+                         random_intervals_with_octaves, random_answer_options_quality, qualities)
 
 
 class SemitonesInInterval(Question):
@@ -112,11 +112,10 @@ class IntervalRaisedLoweredIs(Question):
 
 
 class InvertedInterval(Question):
-    interval_qualities = ['Major', 'Minor', 'Augmented', 'Diminished', 'Perfect']
-    interval_numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    interval_numbers = range(2, 15)
 
     def __init__(self, interval_quality=None, interval_number=None):
-        self.interval_quality = interval_quality if interval_quality else random.choice(self.interval_qualities)
+        self.interval_quality = interval_quality if interval_quality else random.choice(qualities)
         self.interval_number = interval_number if interval_number else random.choice(self.interval_numbers)
         self._generate_interval()
         super().__init__()
