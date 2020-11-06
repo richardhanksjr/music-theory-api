@@ -113,39 +113,29 @@ class IntervalRaisedLoweredIs(Question):
 
 class IntervalChangedByStepBecomesQuality(Question):
 
-    def __init__(self, interval=None, direction=None, step_size=None):
+    INTERVAL_MAPPINGS = {'M': {'name': 'major', 'larger': 'augmented', 'smaller': 'minor'},
+                         'm': {'name': 'minor', 'larger': 'major', 'smaller': 'diminished'},
+                         'P': {'name': 'perfect', 'larger': 'augmented', 'smaller': 'diminished'} 
+                        }
+
+    def __init__(self, quality=None, direction=None, step_size=None):
         """
 
         :param interval: String in the form of "P5", "m3", etc.
         :param direction: String either "larger" or "smaller"
         """
-        self._interval = IntervalChangedByStepBecomesQuality._generate_random_interval(interval_string=interval)
+        quality_key = quality if quality else random.choice(list(self.INTERVAL_MAPPINGS.keys()))
+        self._quality = self.INTERVAL_MAPPINGS[quality_key]
         self._direction = direction if direction is not None else random.choice(["larger", "smaller"])
         super().__init__()
 
-    @staticmethod
-    def _generate_random_interval(interval_string=None):
-        interval_string = interval_string if interval_string is not None else f"{random.choice(interval_qualities)}{random.randint(1, 8)}"
-        interval_obj = None
-        while interval_obj is None:
-            try:
-                interval_obj = interval.Interval(interval_string)
-            except interval.IntervalException:
-                interval_string = f"{random.choice(interval_qualities)}{random.randint(1, 8)}"
-                interval_obj = interval.Interval(interval_string)
-        return interval_obj
-
     def _generate_question(self):
-        """
-        i = interval.Interval('p5')
-        i.specifier.name
-        :return:
-        """
-        self._question = f"A {self._interval.niceName} made {self._direction} by a half step becomes what" \
+        print("self._quality is: ", self._quality)
+        self._question = f"A {self._quality['name']} made {self._direction} by a half step becomes what" \
                          f" type of interval?"
 
     def _generate_answer(self):
-        self._answer = ""
+        self._answer = self._quality[self._direction]
 
     def _generate_answer_options(self):
         self._answer_options = []
