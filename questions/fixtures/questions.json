@@ -80,6 +80,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 11,
+    "fields": {
+        "class_name": "SordinoMeans",
+        "module_name": "simple_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -136,6 +144,16 @@
             9,
             4,
             6
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 8,
+    "fields": {
+        "name": "Definitions",
+        "question": [
+            11
         ]
     }
 }
