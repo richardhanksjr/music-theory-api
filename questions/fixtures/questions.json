@@ -96,6 +96,14 @@
     }
 },
 {
+    "model": "questions.question",
+    "pk": 24,
+    "fields": {
+        "class_name": "SimpleMajorSeventh",
+        "module_name": "simple_seventh_chord_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
