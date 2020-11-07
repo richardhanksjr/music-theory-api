@@ -57,7 +57,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 14,
+    "pk": 19,
     "fields": {
         "class_name": "SimpleMajorTriad",
         "module_name": "simple_triad_questions"
@@ -65,7 +65,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 15,
+    "pk": 20,
     "fields": {
         "class_name": "SimpleMinorTriad",
         "module_name": "simple_triad_questions"
@@ -73,7 +73,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 16,
+    "pk": 21,
     "fields": {
         "class_name": "SimpleDiminishedTriad",
         "module_name": "simple_triad_questions"
@@ -81,7 +81,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 17,
+    "pk": 22,
     "fields": {
         "class_name": "SimpleAugmentedTriad",
         "module_name": "simple_triad_questions"
@@ -89,7 +89,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 18,
+    "pk": 23,
     "fields": {
         "class_name": "ModalKeySignatures",
         "module_name": "modal_key_signatures"

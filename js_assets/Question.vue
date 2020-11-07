@@ -25,7 +25,7 @@
                             <br>
                                 <h6 v-if="hintIndex > index">{{ hint['answer'] }}</h6>
 
-                                <button v-if="hintIndex === index" :style="styleQuestion" class="btn btn-outline-secondary" @click="hintIndex++; showNextHintButton = true;">Show Hint's Answer</button>
+                                <button v-if="hintIndex === index" :style="styleQuestion" class="btn btn-outline-secondary" @click="hintIndex++; showNextHintButton = true;">Show Answer</button>
                             <br>
                                 <button v-if="hintIndex === (index + 1) && showNextHintButton && hintLength > 1" :style="styleQuestion" class="btn btn-outline-secondary" @click="helpSteps">Show Next Hint</button>
                             <br>
