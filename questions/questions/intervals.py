@@ -2,7 +2,7 @@ import random
 from music21 import interval, pitch
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
-                         random_intervals_with_octaves, interval_qualities, random_interval_qualities)
+                         random_intervals_with_octaves, random_interval_qualities)
 
 
 class SemitonesInInterval(Question):
@@ -140,8 +140,10 @@ class IntervalChangedByStepBecomesQuality(Question):
         self._answer_options = random_interval_qualities(correct_answer=self.answer)
 
     def _generate_help_steps_array(self):
-        self._help_steps = [{'prompt': 'How are interval qualities changed by being transposed up a half step?', 'answer': 'major -> augmented, minor -> major, perfect -> augmented'},
-                            {'prompt': 'How are interval qualities changed by being transposed down by a half step?', 'answer': 'major -> minor, minor -> diminished, perfect -> diminished'}]
+        self._help_steps = [{'prompt': 'How are interval qualities changed by being transposed up a half step?', 
+                             'answer': 'major -> augmented, minor -> major, perfect -> augmented'},
+                            {'prompt': 'How are interval qualities changed by being transposed down by a half step?',
+                             'answer': 'major -> minor, minor -> diminished, perfect -> diminished'}]
 
     def _generate_question_type(self):
         self._question_type = 'interval-changed-by-step-becomes-quality'
