@@ -1,5 +1,5 @@
 from django.test import TestCase
-from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals
+from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals, SmallestDistanceBetweenTwoPitches
 from django.core.cache import cache
 from questions.models import Question, Tag
 
@@ -113,4 +113,17 @@ class TwoWaysOfSoundingIntervalsTest(TestCase):
 
     def test_answer(self):
         expected_answer = "Harmonic, melodic"
+        self.assertEqual(expected_answer, self.question.answer)
+
+class SmallestDistanceBetweenTwoPitchesTest(TestCase):
+
+    def setUp(self):
+        self.question = SmallestDistanceBetweenTwoPitches()
+
+    def test_question(self):
+        expected_question = "In Western music, the smallest distance between two pitches is a(n):"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "both half step and semitone"
         self.assertEqual(expected_answer, self.question.answer)

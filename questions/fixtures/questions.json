@@ -80,6 +80,7 @@
     }
 },
 {
+<<<<<<< HEAD
     "model": "questions.question",
     "pk": 11,
     "fields": {
@@ -88,6 +89,8 @@
     }
 },
 {
+=======
+>>>>>>> 0b71637168a374aea34142bf74ef8b2e6735375d
     "model": "questions.tag",
     "pk": 3,
     "fields": {
@@ -141,10 +144,13 @@
     "fields": {
         "name": "Interval Quality",
         "question": [
+<<<<<<< HEAD
             11,
+=======
+            9,
+>>>>>>> 0b71637168a374aea34142bf74ef8b2e6735375d
             4,
-            6,
-            9
+            6
         ]
     }
 },
