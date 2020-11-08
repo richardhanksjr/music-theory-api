@@ -2,7 +2,7 @@ import random
 from music21 import interval, pitch
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
-                         random_intervals_with_octaves, interval_qualities)
+                         random_intervals_with_octaves, interval_qualities, random_interval_qualities)
 
 
 class SemitonesInInterval(Question):
@@ -138,7 +138,7 @@ class IntervalChangedByStepBecomesQuality(Question):
         self._answer = self._quality[self._direction]
 
     def _generate_answer_options(self):
-        self._answer_options = []
+        self._answer_options = random_interval_qualities(correct_answer=self.answer)
 
     def _generate_help_steps_array(self):
         self._help_steps = []
