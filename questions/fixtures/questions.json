@@ -83,6 +83,14 @@
     "model": "questions.question",
     "pk": 11,
     "fields": {
+        "class_name": "SordinoMeans",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 12,
+    "fields": {
         "class_name": "TwoDifferentIntervalsSpelledDifferentlySameSound",
         "module_name": "simple_questions"
     }
@@ -111,7 +119,7 @@
             8,
             9,
             10,
-            11
+            12
         ]
     }
 },
@@ -142,9 +150,19 @@
     "fields": {
         "name": "Interval Quality",
         "question": [
-            9,
             4,
-            6
+            6,
+            9
+        ]
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 8,
+    "fields": {
+        "name": "Definitions",
+        "question": [
+            11
         ]
     }
 }

@@ -144,6 +144,26 @@ class SmallestDistanceBetweenTwoPitches(Question):
     def _generate_question_params(self):
         self._question_params = {}
 
+class SordinoMeans(Question):
+    def _generate_question(self):
+        self._question = "Sordino Means:"
+
+    def _generate_answer(self):
+        self._answer = "Mute"
+
+    def _generate_answer_options(self):
+        self._answer_options = ["Follows", "Sustained", "Steady", "Mute"]
+
+    def _generate_help_steps_array(self):
+        self._help_steps = ({"prompt": "Words related to Sordino:",
+                             "answer": "Damper, Muffler, Silencer"},)
+
+    def _generate_question_type(self):
+        self._question_type = 'sordino_means'
+
+    def _generate_question_params(self):
+        self._question_params = {}
+
 class TwoDifferentIntervalsSpelledDifferentlySameSound(Question):
     def _generate_question(self):
         self._question = "Two different intervals that are spelled differently, but sound the same are:"
