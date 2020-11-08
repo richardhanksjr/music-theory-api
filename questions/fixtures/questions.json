@@ -97,9 +97,9 @@
 },
 {
     "model": "questions.question",
-    "pk": 24,
+    "pk": 25,
     "fields": {
-        "class_name": "SimpleMajorSeventh",
+        "class_name": "SimpleSeventhChords",
         "module_name": "simple_seventh_chord_questions"
     }
 },

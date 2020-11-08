@@ -1,26 +1,35 @@
 import random
 from .questions import Question
-from ._utilities import (triad_degrees, random_answer_options_pitch,
+from ._utilities import (triad_degrees,
+                         random_answer_options_pitch,
                          random_root_position_major_triad,
                          random_root_position_minor_triad,
                          random_root_position_diminished_triad,
                          random_root_position_augmented_triad)
 
-
 class SimpleMajorTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_major_triad()
-        if 'natural' not in self.triad.root().fullName:
-            self.root = self.triad.root().unicodeName
+        if self.triad.root().fullName:
+            if 'natural' not in self.triad.root().fullName:
+                self.root = self.triad.root().unicodeName
+            else:
+                self.root = self.triad.root().name
         else:
             self.root = self.triad.root().name
-        if 'natural' not in self.triad.third.fullName:
-            self.third = self.triad.third.unicodeName
+        if self.triad.third.fullName:
+            if 'natural' not in self.triad.third.fullName:
+                self.third = self.triad.third.unicodeName
+            else:
+                self.third = self.triad.third.name
         else:
             self.third = self.triad.third.name
-        if 'natural' not in self.triad.fifth.fullName:
-            self.fifth = self.triad.fifth.unicodeName
+        if self.triad.fifth.fullName:
+            if 'natural' not in self.triad.fifth.fullName:
+                self.fifth = self.triad.fifth.unicodeName
+            else:
+                self.fifth = self.triad.fifth.name
         else:
             self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
@@ -58,16 +67,25 @@ class SimpleMinorTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_minor_triad()
-        if 'natural' not in self.triad.root().fullName:
-            self.root = self.triad.root().unicodeName
+        if self.triad.root().fullName:
+            if 'natural' not in self.triad.root().fullName:
+                self.root = self.triad.root().unicodeName
+            else:
+                self.root = self.triad.root().name
         else:
             self.root = self.triad.root().name
-        if 'natural' not in self.triad.third.fullName:
-            self.third = self.triad.third.unicodeName
+        if self.triad.third.fullName:
+            if 'natural' not in self.triad.third.fullName:
+                self.third = self.triad.third.unicodeName
+            else:
+                self.third = self.triad.third.name
         else:
             self.third = self.triad.third.name
-        if 'natural' not in self.triad.fifth.fullName:
-            self.fifth = self.triad.fifth.unicodeName
+        if self.triad.fifth.fullName:
+            if 'natural' not in self.triad.fifth.fullName:
+                self.fifth = self.triad.fifth.unicodeName
+            else:
+                self.fifth = self.triad.fifth.name
         else:
             self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
@@ -104,16 +122,25 @@ class SimpleDiminishedTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_diminished_triad()
-        if 'natural' not in self.triad.root().fullName:
-            self.root = self.triad.root().unicodeName
+        if self.triad.root().fullName:
+            if 'natural' not in self.triad.root().fullName:
+                self.root = self.triad.root().unicodeName
+            else:
+                self.root = self.triad.root().name
         else:
             self.root = self.triad.root().name
-        if 'natural' not in self.triad.third.fullName:
-            self.third = self.triad.third.unicodeName
+        if self.triad.third.fullName:
+            if 'natural' not in self.triad.third.fullName:
+                self.third = self.triad.third.unicodeName
+            else:
+                self.third = self.triad.third.name
         else:
             self.third = self.triad.third.name
-        if 'natural' not in self.triad.fifth.fullName:
-            self.fifth = self.triad.fifth.unicodeName
+        if self.triad.fifth.fullName:
+            if 'natural' not in self.triad.fifth.fullName:
+                self.fifth = self.triad.fifth.unicodeName
+            else:
+                self.fifth = self.triad.fifth.name
         else:
             self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
@@ -155,16 +182,25 @@ class SimpleAugmentedTriad(Question):
 
     def __init__(self, triad=None, chord_degree=None):
         self.triad = triad if triad else random_root_position_augmented_triad()
-        if 'natural' not in self.triad.root().fullName:
-            self.root = self.triad.root().unicodeName
+        if self.triad.root().fullName:
+            if 'natural' not in self.triad.root().fullName:
+                self.root = self.triad.root().unicodeName
+            else:
+                self.root = self.triad.root().name
         else:
             self.root = self.triad.root().name
-        if 'natural' not in self.triad.third.fullName:
-            self.third = self.triad.third.unicodeName
+        if self.triad.third.fullName:
+            if 'natural' not in self.triad.third.fullName:
+                self.third = self.triad.third.unicodeName
+            else:
+                self.third = self.triad.third.name
         else:
             self.third = self.triad.third.name
-        if 'natural' not in self.triad.fifth.fullName:
-            self.fifth = self.triad.fifth.unicodeName
+        if self.triad.fifth.fullName:
+            if 'natural' not in self.triad.fifth.fullName:
+                self.fifth = self.triad.fifth.unicodeName
+            else:
+                self.fifth = self.triad.fifth.name
         else:
             self.fifth = self.triad.fifth.name
         self.chord_degree = chord_degree if chord_degree else random.choice(['third', 'fifth'])
