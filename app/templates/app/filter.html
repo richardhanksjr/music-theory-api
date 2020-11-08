@@ -10,7 +10,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     {% for tag in tags %}
-    <input type="checkbox">  {{ tag.name }}<br>
+    <input name="tag" type="checkbox">  {{ tag.name }}<br>
     {% endfor %}
     <br><input type="submit" value="Give me the filtered questions!">
 </form>

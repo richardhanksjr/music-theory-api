@@ -7,6 +7,9 @@
 
 <h1>Filtered Questions</h1>
 <h4>Categories Selected:</h4>
+{% for selected in chosen %}
+<p> {{ selected }} </p>
+{% endfor %}
 
 <!-- import Questions Vue App -->
 <div id="question" class="container">
