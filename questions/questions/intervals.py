@@ -118,10 +118,10 @@ class IntervalChangedByStepBecomesQuality(Question):
                          'P': {'name': 'perfect', 'larger': 'augmented', 'smaller': 'diminished'} 
                         }
 
-    def __init__(self, quality=None, direction=None, step_size=None):
+    def __init__(self, quality=None, direction=None):
         """
 
-        :param interval: String in the form of "P5", "m3", etc.
+        :param quality: String in the form of "M", "m", or 'P'
         :param direction: String either "larger" or "smaller"
         """
         quality_key = quality if quality else random.choice(list(self.INTERVAL_MAPPINGS.keys()))
@@ -130,8 +130,7 @@ class IntervalChangedByStepBecomesQuality(Question):
         super().__init__()
 
     def _generate_question(self):
-        print("self._quality is: ", self._quality)
-        self._question = f"A {self._quality['name']} made {self._direction} by a half step becomes what" \
+        self._question = f"A {self._quality['name']} interval made {self._direction} by a half step becomes what" \
                          f" type of interval?"
 
     def _generate_answer(self):
@@ -141,7 +140,8 @@ class IntervalChangedByStepBecomesQuality(Question):
         self._answer_options = random_interval_qualities(correct_answer=self.answer)
 
     def _generate_help_steps_array(self):
-        self._help_steps = []
+        self._help_steps = [{'prompt': 'How are interval qualities changed by being transposed up a half step?', 'answer': 'major -> augmented, minor -> major, perfect -> augmented'},
+                            {'prompt': 'How are interval qualities changed by being transposed down by a half step?', 'answer': 'major -> minor, minor -> diminished, perfect -> diminished'}]
 
     def _generate_question_type(self):
         self._question_type = 'interval-changed-by-step-becomes-quality'
