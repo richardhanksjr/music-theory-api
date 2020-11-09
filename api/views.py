@@ -7,6 +7,7 @@ from questions.question_generator import QuestionGenerator
 from questions.models import Attempt, Question
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from django.db.models import F
 
 
 class GetRandomQuestion(LoginRequiredMixin, APIView):
@@ -61,7 +62,17 @@ class LogAttempt(LoginRequiredMixin, APIView):
             question_instance = get_object_or_404(Question, class_name=class_name)
             user_instance = get_object_or_404(User, username=user)
             user_correct = bool(user_answer == correct_answer)
-            Attempt.objects.create(question=question_instance, user=user_instance, correct=user_correct)
+            attempt = Attempt.objects.create(question=question_instance, user=user_instance, correct=user_correct)
+            attempt.total_attempts = F('total_attempts') + 1
+            attempt.save()
+            if user_correct == True:
+                attempt.number_correct = F('number_correct') + 1
+                attempt.save()
+            else:
+                attempt.number_incorrect = F('number_incorrect') + 1
+                attempt.save()
+
+
 
         except Exception:
             return Response("I'm sorry, we could not process your request", status=status.HTTP_400_BAD_REQUEST)
