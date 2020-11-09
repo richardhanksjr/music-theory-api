@@ -85,7 +85,8 @@
     "fields": {
         "class_name": "IntervalChangedByStepBecomesQuality",
         "module_name": "intervals"
-    },
+    }
+},
 {
     "model": "questions.question",
     "pk": 12,
