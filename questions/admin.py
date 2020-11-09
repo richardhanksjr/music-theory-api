@@ -3,8 +3,10 @@ from .models import Question, Tag, Attempt
 
 @admin.register(Attempt)
 class AttemptAdmin(admin.ModelAdmin):
-    list_display = ("user", "question", "correct")
-    list_filter = ('user', 'question', 'correct')
+    list_display = ("user", "question", "correct", "number_correct", 
+                    "number_incorrect", "total_attempts")
+    list_filter = ("user", "question", "correct", "number_correct", 
+                    "number_incorrect", "total_attempts")
     search_fields = ('user__username',)
 
 
