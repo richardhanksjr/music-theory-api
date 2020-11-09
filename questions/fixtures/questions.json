@@ -85,6 +85,13 @@
     "fields": {
         "class_name": "IntervalChangedByStepBecomesQuality",
         "module_name": "intervals"
+    },
+{
+    "model": "questions.question",
+    "pk": 12,
+    "fields": {
+      "class_name": "SordinoMeans",
+      "module_name": "simple_questions"
     }
 },
 {
@@ -152,7 +159,9 @@
     "pk": 8,
     "fields": {
         "name": "Definitions",
-        "question": []
+        "question": [
+            12
+        ]
     }
 }
 ]
