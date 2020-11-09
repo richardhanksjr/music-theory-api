@@ -14,7 +14,18 @@ scale_degrees = [{'name': "first"},
 
 interval_qualities = ['P', 'M', 'm', 'd', 'A']
 qualities = ['Major', 'Minor', 'Augmented', 'Diminished', 'Perfect']
+interval_qualities_full_name = ['perfect', 'major', 'minor', 'diminished', 'augmented']
 
+
+
+def random_interval_qualities(len_of_list=4, correct_answer=None):
+    intervals = [correct_answer] if correct_answer else []
+    while len(intervals) < len_of_list:
+        interval = random.choice(interval_qualities_full_name)
+        if interval not in intervals:
+            intervals.append(interval)
+    random.shuffle(intervals)
+    return intervals
 
 def random_pitch():
     return random.choice(pitch_names) + random.choice(accidentals)

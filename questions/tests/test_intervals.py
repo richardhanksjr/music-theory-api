@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.cache import cache
-from questions.questions.intervals import SemitonesInInterval, IntervalRaisedLoweredIs, InvertedInterval
+from questions.questions.intervals import SemitonesInInterval, IntervalRaisedLoweredIs, IntervalChangedByStepBecomesQuality, InvertedInterval
+
 
 
 class TestSemitonesInInterval(TestCase):
@@ -34,6 +35,7 @@ class TestIntervalRaisedLoweredIs(TestCase):
         self.assertEqual(expected_question, self.question.question)
 
 
+
 class TestInvertedInterval(TestCase):
 
     def setUp(self):
@@ -46,3 +48,17 @@ class TestInvertedInterval(TestCase):
     def test_answer_is_correct(self):
         expected_answer = "Minor"
         self.assertEqual(expected_answer, self.question.answer)
+
+class TestIntervalChangedByStepBecomesQuality(TestCase):
+
+    def setUp(self):
+        self.question = IntervalChangedByStepBecomesQuality('m', 'larger')
+
+    def test_question(self):
+        expected_question = "A minor interval made larger by a half step becomes what type of interval?"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "major"
+        self.assertEqual(expected_answer, self.question.answer)
+
