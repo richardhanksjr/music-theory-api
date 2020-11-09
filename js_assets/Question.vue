@@ -90,6 +90,7 @@
                 axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
                 .then(response => {
                     if (this.answerVal === this.questionPackage.answer) {
+                        axios.post('api/attempt', {"key": this.questionPackage.key, "answer": answer})
                         if (this.hintGiven) {
                             //they got it right but not without help
                             this.message = "That's right, keep studying though.";
