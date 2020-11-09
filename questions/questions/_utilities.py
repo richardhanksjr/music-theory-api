@@ -67,26 +67,26 @@ def random_answer_options_seventh_chords(len_of_list=4, correct_answer=None):
     return random_answer_list
 
 def random_root_position_major_triad():
-    pList = [pitch.Pitch('C'), pitch.Pitch('E'), pitch.Pitch('G')]
-    tc = analysis.transposition.TranspositionChecker(pList)
+    c = chord.Chord(['C','E','G'])
+    tc = analysis.transposition.TranspositionChecker(c)
     transposed_triads = tc.getChordsOfDistinctTranspositions()
     return random.choice(transposed_triads)
 
 def random_root_position_minor_triad():
-    pList = [pitch.Pitch('C'), pitch.Pitch('E-'), pitch.Pitch('G')]
-    tc = analysis.transposition.TranspositionChecker(pList)
+    c = chord.Chord(['C', 'E-', 'G'])
+    tc = analysis.transposition.TranspositionChecker(c)
     transposed_triads = tc.getChordsOfDistinctTranspositions()
     return random.choice(transposed_triads)
 
 def random_root_position_diminished_triad():
-    pList = [pitch.Pitch('C'), pitch.Pitch('E-'), pitch.Pitch('G-')]
-    tc = analysis.transposition.TranspositionChecker(pList)
+    c = chord.Chord(['C', 'E-', 'G-'])
+    tc = analysis.transposition.TranspositionChecker(c)
     transposed_triads = tc.getChordsOfDistinctTranspositions()
     return random.choice(transposed_triads)
 
 def random_root_position_augmented_triad():
-    pList = [pitch.Pitch('C'), pitch.Pitch('E'), pitch.Pitch('G#')]
-    tc = analysis.transposition.TranspositionChecker(pList)
+    c = chord.Chord(['C', 'E', 'G#'])
+    tc = analysis.transposition.TranspositionChecker(c)
     transposed_triads = tc.getChordsOfDistinctTranspositions()
     return random.choice(transposed_triads)
 

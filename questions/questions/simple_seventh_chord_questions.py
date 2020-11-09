@@ -72,5 +72,3 @@ class SimpleSeventhChords(Question):
     def _generate_question_params(self):
         self._question_params = {'question_type': self.question_type,
                                  'chord_quality': self.chord_quality}
-
-
