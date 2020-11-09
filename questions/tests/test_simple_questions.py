@@ -1,9 +1,5 @@
 from django.test import TestCase
-<<<<<<< HEAD
-from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals, SmallestDistanceBetweenTwoPitches, TwoDifferentIntervalsSpelledDifferentlySameSound
-=======
-from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals, SmallestDistanceBetweenTwoPitches, SordinoMeans
->>>>>>> master
+from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals, SmallestDistanceBetweenTwoPitches, SordinoMeans, TwoDifferentIntervalsSpelledDifferentlySameSound
 from django.core.cache import cache
 from questions.models import Question, Tag
 
