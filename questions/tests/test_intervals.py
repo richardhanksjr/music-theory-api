@@ -49,6 +49,8 @@ class TestInvertedInterval(TestCase):
         expected_answer = "Minor"
         self.assertEqual(expected_answer, self.question.answer)
 
+        
+
 class TestIntervalChangedByStepBecomesQuality(TestCase):
 
     def setUp(self):

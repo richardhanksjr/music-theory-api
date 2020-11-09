@@ -2,7 +2,7 @@ import random
 from music21 import interval, pitch
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
-                         random_intervals_with_octaves, random_interval_qualities, qualities)
+                         random_intervals_with_octaves, random_interval_qualities, random_answer_options_quality, qualities)
 
 
 
@@ -189,4 +189,3 @@ class IntervalChangedByStepBecomesQuality(Question):
 
     def _generate_question_params(self):
         self._question_params = {}
-
