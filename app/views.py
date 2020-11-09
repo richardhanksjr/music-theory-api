@@ -29,8 +29,11 @@ class FilterPageView(LoginRequiredMixin, View):
         return render(request, 'app/filter.html', {"tags": tags})
 
     def post(self, request):
-        chosen = request.POST.getlist('tags')
+        chosen = request.POST.getlist('tag')
         if chosen:
+            print(chosen)
             return render(request, 'app/filtered.html', {"chosen": chosen})
         else:
-            return render(request, 'app/questions.html')
+            chosen = "no items selected"
+            print(chosen)
+            return render(request, 'app/filtered.html', {"chosen": chosen})
