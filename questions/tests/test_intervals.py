@@ -1,5 +1,5 @@
 from django.test import TestCase
-from questions.questions.intervals import SemitonesInInterval, IntervalRaisedLoweredIs
+from questions.questions.intervals import SemitonesInInterval, IntervalRaisedLoweredIs, IntervalChangedByStepBecomesQuality
 
 
 class TestSemitonesInInterval(TestCase):
@@ -31,3 +31,17 @@ class TestIntervalRaisedLoweredIs(TestCase):
         expected_question = "The interval C2 to G2 becomes which interval when C2 is lowered 1 " \
                             "octave(s) and G2 is raised 1 octave(s)?"
         self.assertEqual(expected_question, self.question.question)
+
+
+class TestIntervalChangedByStepBecomesQuality(TestCase):
+
+    def setUp(self):
+        self.question = IntervalChangedByStepBecomesQuality('m', 'larger')
+
+    def test_question(self):
+        expected_question = "A minor interval made larger by a half step becomes what type of interval?"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "major"
+        self.assertEqual(expected_answer, self.question.answer)
