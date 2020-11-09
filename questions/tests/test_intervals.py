@@ -1,5 +1,7 @@
 from django.test import TestCase
-from questions.questions.intervals import SemitonesInInterval, IntervalRaisedLoweredIs
+from django.core.cache import cache
+from questions.questions.intervals import SemitonesInInterval, IntervalRaisedLoweredIs, IntervalChangedByStepBecomesQuality, InvertedInterval
+
 
 
 class TestSemitonesInInterval(TestCase):
@@ -31,3 +33,34 @@ class TestIntervalRaisedLoweredIs(TestCase):
         expected_question = "The interval C2 to G2 becomes which interval when C2 is lowered 1 " \
                             "octave(s) and G2 is raised 1 octave(s)?"
         self.assertEqual(expected_question, self.question.question)
+
+
+
+class TestInvertedInterval(TestCase):
+
+    def setUp(self):
+        self.question = InvertedInterval(interval_quality='Major')
+
+    def test_question(self):
+        expected_question = "When inverted, a Major interval becomes:"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer_is_correct(self):
+        expected_answer = "Minor"
+        self.assertEqual(expected_answer, self.question.answer)
+
+        
+
+class TestIntervalChangedByStepBecomesQuality(TestCase):
+
+    def setUp(self):
+        self.question = IntervalChangedByStepBecomesQuality('m', 'larger')
+
+    def test_question(self):
+        expected_question = "A minor interval made larger by a half step becomes what type of interval?"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "major"
+        self.assertEqual(expected_answer, self.question.answer)
+

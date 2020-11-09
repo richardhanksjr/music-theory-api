@@ -2,7 +2,8 @@ import random
 from music21 import interval, pitch
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
-                         random_intervals_with_octaves)
+                         random_intervals_with_octaves, random_interval_qualities, random_answer_options_quality, qualities)
+
 
 
 class SemitonesInInterval(Question):
@@ -106,6 +107,85 @@ class IntervalRaisedLoweredIs(Question):
 
     def _generate_question_type(self):
         self._question_type = 'interval-raised-lowered-is'
+
+    def _generate_question_params(self):
+        self._question_params = {}
+
+
+
+class InvertedInterval(Question):
+    interval_numbers = range(2, 15)
+
+    def __init__(self, interval_quality=None, interval_number=None):
+        self.interval_quality = interval_quality if interval_quality else random.choice(qualities)
+        self.interval_number = interval_number if interval_number else random.choice(self.interval_numbers)
+        self._generate_interval()
+        super().__init__()
+
+    def _generate_interval(self):
+        self._interval = None
+        while self._interval is None:
+            try:
+                self._interval = interval.Interval(f"{self.interval_quality}{self.interval_number}")
+            except interval.IntervalException:
+                self.interval_number = random.choice(self.interval_numbers)
+
+    def _generate_question(self):
+        self._question = f"When inverted, a {self._interval.specificName} interval becomes:"
+
+    def _generate_answer(self):
+        self._answer = self._interval.complement.specificName
+
+    def _generate_answer_options(self):
+        self._answer_options = random_answer_options_quality(correct_answer=self._answer)
+
+    def _generate_help_steps_array(self):
+        self._help_steps = ({'prompt': 'How are interval qualities affected by inversion?',
+                        'answer': 'Perfect -> Perfect, Major -> minor, minor -> Major, diminished '
+                                    '-> Augmented, Augmented -> diminished'}, )
+
+    def _generate_question_type(self):
+        self._question_type = 'inverted_interval'
+
+    def _generate_question_params(self):
+        self._question_params = {} 
+
+class IntervalChangedByStepBecomesQuality(Question):
+
+    INTERVAL_MAPPINGS = {'M': {'name': 'major', 'larger': 'augmented', 'smaller': 'minor'},
+                         'm': {'name': 'minor', 'larger': 'major', 'smaller': 'diminished'},
+                         'P': {'name': 'perfect', 'larger': 'augmented', 'smaller': 'diminished'} 
+                        }
+
+    def __init__(self, quality=None, direction=None):
+        """
+
+        :param quality: String in the form of "M", "m", or 'P'
+        :param direction: String either "larger" or "smaller"
+        """
+        quality_key = quality if quality else random.choice(list(self.INTERVAL_MAPPINGS.keys()))
+        self._quality = self.INTERVAL_MAPPINGS[quality_key]
+        self._direction = direction if direction is not None else random.choice(["larger", "smaller"])
+        super().__init__()
+
+    def _generate_question(self):
+        self._question = f"A {self._quality['name']} interval made {self._direction} by a half step becomes what" \
+                         f" type of interval?"
+
+    def _generate_answer(self):
+        self._answer = self._quality[self._direction]
+
+    def _generate_answer_options(self):
+        self._answer_options = random_interval_qualities(correct_answer=self.answer)
+
+    def _generate_help_steps_array(self):
+        self._help_steps = [{'prompt': 'How are interval qualities changed by being transposed up a half step?', 
+                             'answer': 'major -> augmented, minor -> major, perfect -> augmented'},
+                            {'prompt': 'How are interval qualities changed by being transposed down by a half step?',
+                             'answer': 'major -> minor, minor -> diminished, perfect -> diminished'}]
+
+    def _generate_question_type(self):
+        self._question_type = 'interval-changed-by-step-becomes-quality'
 
     def _generate_question_params(self):
         self._question_params = {}
