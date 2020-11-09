@@ -5,5 +5,6 @@ from .models import Question, Tag, Attempt
 class AttemptAdmin(admin.ModelAdmin):
     list_display = ("user", "question", "correct")
 
+
 admin.site.register(Question)
 admin.site.register(Tag)

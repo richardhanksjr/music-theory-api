@@ -14,5 +14,6 @@ class UserProfileInline(admin.TabularInline):
 class UserAdmin(DjangoUserAdmin):
     inlines = (UserProfileInline, AttemptInline,)
 
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
