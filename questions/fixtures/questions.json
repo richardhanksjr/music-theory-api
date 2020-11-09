@@ -85,13 +85,22 @@
     "fields": {
         "class_name": "IntervalChangedByStepBecomesQuality",
         "module_name": "intervals"
-    },
+    }
+},
 {
     "model": "questions.question",
     "pk": 12,
     "fields": {
-      "class_name": "SordinoMeans",
-      "module_name": "simple_questions"
+        "class_name": "SordinoMeans",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 13,
+    "fields": {
+        "class_name": "TwoDifferentIntervalsSpelledDifferentlySameSound",
+        "module_name": "simple_questions"
     }
 },
 {
@@ -117,7 +126,8 @@
             7,
             8,
             9,
-            10
+            10,
+            13
         ]
     }
 },
@@ -148,9 +158,9 @@
     "fields": {
         "name": "Interval Quality",
         "question": [
-            11,
             4,
-            6
+            6,
+            11
         ]
     }
 },

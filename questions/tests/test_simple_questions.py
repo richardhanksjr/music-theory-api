@@ -1,5 +1,5 @@
 from django.test import TestCase
-from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals, SmallestDistanceBetweenTwoPitches, SordinoMeans
+from questions.questions.simple_questions import SimpleIntervalIs, InvertedQualityIs, TritoneIs, CouldBePerfectInterval, TwoWaysOfSoundingIntervals, SmallestDistanceBetweenTwoPitches, SordinoMeans, TwoDifferentIntervalsSpelledDifferentlySameSound
 from django.core.cache import cache
 from questions.models import Question, Tag
 
@@ -139,4 +139,17 @@ class SordinoMeansTest(TestCase):
 
     def test_answer(self):
         expected_answer = "Mute"
+        self.assertEqual(expected_answer, self.question.answer)
+
+class TwoDifferentIntervalsSpelledDifferentlySameSoundTest(TestCase):
+
+    def setUp(self):
+        self.question = TwoDifferentIntervalsSpelledDifferentlySameSound()
+
+    def test_question(self):
+        expected_question = "Two different intervals that are spelled differently, but sound the same are:"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_answer(self):
+        expected_answer = "Enharmonic"
         self.assertEqual(expected_answer, self.question.answer)
