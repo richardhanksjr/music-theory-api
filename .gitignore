@@ -134,4 +134,5 @@ node_modules/*
 
 coverage.json
 specs
-index-bundle.js
+static/index-bundle.js
+.DS_Store

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Question(models.Model):
@@ -15,3 +16,12 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Attempt(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user}, {self.question}, {self.correct}"
