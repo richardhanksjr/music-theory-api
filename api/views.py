@@ -65,7 +65,7 @@ class LogAttempt(LoginRequiredMixin, APIView):
             attempt = Attempt.objects.create(question=question_instance, user=user_instance, correct=user_correct)
             attempt.total_attempts = F('total_attempts') + 1
             attempt.save()
-            if user_correct == True:
+            if user_correct:
                 attempt.number_correct = F('number_correct') + 1
                 attempt.save()
             else:

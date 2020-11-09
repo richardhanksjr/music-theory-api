@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Question, Tag, Attempt
+from django.db.models import Avg
 
 @admin.register(Attempt)
 class AttemptAdmin(admin.ModelAdmin):
@@ -10,7 +11,6 @@ class AttemptAdmin(admin.ModelAdmin):
     search_fields = ('user__username',)
 
     def percent_correct(self, obj):
-        from django.db.models import Avg
         result = Attempt.objects.filter(user=obj.user).aggregate(Avg('number_correct'))
         return result['number_correct__avg']
 
