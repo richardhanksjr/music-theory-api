@@ -26,7 +26,7 @@
 * Build script will remove existing local database volume, seed database with fixture file, and set default local users
 * ### Local users
 * #### username: regular@test.com password: test123
-* ### username: admin@test.com password: test123
+* #### username: admin@test.com password: test123
 
 
 ##Build commands
