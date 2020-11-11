@@ -21,7 +21,7 @@ class Command(BaseCommand):
         regular = User.objects.create_user(email='regular@test.com', username='regular', password='test123')
         # Create admin user
         admin = User.objects.create_superuser(email='admin@test.com', username='admin', password='test123')
-        regular_email = EmailAddress.objects.create(user=regular, email=regular.email, primary=True, verified=True)
+        EmailAddress.objects.create(user=regular, email=regular.email, primary=True, verified=True)
         
-        admin_email = EmailAddress.objects.create(user=admin, email=admin.email, primary=True, verified=True)
+        EmailAddress.objects.create(user=admin, email=admin.email, primary=True, verified=True)
 
