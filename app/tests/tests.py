@@ -19,7 +19,7 @@ from allauth.account.models import (
     EmailConfirmationHMAC,
 )
 
-from .views import LandingPageView, IndexPageView, ProfilePageView
+from app.views import LandingPageView, IndexPageView, ProfilePageView
 
 
 from django.test import Client
