@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.test import TestCase
 from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 from questions.questions.simple_questions import SimpleIntervalIs
-from questions.models import Question, Tag
-from api.views import Answer, GetRandomQuestion, HelpSteps
+from questions.models import Question, Tag, Attempt
+from api.views import Answer, GetRandomQuestion, HelpSteps, LogAttempt
 
 User = get_user_model()
 
@@ -79,3 +79,34 @@ class TestHelpSteps(TestCase):
         question_key = self.question.key
         cached_response = cache.get(question_key)
         self.assertEqual(question_key, cached_response['key'])
+
+class TestAttempt(TestCase):
+
+    def setUp(self):
+        self.factory = APIRequestFactory()
+        self.user = User.objects.create_user(username="foo", email='test@test.com', password='foo')
+
+    @classmethod
+    def setUpTestData(cls):
+        Question.objects.create(class_name="SimpleIntervalIs", module_name='simple_questions')
+        cls.question = SimpleIntervalIs()
+        cls.url = reverse("api:attempt")
+
+    def test_400_on_bad_request(self):
+        request = self.factory.post(self.url)
+        request.user = self.user
+        view = LogAttempt.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, 400)
+
+    def test_405_if_get_request(self):
+        request = self.factory.get(self.url)
+        request.user = self.user
+        view = LogAttempt.as_view()
+        response = view(request)
+        self.assertEqual(response.status_code, 405)
+
+    def test_class_name_added_to_cache(self):
+        cache_key = self.question.key
+        cache_items = cache.get(cache_key)
+        self.assertEqual(cache_items['class_name'], self.question.class_name)
