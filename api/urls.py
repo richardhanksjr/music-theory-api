@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import GetRandomQuestion, Answer, HelpSteps, LogAttempt, Tags
+from .views import GetRandomQuestion, Answer, HelpSteps, LogAttempt, Tags, TagsList
 
 app_name = 'api'
 
@@ -10,6 +10,6 @@ urlpatterns = [
     path('answer', Answer.as_view(), name='answer'),
     path('help', HelpSteps.as_view(), name='help-steps'),
     path('attempt', LogAttempt.as_view(), name='attempt'),
-    path('tags', Tags.as_view(), name='tags' ),
-    path('tags/<int:pk>/', Tags.as_view(), name='tag' )
+    path('tags', TagsList.as_view(), name='tags-list' ),
+    path('tags/<int:pk>/', Tags.as_view(), name='tags' )
  ]

@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework import status
 from django.contrib.auth.mixins import LoginRequiredMixin
 from questions.question_generator import QuestionGenerator
@@ -72,11 +73,13 @@ class LogAttempt(LoginRequiredMixin, APIView):
                 attempt.number_incorrect = F('number_incorrect') + 1
                 attempt.save()
 
-
-
         except Exception:
             return Response("I'm sorry, we could not process your request", status=status.HTTP_400_BAD_REQUEST)
         return Response()
+
+class TagsList(LoginRequiredMixin, ListAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 class Tags(LoginRequiredMixin, APIView):
     queryset = Tag.objects.all()
