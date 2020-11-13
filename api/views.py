@@ -4,6 +4,8 @@ from rest_framework.views import APIView
 from rest_framework import status
 from django.contrib.auth.mixins import LoginRequiredMixin
 from questions.question_generator import QuestionGenerator
+from questions.models import Tag
+from .serializers import TagSerializer
 
 
 class GetRandomQuestion(LoginRequiredMixin, APIView):
@@ -44,3 +46,7 @@ class HelpSteps(LoginRequiredMixin, APIView):
         except Exception:
             return Response("Must supply question key", status=status.HTTP_400_BAD_REQUEST)
         return Response(data)
+
+class Tags(LoginRequiredMixin, APIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer

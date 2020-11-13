@@ -113,7 +113,7 @@
     },
     {
         "model": "questions.tag",
-        "pk": 3,
+        "pk": 1,
         "fields": {
             "name": "Major Scale",
             "question": [
@@ -123,7 +123,7 @@
     },
     {
         "model": "questions.tag",
-        "pk": 4,
+        "pk": 2,
         "fields": {
             "name": "Interval",
             "question": [
@@ -142,7 +142,7 @@
     },
     {
         "model": "questions.tag",
-        "pk": 5,
+        "pk": 3,
         "fields": {
             "name": "Minor Scale",
             "question": [
@@ -152,7 +152,7 @@
     },
     {
         "model": "questions.tag",
-        "pk": 6,
+        "pk": 4,
         "fields": {
             "name": "Scale Degree Identification",
             "question": [
@@ -163,7 +163,7 @@
     },
     {
         "model": "questions.tag",
-        "pk": 7,
+        "pk": 5,
         "fields": {
             "name": "Interval Quality",
             "question": [
@@ -176,7 +176,7 @@
     },
     {
         "model": "questions.tag",
-        "pk": 8,
+        "pk": 6,
         "fields": {
             "name": "Definitions",
             "question": [
