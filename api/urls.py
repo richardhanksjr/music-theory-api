@@ -10,6 +10,6 @@ urlpatterns = [
     path('answer', Answer.as_view(), name='answer'),
     path('help', HelpSteps.as_view(), name='help-steps'),
     path('attempt', LogAttempt.as_view(), name='attempt'),
-    path('tags', TagsList.as_view(), name='tags-list' ),
-    path('tags/<int:pk>/', Tags.as_view(), name='tags' )
+    path('tags', TagsList.as_view(), name='tags-list'),
+    path('tags/<int:pk>/', Tags.as_view(), name='tags'),
  ]

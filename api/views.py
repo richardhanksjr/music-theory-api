@@ -81,6 +81,6 @@ class TagsList(LoginRequiredMixin, ListAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 
-class Tags(LoginRequiredMixin, APIView):
+class Tags(LoginRequiredMixin, RetrieveAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
