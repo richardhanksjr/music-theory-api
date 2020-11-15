@@ -10,12 +10,12 @@ class QuestionGenerator:
     """
 
     @staticmethod
-    def question_factory():
+    def question_factory(queryset):
         """
         Used to get a random question. Returns a random question instance
         from question_choices.
         """
-        questions = Question.objects.all()
+        questions = queryset
         for question in questions:
             exec (f"from questions.questions.{question.module_name} import {question.class_name}")
         question_choices = questions.values_list('class_name', flat=True)

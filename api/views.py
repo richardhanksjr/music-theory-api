@@ -15,7 +15,9 @@ from django.db.models import F
 class GetRandomQuestion(LoginRequiredMixin, APIView):
 
     def get(self, request):
-        question = QuestionGenerator.question_factory()
+        # get list of questions, if none: question.objects.all() - as queryset, pass to question factory
+        queryset = Question.objects.all()
+        question = QuestionGenerator.question_factory(queryset)
         data = question.response
         return Response(data)
 

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LandingPageView, IndexPageView, ProfilePageView, FilterPageView
+from .views import LandingPageView, IndexPageView, ProfilePageView
 from django.views.generic.base import TemplateView
 
 
@@ -10,5 +10,4 @@ urlpatterns = [
     path("landing/", LandingPageView.as_view(), name="landing"),
     path("profile/", ProfilePageView.as_view(), name="profile"),
     path("hello-vue", TemplateView.as_view(template_name="app/hello-vue.html"), name='hello-vue'),
-    path("filter/", FilterPageView.as_view(), name="filter"),
 ]

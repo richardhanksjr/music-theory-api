@@ -19,7 +19,7 @@ from allauth.account.models import (
     EmailConfirmationHMAC,
 )
 
-from .views import LandingPageView, IndexPageView, ProfilePageView, FilterPageView
+from .views import LandingPageView, IndexPageView, ProfilePageView
 
 
 from django.test import Client
@@ -122,37 +122,6 @@ class ProfilePageTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Profile')
 
-class FilterPageTests(TestCase):
-    factory = RequestFactory()
-
-    def setUp(self):
-        url = reverse('app:filter')
-        self.response = self.client.get(url)
-        self.user = User.objects.create_user(username='joe', email='joe@test.com', password='qwerty')
-
-    def test_filter_page_url_resolves_filterpageview(self):
-        view = resolve(reverse('app:filter'))
-        self.assertEqual(
-            view.func.__name__,
-            FilterPageView.as_view().__name__
-        )
-
-    def test_login_required_on_FilterPageView(self):
-
-        view = FilterPageView.as_view()
-
-        # When user is not logged in, redirected to landing page
-        request = self.factory.get(reverse('app:filter'))
-        request.user = AnonymousUser()
-        response = view(request)
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual('/landing/?next=/filter/', response.url)
-
-        # When user is logged in, receive a status code of 200
-        request = self.factory.get(reverse('app:filter'))
-        request.user = self.user
-        response = view(request)
-        self.assertEqual(response.status_code, 200)
 
 class NavBarTests(TestCase):
     """
@@ -177,7 +146,6 @@ class NavBarTests(TestCase):
             user.set_unusable_password()
         user.save()
         return user
-
 
     def _create_user_and_login(self, usable_password=True):
         password = "doe" if usable_password else False
@@ -204,7 +172,6 @@ class NavBarTests(TestCase):
         response = c.get(reverse("account_login"))
         self.assertRedirects(response, "/", fetch_redirect_response=False)
 
-
     def test_random_question_link_uses_correct_template(self):
         user = User.objects.create(email="testuser@email", password="testpass")
         self.client.force_login(self.user)
@@ -216,7 +183,6 @@ class NavBarTests(TestCase):
         url = reverse('app:index')
         self.response = self.client.get(url)
         self.assertRedirects(self.response, '/landing/?next=/')
-
 
     def test_homepage_does_not_contain_incorrect_html(self):
         url = reverse('app:index')
@@ -236,17 +202,6 @@ class NavBarTests(TestCase):
         self.response = self.client.get(profile_url)
         self.assertRedirects(self.response, '/landing/?next=/profile/')
 
-    def test_filter_link_uses_correct_template(self):
-        self.user = User.objects.create(email="testuser@email", password="testpass")
-        self.client.force_login(self.user)
-        filter_url = reverse('app:filter')
-        self.response = self.client.get(filter_url)
-        self.assertTemplateUsed(self.response, 'app/filter.html')
-
-    def test_user_not_logged_in_cannot_access_filter(self):
-        filter_url = reverse('app:filter')
-        self.response = self.client.get(filter_url)
-        self.assertRedirects(self.response, '/landing/?next=/filter/')
 
 class EmailTests(TestCase):
 

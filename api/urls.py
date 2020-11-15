@@ -12,4 +12,5 @@ urlpatterns = [
     path('attempt', LogAttempt.as_view(), name='attempt'),
     path('tags', TagsList.as_view(), name='tags-list'),
     path('tags/<int:pk>/', Tags.as_view(), name='tags'),
+
  ]
