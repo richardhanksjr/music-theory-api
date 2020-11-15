@@ -1,7 +1,7 @@
 [
 {
     "model": "questions.question",
-    "pk": 1,
+    "pk": 15,
     "fields": {
         "class_name": "SimpleIntervalIs",
         "module_name": "simple_questions"
@@ -9,7 +9,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 2,
+    "pk": 16,
     "fields": {
         "class_name": "SimpleScaleDegreeMajor",
         "module_name": "major_scale_questions"
@@ -17,7 +17,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 3,
+    "pk": 17,
     "fields": {
         "class_name": "SimpleScaleDegreeMinor",
         "module_name": "minor_scale_questions"
@@ -25,7 +25,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 4,
+    "pk": 18,
     "fields": {
         "class_name": "InvertedQualityIs",
         "module_name": "simple_questions"
@@ -33,7 +33,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 5,
+    "pk": 19,
     "fields": {
         "class_name": "TritoneIs",
         "module_name": "simple_questions"
@@ -41,7 +41,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 6,
+    "pk": 20,
     "fields": {
         "class_name": "CouldBePerfectInterval",
         "module_name": "simple_questions"
@@ -49,7 +49,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 9,
+    "pk": 21,
     "fields": {
         "class_name": "TwoWaysOfSoundingIntervals",
         "module_name": "simple_questions"
@@ -57,7 +57,71 @@
 },
 {
     "model": "questions.question",
-    "pk": 19,
+    "pk": 22,
+    "fields": {
+        "class_name": "SemitonesInInterval",
+        "module_name": "intervals"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 23,
+    "fields": {
+        "class_name": "IntervalRaisedLoweredIs",
+        "module_name": "intervals"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 24,
+    "fields": {
+        "class_name": "SmallestDistanceBetweenTwoPitches",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 25,
+    "fields": {
+        "class_name": "IntervalChangedByStepBecomesQuality",
+        "module_name": "intervals"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 26,
+    "fields": {
+        "class_name": "SordinoMeans",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 27,
+    "fields": {
+        "class_name": "TwoDifferentIntervalsSpelledDifferentlySameSound",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 28,
+    "fields": {
+        "class_name": "simple_questions",
+        "module_name": "intervals"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 29,
+    "fields": {
+        "class_name": "ModalKeySignatures",
+        "module_name": "modal_key_signatures"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 30,
     "fields": {
         "class_name": "SimpleMajorTriad",
         "module_name": "simple_triad_questions"
@@ -65,15 +129,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 20,
-    "fields": {
-        "class_name": "SimpleMinorTriad",
-        "module_name": "simple_triad_questions"
-    }
-},
-{
-    "model": "questions.question",
-    "pk": 21,
+    "pk": 31,
     "fields": {
         "class_name": "SimpleDiminishedTriad",
         "module_name": "simple_triad_questions"
@@ -81,7 +137,7 @@
 },
 {
     "model": "questions.question",
-    "pk": 22,
+    "pk": 32,
     "fields": {
         "class_name": "SimpleAugmentedTriad",
         "module_name": "simple_triad_questions"
@@ -89,10 +145,10 @@
 },
 {
     "model": "questions.question",
-    "pk": 23,
+    "pk": 33,
     "fields": {
-        "class_name": "ModalKeySignatures",
-        "module_name": "modal_key_signatures"
+        "class_name": "SimpleMinorTriad",
+        "module_name": "simple_triad_questions"
     }
 },
 {
@@ -100,9 +156,7 @@
     "pk": 3,
     "fields": {
         "name": "Major Scale",
-        "question": [
-            2
-        ]
+        "question": []
     }
 },
 {
@@ -110,12 +164,7 @@
     "pk": 4,
     "fields": {
         "name": "Interval",
-        "question": [
-            1,
-            4,
-            5,
-            6
-        ]
+        "question": []
     }
 },
 {
@@ -123,9 +172,7 @@
     "pk": 5,
     "fields": {
         "name": "Minor Scale",
-        "question": [
-            3
-        ]
+        "question": []
     }
 },
 {
@@ -133,10 +180,7 @@
     "pk": 6,
     "fields": {
         "name": "Scale Degree Identification",
-        "question": [
-            2,
-            3
-        ]
+        "question": []
     }
 },
 {
@@ -144,10 +188,15 @@
     "pk": 7,
     "fields": {
         "name": "Interval Quality",
-        "question": [
-            4,
-            6
-        ]
+        "question": []
+    }
+},
+{
+    "model": "questions.tag",
+    "pk": 8,
+    "fields": {
+        "name": "Definitions",
+        "question": []
     }
 }
 ]
