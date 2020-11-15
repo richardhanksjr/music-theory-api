@@ -1,5 +1,109 @@
 [
 {
+    "model": "questions.question",
+    "pk": 34,
+    "fields": {
+        "class_name": "SemitonesInInterval",
+        "module_name": "intervals"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 35,
+    "fields": {
+        "class_name": "SimpleScaleDegreeMajor",
+        "module_name": "major_scale_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 36,
+    "fields": {
+        "class_name": "SimpleScaleDegreeMinor",
+        "module_name": "minor_scale_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 37,
+    "fields": {
+        "class_name": "ModalKeySignatures",
+        "module_name": "modal_key_signatures"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 38,
+    "fields": {
+        "class_name": "SimpleIntervalIs",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 39,
+    "fields": {
+        "class_name": "InvertedQualityIs",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 40,
+    "fields": {
+        "class_name": "TritoneIs",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 41,
+    "fields": {
+        "class_name": "CouldBePerfectInterval",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 42,
+    "fields": {
+        "class_name": "TwoWaysOfSoundingIntervals",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 43,
+    "fields": {
+        "class_name": "SimpleMajorTriad",
+        "module_name": "simple_triad_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 44,
+    "fields": {
+        "class_name": "SimpleMinorTriad",
+        "module_name": "simple_triad_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 45,
+    "fields": {
+        "class_name": "SimpleDiminishedTriad",
+        "module_name": "simple_triad_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 46,
+    "fields": {
+        "class_name": "SimpleAugmentedTriad",
+        "module_name": "simple_triad_questions"
+    }
+},
+{
     "model": "questions.tag",
     "pk": 3,
     "fields": {
