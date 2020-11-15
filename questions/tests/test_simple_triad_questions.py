@@ -39,8 +39,6 @@ class SimpleDiminishedTriadTest(TestCase):
     def setUp(self):
         Question.objects.create(class_name='SimpleDiminishedTriad')
         triad = random_root_position_diminished_triad()
-        print(type(triad.fifth))
-        print(triad.fifth.fullName)
         self.question = SimpleDiminishedTriad(triad=triad, chord_degree='third')
 
     def test_question_added_to_cache(self):
