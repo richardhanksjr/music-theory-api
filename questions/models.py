@@ -22,6 +22,9 @@ class Attempt(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     correct = models.BooleanField(default=False)
+    number_correct = models.IntegerField(default=0)
+    number_incorrect = models.IntegerField(default=0)
+    total_attempts = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.user}, {self.question}, {self.correct}"
