@@ -1,5 +1,8 @@
 <template>
     <div name="question" id="question">
+        <div v-for="tag in tagList">
+            <button>{{ tag }}</button>
+        </div>
         <br>
             <h2 :style="styleQuestion">{{ questionPackage.question }}</h2>
         <br>
@@ -61,6 +64,7 @@
         },
         data() {
             return {
+                tagList: [],
                 questionPackage: {},
                 answerVal: "",
                 message: "",
@@ -159,6 +163,12 @@
             axios.get('/api/question')
                 .then(response => {
                     this.questionPackage = response.data
+                    console.log(response.data);
+                }),
+            axios.get('/api/tags')
+                .then(response => {
+                    this.tagList = response.data
+                    console.log(response.data);
                 });
             },
     };
