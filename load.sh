@@ -18,4 +18,7 @@ docker-compose exec web python manage.py createcachetable
 echo "Resetting fixtures, loading questions, and creating default users..."
 docker-compose exec web python manage.py docker_sync
 
+echo "Building JS assets..."
+./js.sh
+
 echo "Docker successfully restarted"
