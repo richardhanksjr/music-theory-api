@@ -1,5 +1,5 @@
 import random
-from music21 import interval, pitch, key, scale
+from music21 import interval, pitch, scale
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
                          random_intervals_with_octaves, random_interval_qualities, random_answer_options_quality, qualities,
@@ -199,7 +199,7 @@ class CompoundIntervalRelationship(Question):
         self.tonic = tonic if tonic else random_pitch()
         self.major_scale_tonic = tonic if tonic else random_pitch()
         self.scale_degree_index = scale_degree_index if scale_degree_index else random.choice(range(7))
-        self.major_scale_degree_index = scale_degree_index if scale_degree_index else random.choice(range(8))
+        self.major_scale_degree_index = major_scale_degree_index if major_scale_degree_index else random.choice(range(8))
         self.compound_interval_index = compound_interval_index if compound_interval_index else random.choice(range(13,24))
         self.scale_degree = scale_degrees[self.scale_degree_index]
         self.major_scale_degree = scale_degrees[self.major_scale_degree_index]

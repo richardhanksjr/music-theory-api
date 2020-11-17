@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.cache import cache
-from questions.questions.intervals import SemitonesInInterval, IntervalRaisedLoweredIs, IntervalChangedByStepBecomesQuality, InvertedInterval
+from questions.questions.intervals import (SemitonesInInterval, IntervalRaisedLoweredIs, IntervalChangedByStepBecomesQuality, 
+                                            InvertedInterval, CompoundIntervalRelationship)
 
 
 
