@@ -1,8 +1,10 @@
 <template>
     <div name="question" id="question">
-        <div v-for="tag in tagList">
-            <button>{{ tag }}</button>
-        </div>
+        <br>
+            <p>Filter by Question Type: </p>
+            <div v-for="tag in tagList">
+                <button>{{ tag }}</button>
+            </div>
         <br>
             <h2 :style="styleQuestion">{{ questionPackage.question }}</h2>
         <br>
