@@ -112,6 +112,14 @@
         }
     },
     {
+        "model": "questions.question",
+        "pk": 15,
+        "fields": {
+            "class_name": "CompoundIntervalRelationship",
+            "module_name": "intervals"
+        }
+    },
+    {
         "model": "questions.tag",
         "pk": 3,
         "fields": {
@@ -136,7 +144,8 @@
                 9,
                 10,
                 13,
-                14
+                14,
+                15
             ]
         }
     },
@@ -170,7 +179,8 @@
                 4,
                 6,
                 11,
-                14
+                14,
+                15
             ]
         }
     },

@@ -64,3 +64,20 @@ class TestIntervalChangedByStepBecomesQuality(TestCase):
         expected_answer = "major"
         self.assertEqual(expected_answer, self.question.answer)
 
+
+class TestCompoundIntervalRelationship(TestCase):
+
+    def setUp(self):
+        self.question = CompoundIntervalRelationship()
+
+    def test_for_correct_question(self):
+        expected_question = """ When compounded, the interval produced by combining the 3rd 
+                                scale degree of an Eb whole tone scale with the mediant of 
+                                an E major pentatonic scale bears what relation to the 
+                                interval of a minor 9th """
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_for_correct_answer(self):
+        expected_answer = 'It is the same quality'
+        self.assertEqual(expected_answer, self.question.answer)
+

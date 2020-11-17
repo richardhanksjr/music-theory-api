@@ -1,8 +1,9 @@
 import random
-from music21 import interval, pitch
+from music21 import interval, pitch, key, scale
 from questions.questions.questions import Question
 from ._utilities import (random_numbers_answer_options, random_pitch_with_octave,
-                         random_intervals_with_octaves, random_interval_qualities, random_answer_options_quality, qualities)
+                         random_intervals_with_octaves, random_interval_qualities, random_answer_options_quality, qualities,
+                         random_pitch, scale_degrees)
 
 
 
@@ -186,6 +187,69 @@ class IntervalChangedByStepBecomesQuality(Question):
 
     def _generate_question_type(self):
         self._question_type = 'interval-changed-by-step-becomes-quality'
+
+    def _generate_question_params(self):
+        self._question_params = {}
+
+
+class CompoundIntervalRelationship(Question):
+
+    def __init__(self, tonic=None, scale_degree_index=None, major_scale_degree_index=None,
+                 compound_interval_index=None):
+        self.tonic = tonic if tonic else random_pitch()
+        self.major_scale_tonic = tonic if tonic else random_pitch()
+        self.scale_degree_index = scale_degree_index if scale_degree_index else random.choice(range(7))
+        self.major_scale_degree_index = scale_degree_index if scale_degree_index else random.choice(range(8))
+        self.compound_interval_index = compound_interval_index if compound_interval_index else random.choice(range(13,24))
+        self.scale_degree = scale_degrees[self.scale_degree_index]
+        self.major_scale_degree = scale_degrees[self.major_scale_degree_index]
+        self.whole_tone = scale.WholeToneScale(self.tonic)
+        self.major_scale = scale.MajorScale(self.major_scale_tonic)
+        self.compound_interval = interval.Interval(self.compound_interval_index)
+        super().__init__()
+
+    def _generate_question(self):
+        self._question = f"When compounded, the interval produced by combining the " \
+                         f"{self.scale_degree['name']} scale degree of an {self.whole_tone.getTonic()} whole tone scale " \
+                         f"with the {self.major_scale_degree['name']} of an {self.major_scale.getTonic().unicodeName} major scale " \
+                         f"bears what relation to the interval of a {self.compound_interval.niceName}"
+
+    def _generate_answer(self):
+        major_scale = scale.MajorScale(self.major_scale_tonic)
+        self._answer = major_scale.pitches[self.major_scale_degree_index].unicodeName
+        # whole_tone = scale.WholeToneScale(self.tonic)
+        # self._answer = whole_tone.pitches[self.scale_degree_index].unicodeName
+
+    def _generate_answer_options(self):
+        self._answer_options = ['It is greater', 'It is smaller', self._answer, 'It is enharmonic']
+
+    def _generate_help_steps_array(self):
+        self._help_steps = [
+            {
+                'prompt': 'What is a compound interval?',
+                'answer': 'An interval that is larger than an octave'
+            },
+            {
+                'prompt': 'What is the 3rd scale degree of an Eb whole tone scale?',
+                'answer': 'G'
+            },
+            {
+                'prompt': 'What scale degree does the term "mediant" refer to?',
+                'answer': 'The 3rd scale degree'
+            },
+            {
+                'prompt': 'What is the 3rd scale degree of an E major pentatonic scale?',
+                'answer': 'G#'
+            },
+            {
+                'prompt': 'What is the compound interval between G, and G#?',
+                'answer': 'A minor 9th'
+            },
+
+        ]
+
+    def _generate_question_type(self):
+        self._question_type = 'compound_interval_relationship'
 
     def _generate_question_params(self):
         self._question_params = {}
