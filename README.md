@@ -23,7 +23,7 @@
 * Run build script
 * `build`
 
-* Build script will remove existing local database volume, seed database with fixture file, and set default local users
+* Build script will remove existing local database volume, seed database with questions from _questions_data.py, and set default local users
 * ### Local users
 * #### username: regular@test.com password: test123
 * #### username: admin@test.com password: test123
@@ -43,23 +43,15 @@
 * `test`
 * ###Enter shell_plus
 * `shell`
-* ###Update the question fixture file to reflect local db
-* `update_fixture`
-* ###Update db to match state of question fixture file
-* `load_fixture`
+
 
 ##Adding new questions
-* Start Docker container using the `reload` command to prepopulate db with fixture data
-* Create a subclass of questions.questions.Question
-* Implement all required methods.
-* question_type should return a unique, descriptive string
-* Add new question to the Question model
-* Add new question to exsiting tags and create any new tags
-* run `update_fixture`
+* Import question class into questions/questions/_questions_data.py
+* Add question class to the questions list
+* Add question class to any related tags (add additional tags, if needed)
+* Run: `build`
 
 ###JS Testing 
 * `test-js`
 ###To test particular JS test file
 `docker-compose exec web yarn jest specs/<file-name>.spec.js`
-        
-chmod +x <filename>
