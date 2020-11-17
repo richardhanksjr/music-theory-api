@@ -6,7 +6,6 @@ from questions.questions.simple_questions import (SimpleIntervalIs, InvertedQual
                                         CouldBePerfectInterval, TwoWaysOfSoundingIntervals,
                                         SmallestDistanceBetweenTwoPitches, SordinoMeans,
                                         TwoDifferentIntervalsSpelledDifferentlySameSound)
-from questions.models import Question
 
 questions = [SemitonesInInterval, IntervalRaisedLoweredIs, InvertedInterval, IntervalChangedByStepBecomesQuality,
              SimpleScaleDegreeMajor, SimpleScaleDegreeMinor, SimpleIntervalIs, InvertedQualityIs, TritoneIs,
