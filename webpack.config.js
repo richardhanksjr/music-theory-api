@@ -1,5 +1,7 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const ErrorLoggerPlugin = require('error-logger-webpack-plugin');
+
 
 
 module.exports = {
@@ -31,5 +33,5 @@ module.exports = {
       }
     ]
   },
-    plugins: [new VueLoaderPlugin()]
+    plugins: [new VueLoaderPlugin(), new ErrorLoggerPlugin({verbose: false})]
 };
