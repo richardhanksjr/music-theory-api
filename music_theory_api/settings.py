@@ -210,3 +210,6 @@ if ENVIRONMENT == 'production':
 
 
 LOGIN_URL = 'app:landing'
+
+DOMAIN_NAME = 'TheoryDojo.com'
+DISPLAY_NAME = 'TheoryDojo.com'

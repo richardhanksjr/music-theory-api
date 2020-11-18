@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand
+from django.contrib.sites.models import Site
 from django.contrib.auth import get_user_model
+from django.conf import settings
 from allauth.account.admin import EmailAddress
 
 from questions.models import Question, Tag
@@ -38,6 +40,12 @@ class Command(BaseCommand):
         EmailAddress.objects.create(user=regular, email=regular.email, primary=True, verified=True)
         
         EmailAddress.objects.create(user=admin, email=admin.email, primary=True, verified=True)
+
+        # Reset sites for email
+        site = Site.objects.first()
+        site.domain = settings.DOMAIN_NAME
+        site.name = settings.DISPLAY_NAME
+        site.save()
 
     def handle(self, *args, **kwargs):
         self._process()
