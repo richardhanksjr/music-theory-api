@@ -29,12 +29,14 @@ class Question(ABC):
             'question_params': self.question_params,
             'key': self.key,
             'answer': self.answer,
-            'help_steps': self.help_steps
+            'help_steps': self.help_steps,
+            'class_name': self.class_name
         }
 
     def _add_to_cache(self):
         key = self.response['key']
-        data = {**self.response, **{'answer': self.answer}, **{'help_steps': self.help_steps}}
+        data = {**self.response, **{'answer': self.answer}, **{'help_steps': self.help_steps},
+                **{'class_name': self.class_name}}
         cache.set(key, data)
 
     def _generate_key(self):
@@ -116,3 +118,7 @@ class Question(ABC):
     @property
     def weight(self):
         return self._weight
+
+    @property
+    def class_name(self):
+        return self.__class__.__name__

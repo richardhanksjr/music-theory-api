@@ -15,12 +15,47 @@ scale_degrees = [{'name': "first"},
 triad_degrees = ["root", "third", "fifth"]
 
 diatonic_modes = ['dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian']
+interval_qualities = ['P', 'M', 'm', 'd', 'A']
+qualities = ['Major', 'Minor', 'Augmented', 'Diminished', 'Perfect']
+interval_qualities_full_name = ['perfect', 'major', 'minor', 'diminished', 'augmented']
+
+
+
+def random_interval_qualities(len_of_list=4, correct_answer=None):
+    intervals = [correct_answer] if correct_answer else []
+    while len(intervals) < len_of_list:
+        interval = random.choice(interval_qualities_full_name)
+        if interval not in intervals:
+            intervals.append(interval)
+    random.shuffle(intervals)
+    return intervals
+
 
 def random_pitch():
     return random.choice(pitch_names) + random.choice(accidentals)
 
+
 def random_mode():
     return random.choice(diatonic_modes)
+
+def random_pitch_with_octave(min_octave=None, max_octave=None):
+    min_octave = min_octave if min_octave is not None else 1
+    max_octave = max_octave if max_octave is not None else 4
+
+    return f"{random_pitch()}{random.randint(min_octave, max_octave)}"
+
+
+def random_intervals_with_octaves(correct_answer, len_of_list=4):
+    correct_answer_list = [correct_answer]
+    incorrect_answers = []
+    while len(incorrect_answers) < len_of_list - 1:
+        random_interval = f"{random.choice(interval_qualities)}{random.randint(1, 40)}"
+        while random_interval in incorrect_answers or random_interval in correct_answer_list:
+            random_interval = f"{random.choice(interval_qualities)}{random.randint(1, 40)}"
+        incorrect_answers.append(random_interval)
+    answer_options = correct_answer_list + incorrect_answers
+    random.shuffle(answer_options)
+    return answer_options
 
 
 def random_answer_options_pitch(len_of_list=4, correct_answer=None):
@@ -80,3 +115,13 @@ def random_numbers_answer_options(correct_answer, len_of_list=4):
     answer_options = initial_list + incorrect_answers
     random.shuffle(answer_options)
     return answer_options
+
+
+def random_answer_options_quality(len_of_list=4, correct_answer=None):
+    random_answer_list = [correct_answer] if correct_answer else []
+    while len(random_answer_list) < len_of_list:
+        choices = random.choice(qualities)
+        if choices not in random_answer_list:
+            random_answer_list.append(choices)
+    random.shuffle(random_answer_list)
+    return random_answer_list
