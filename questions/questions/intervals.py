@@ -216,6 +216,16 @@ class CompoundIntervalRelationship(Question):
 
     def _generate_answer(self):
         major_scale = scale.MajorScale(self.major_scale_tonic)
+        n1 = major_scale.pitches[self.major_scale_degree_index]
+        whole_tone = scale.WholeToneScale(self.tonic)
+        n2 = whole_tone.pitches[self.scale_degree_index]
+        print(n1)
+        print(n2)
+        compare_first = interval.Interval(noteStart=n1, noteEnd=n2)
+        print(compare_first.semitones)
+        compare_second = interval.Interval(self.compound_interval_index)
+        print(compare_second.semitones)
+        # major_scale = scale.MajorScale(self.major_scale_tonic)
         self._answer = major_scale.pitches[self.major_scale_degree_index].unicodeName
         # whole_tone = scale.WholeToneScale(self.tonic)
         # self._answer = whole_tone.pitches[self.scale_degree_index].unicodeName
