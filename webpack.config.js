@@ -6,6 +6,7 @@ const ErrorLoggerPlugin = require('error-logger-webpack-plugin');
 
 module.exports = {
     entry: './js_assets/index.js',  // path to our input file
+    mode: 'development',
     output: {
         filename: 'index-bundle.js',  // output bundle file name
         path: path.resolve(__dirname, './static'),  // path to our Django static directory
