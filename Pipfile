@@ -20,6 +20,7 @@ django-extensions = "*"
 music21 = "*"
 django-debug-toolbar = "*"
 django-crispy-forms = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.8"
