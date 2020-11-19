@@ -194,7 +194,7 @@ class IntervalChangedByStepBecomesQuality(Question):
 
 class CompoundIntervalRelationship(Question):
 
-    def __init__(self, tonic=None, scale_degree_index=None, major_scale_degree_index=None,
+    def __init__(self, tonic=None, major_scale_tonic=None, scale_degree_index=None, major_scale_degree_index=None,
                  compound_interval_index=None):
         self.tonic = tonic if tonic else random_pitch()
         self.major_scale_tonic = tonic if tonic else random_pitch()
@@ -210,8 +210,8 @@ class CompoundIntervalRelationship(Question):
 
     def _generate_question(self):
         self._question = f"When compounded, the interval produced by combining the " \
-                         f"{self.scale_degree['name']} scale degree of an {self.whole_tone.getTonic()} whole tone scale " \
-                         f"with the {self.major_scale_degree['name']} of an {self.major_scale.getTonic().unicodeName} major scale " \
+                         f"{self.scale_degree['name']} scale degree of a/an {self.whole_tone.getTonic()} whole tone scale " \
+                         f"with the {self.major_scale_degree['name']} scale degree of a/an {self.major_scale.getTonic().unicodeName} major scale " \
                          f"bears what relation to the interval of a {self.compound_interval.niceName}"
 
     def _generate_answer(self):
@@ -225,19 +225,6 @@ class CompoundIntervalRelationship(Question):
             compounded_first = int(abs(compare_first.semitones)) + 12
         else:
             compounded_first = int(abs(compare_first.semitones))
-
-        # print(self.tonic)
-        # print(self.major_scale_tonic)
-        # print(n1)
-        # print(n2)
-        # print(compare_first.semitones)
-        # print(compounded_first)
-        # print(compare_second.semitones)
-
-        # major_scale = scale.MajorScale(self.major_scale_tonic)
-        # self._answer = major_scale.pitches[self.major_scale_degree_index].unicodeName
-        # whole_tone = scale.WholeToneScale(self.tonic)
-        # self._answer = whole_tone.pitches[self.scale_degree_index].unicodeName
 
         if compounded_first == int(compare_second.semitones):
             self._answer = 'It is the same quality'

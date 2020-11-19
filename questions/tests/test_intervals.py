@@ -69,16 +69,17 @@ class TestIntervalChangedByStepBecomesQuality(TestCase):
 class TestCompoundIntervalRelationship(TestCase):
 
     def setUp(self):
-        self.question = CompoundIntervalRelationship()
+        self.question = CompoundIntervalRelationship(tonic='C', major_scale_tonic='C', scale_degree_index=1, 
+                                                     major_scale_degree_index=1, compound_interval_index=13)
 
     def test_for_correct_question(self):
-        expected_question = """ When compounded, the interval produced by combining the 3rd 
-                                scale degree of an Eb whole tone scale with the mediant of 
-                                an E major pentatonic scale bears what relation to the 
-                                interval of a minor 9th """
+        expected_question = "When compounded, the interval produced by combining the second " \
+                            "scale degree of a/an C whole tone scale with the second scale " \
+                            "degree of a/an C major scale bears what relation to the " \
+                            "interval of a Minor Ninth"
         self.assertEqual(expected_question, self.question.question)
 
     def test_for_correct_answer(self):
-        expected_answer = 'It is the same quality'
+        expected_answer = 'It is smaller'
         self.assertEqual(expected_answer, self.question.answer)
 
