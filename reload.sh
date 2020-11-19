@@ -10,7 +10,7 @@ docker-compose up --build  -d
 docker-compose exec web python manage.py migrate
 
 echo "Loading questions into database:"
-docker-compose exec web python manage.py loaddata questions.json
+docker-compose exec web python manage.py docker_sync
 
 
 echo "Docker successfully restarted"

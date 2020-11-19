@@ -17,7 +17,7 @@ class QuestionGenerator:
         """
         questions = Question.objects.all()
         for question in questions:
-            exec (f"from questions.questions.{question.module_name} import {question.class_name}")
+            exec (f"from {question.module_name} import {question.class_name}")
         question_choices = questions.values_list('class_name', flat=True)
         # pylint: disable=eval-used
         return eval(random.choice(question_choices))()

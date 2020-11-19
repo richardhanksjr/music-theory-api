@@ -87,8 +87,10 @@
         },
         methods: {
             evaluateAnswer(answer) {
+                console.log("Evaluate")
                 axios.post('api/answer', {"key": this.questionPackage.key, "answer": answer})
                 .then(response => {
+                    console.log("Attempt");
                     axios.post('api/attempt', {"key": this.questionPackage.key, "answer": answer})
                     if (this.answerVal === this.questionPackage.answer) {
                         if (this.hintGiven) {
