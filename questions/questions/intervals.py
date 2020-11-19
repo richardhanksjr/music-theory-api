@@ -220,7 +220,6 @@ class CompoundIntervalRelationship(Question):
         major_scale = scale.MajorScale(self.major_scale_tonic)
         n2 = major_scale.pitches[self.major_scale_degree_index]
         compare_first = interval.Interval(noteStart=n1, noteEnd=n2)
-        generic = interval.GenericInterval(compare_first.semitones)
         compare_second = interval.Interval(self.compound_interval_index)
         if int(abs(compare_first.semitones)) <= 12:
             compounded_first = int(abs(compare_first.semitones)) + 12
@@ -234,7 +233,6 @@ class CompoundIntervalRelationship(Question):
         # print(compare_first.semitones)
         # print(compounded_first)
         # print(compare_second.semitones)
-        # print(generic)
 
         # major_scale = scale.MajorScale(self.major_scale_tonic)
         # self._answer = major_scale.pitches[self.major_scale_degree_index].unicodeName
