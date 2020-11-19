@@ -220,13 +220,21 @@ class CompoundIntervalRelationship(Question):
         major_scale = scale.MajorScale(self.major_scale_tonic)
         n2 = major_scale.pitches[self.major_scale_degree_index]
         compare_first = interval.Interval(noteStart=n1, noteEnd=n2)
+        generic = interval.GenericInterval(compare_first.semitones)
         compare_second = interval.Interval(self.compound_interval_index)
-        compounded_first = int(abs(compare_first.semitones)) + 12
-        print(n1)
-        print(n2)
-        print(compare_first.semitones)
-        print(compounded_first)
-        print(compare_second.semitones)
+        if int(abs(compare_first.semitones)) <= 12:
+            compounded_first = int(abs(compare_first.semitones)) + 12
+        else:
+            compounded_first = int(abs(compare_first.semitones))
+
+        # print(self.tonic)
+        # print(self.major_scale_tonic)
+        # print(n1)
+        # print(n2)
+        # print(compare_first.semitones)
+        # print(compounded_first)
+        # print(compare_second.semitones)
+        # print(generic)
 
         # major_scale = scale.MajorScale(self.major_scale_tonic)
         # self._answer = major_scale.pitches[self.major_scale_degree_index].unicodeName
@@ -246,25 +254,25 @@ class CompoundIntervalRelationship(Question):
         self._answer_options = ['It is greater', 'It is smaller', 'It is the same quality', 'It is enharmonic']
 
     def _generate_help_steps_array(self):
+        whole_tone = scale.WholeToneScale(self.tonic)
+        n1 = whole_tone.pitches[self.scale_degree_index]
+        major_scale = scale.MajorScale(self.major_scale_tonic)
+        n2 = major_scale.pitches[self.major_scale_degree_index]
         self._help_steps = [
             {
                 'prompt': 'What is a compound interval?',
                 'answer': 'An interval that is larger than an octave'
             },
             {
-                'prompt': 'What is the 3rd scale degree of an Eb whole tone scale?',
-                'answer': 'G'
+                'prompt': f"What is the {self.scale_degree['name']} scale degree of a/an {self.whole_tone.getTonic()} Whole Tone scale ",
+                'answer': f"{n1.name}"
             },
             {
-                'prompt': 'What scale degree does the term "mediant" refer to?',
-                'answer': 'The 3rd scale degree'
+                'prompt': f"What is the {self.major_scale_degree['name']} scale degree of a/an {self.major_scale.getTonic().unicodeName} Major scale ",
+                'answer': f"{n2.name}"
             },
             {
-                'prompt': 'What is the 3rd scale degree of an E major pentatonic scale?',
-                'answer': 'G#'
-            },
-            {
-                'prompt': 'What is the compound interval between G, and G#?',
+                'prompt': f"What is the compound interval between {n1}, and {n2}?",
                 'answer': 'A minor 9th'
             },
 

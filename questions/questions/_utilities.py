@@ -27,8 +27,11 @@ def random_interval_qualities(len_of_list=4, correct_answer=None):
     random.shuffle(intervals)
     return intervals
 
+# just for testing
 def random_pitch():
-    return random.choice(pitch_names) + random.choice(accidentals)
+    return random.choice(pitch_names)
+# def random_pitch():
+#     return random.choice(pitch_names) + random.choice(accidentals)
 
 def random_pitch_with_octave(min_octave=None, max_octave=None):
     min_octave = min_octave if min_octave is not None else 1
