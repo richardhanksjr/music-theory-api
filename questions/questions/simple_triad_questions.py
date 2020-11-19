@@ -9,6 +9,7 @@ from ._utilities import (triad_degrees, random_answer_options_pitch,
 
 class SimpleMajorTriad(Question):
     def __init__(self, triad=None, chord_degree=None):
+        # refactor
         correctly_spelled_triad = False
         while not correctly_spelled_triad:
             self.triad = triad if triad else random_root_position_major_triad()
