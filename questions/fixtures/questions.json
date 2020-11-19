@@ -151,25 +151,24 @@
         "name": "Definitions",
         "question": []
     }
-}
-]
+},
 
-    {
-        "model": "questions.question",
-        "pk": 1,
-        "fields": {
-            "class_name": "SimpleIntervalIs",
-            "module_name": "simple_questions"
-        }
-    },
-    {
-        "model": "questions.question",
-        "pk": 2,
-        "fields": {
-            "class_name": "SimpleScaleDegreeMajor",
-            "module_name": "major_scale_questions"
-        }
-    },
+{
+    "model": "questions.question",
+    "pk": 1,
+    "fields": {
+        "class_name": "SimpleIntervalIs",
+        "module_name": "simple_questions"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 2,
+    "fields": {
+        "class_name": "SimpleScaleDegreeMajor",
+        "module_name": "major_scale_questions"
+    }
+},
     {
         "model": "questions.question",
         "pk": 3,
@@ -339,5 +338,5 @@
             ]
         }
     }
-    ]
+]
 
