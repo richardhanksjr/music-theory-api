@@ -194,6 +194,7 @@ class IntervalChangedByStepBecomesQuality(Question):
 
 class CompoundIntervalRelationship(Question):
 
+    # pylint: disable=too-many-arguments, unused-argument
     def __init__(self, tonic=None, major_scale_tonic=None, scale_degree_index=None, major_scale_degree_index=None,
                  compound_interval_index=None):
         self.tonic = tonic if tonic else random_pitch()
