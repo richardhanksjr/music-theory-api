@@ -5,7 +5,7 @@
         <br>
             <fieldset v-for="(answer, index) in questionPackage.answer_options" class="custom-control custom-radio">
                 <div class="radio-buttons">
-                    <input class="list-group-item" v-model="answerVal" :disabled="disableAnswer(answer, index)" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer); hideHints = true;"><label class="label">{{ answer }}</label><br>
+                    <input class="list-group-item" v-model="answerVal" :disabled="disableAnswer" :value="answer" type="radio" id="answer" name="response" @click="evaluateAnswer(answer); hideHints = true;"><label class="label">{{ answer }}</label><br>
                 </div>
             </fieldset>
 
@@ -106,15 +106,6 @@
                 })
                 this.answerVal = "";
             },
-            disableAnswer(questionPackage, index, answerVal) {
-                if (!this.answerVal) {
-                    // not yet set
-                    return;
-                    }
-                if (this.questionPackage.answer_options[index] !== this.answerVal) {
-                    return true
-                    }
-                },
             nextQuestion() {
             axios.get('/api/question')
                     .then(response => {
@@ -150,7 +141,12 @@
                 if(this.hintLength === 1) {
                     return this.noMoreHintsMessage = "We're not giving out any more hints on this one";
                 }
-            }
+            },
+            disableAnswer() {
+                if (this.answerVal) {
+                    return true
+                    }
+                },
         },
         mounted() {
             axios.get('/api/question')
