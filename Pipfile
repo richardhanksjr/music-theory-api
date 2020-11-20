@@ -21,6 +21,7 @@ music21 = "*"
 django-debug-toolbar = "*"
 django-crispy-forms = "*"
 mypy = "*"
+django-stubs = "*"
 
 [requires]
 python_version = "3.8"

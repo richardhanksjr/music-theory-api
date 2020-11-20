@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List, Any
 import uuid
 import inspect
 from django.core.cache import cache
@@ -19,6 +20,7 @@ class Question(ABC):
         self._generate_question_params()
         self._generate_response()
         self._add_to_cache()
+        self._answer_options: List[int]
 
 
 
@@ -80,7 +82,7 @@ class Question(ABC):
         pass
 
     @property
-    def answer_options(self):
+    def answer_options(self) -> List[int]:
         return self._answer_options
 
     @property
