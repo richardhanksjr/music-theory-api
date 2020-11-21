@@ -216,10 +216,8 @@ class CompoundIntervalRelationship(Question):
                          f"bears what relation to the interval of a {self.compound_interval.niceName}"
 
     def _generate_answer(self):
-        whole_tone = scale.WholeToneScale(self.tonic)
-        n1 = whole_tone.pitches[self.scale_degree_index]
-        major_scale = scale.MajorScale(self.major_scale_tonic)
-        n2 = major_scale.pitches[self.major_scale_degree_index]
+        n1 = self.whole_tone.pitches[self.scale_degree_index]
+        n2 = self.major_scale.pitches[self.major_scale_degree_index]
         compare_first = interval.Interval(noteStart=n1, noteEnd=n2)
         compare_second = interval.Interval(self.compound_interval_index)
         if int(abs(compare_first.semitones)) <= 12:
@@ -240,10 +238,8 @@ class CompoundIntervalRelationship(Question):
         self._answer_options = ['It is greater', 'It is smaller', 'It is the same quality', 'It is enharmonic']
 
     def _generate_help_steps_array(self):
-        whole_tone = scale.WholeToneScale(self.tonic)
-        n1 = whole_tone.pitches[self.scale_degree_index]
-        major_scale = scale.MajorScale(self.major_scale_tonic)
-        n2 = major_scale.pitches[self.major_scale_degree_index]
+        n1 = self.whole_tone.pitches[self.scale_degree_index]
+        n2 = self.major_scale.pitches[self.major_scale_degree_index]
         self._help_steps = [
             {
                 'prompt': 'What is a compound interval?',
