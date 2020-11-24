@@ -287,8 +287,8 @@ class MinorCompoundIntervalRelationship(Question):
     def _generate_question(self):
         self._question = f"When compounded, the interval produced by combining the " \
                          f"{self.minor_scale_degree['name']} scale degree of a/an {self.minor_scale.getTonic().unicodeName} minor scale " \
-                         f"with the {self.melodic_scale_degree['name']} scale degree of a/an {self.melodic_scale.getTonic().unicodeName} melodic minor scale " \
-                         f"bears what relation to the interval of a {self.compound_interval.niceName}"
+                         f"with the {self.melodic_scale_degree['name']} scale degree of a/an {self.melodic_scale.getTonic().unicodeName}" \
+                         f" melodic minor scale bears what relation to the interval of a {self.compound_interval.niceName}"
 
     def _generate_answer(self):
         n1 = self.minor_scale.pitches[self.minor_scale_degree_index]
@@ -325,7 +325,8 @@ class MinorCompoundIntervalRelationship(Question):
                 'answer': f"{n1.name}"
             },
             {
-                'prompt': f"What is the {self.melodic_scale_degree['name']} scale degree of a/an {self.melodic_scale.getTonic().unicodeName} melodic minor scale ",
+                'prompt': f"What is the {self.melodic_scale_degree['name']} scale degree of a/an {self.melodic_scale.getTonic().unicodeName}" \
+                          f"melodic minor scale",
                 'answer': f"{n2.name}"
             },
             {
