@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.cache import cache
 from questions.questions.intervals import (SemitonesInInterval, IntervalRaisedLoweredIs, IntervalChangedByStepBecomesQuality, 
-                                            InvertedInterval, CompoundIntervalRelationship)
+                                            InvertedInterval, CompoundIntervalRelationship, MinorCompoundIntervalRelationship)
 
 
 
@@ -76,6 +76,24 @@ class TestCompoundIntervalRelationship(TestCase):
         expected_question = "When compounded, the interval produced by combining the second " \
                             "scale degree of a/an C whole tone scale with the second scale " \
                             "degree of a/an C major scale bears what relation to the " \
+                            "interval of a Minor Ninth"
+        self.assertEqual(expected_question, self.question.question)
+
+    def test_for_correct_answer(self):
+        expected_answer = 'It is smaller'
+        self.assertEqual(expected_answer, self.question.answer)
+
+
+class TestMinorCompoundIntervalRelationship(TestCase):
+
+    def setUp(self):
+        self.question = MinorCompoundIntervalRelationship(minor_tonic='C', melodic_tonic='C', minor_scale_degree_index=1, 
+                                                     melodic_scale_degree_index=1, compound_interval_index=13)
+
+    def test_for_correct_question(self):
+        expected_question = "When compounded, the interval produced by combining the second " \
+                            "scale degree of a/an C minor scale with the second scale " \
+                            "degree of a/an C melodic minor scale bears what relation to the " \
                             "interval of a Minor Ninth"
         self.assertEqual(expected_question, self.question.question)
 

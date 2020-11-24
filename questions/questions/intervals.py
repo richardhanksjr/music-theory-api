@@ -265,3 +265,78 @@ class CompoundIntervalRelationship(Question):
 
     def _generate_question_params(self):
         self._question_params = {}
+
+
+class MinorCompoundIntervalRelationship(Question):
+
+    # pylint: disable=too-many-arguments, unused-argument
+    def __init__(self, minor_tonic=None, melodic_tonic=None, minor_scale_degree_index=None, melodic_scale_degree_index=None,
+                 compound_interval_index=None):
+        self.minor_tonic = minor_tonic if minor_tonic else random_pitch()
+        self.melodic_tonic = melodic_tonic if melodic_tonic else random_pitch()
+        self.minor_scale_degree_index = minor_scale_degree_index if minor_scale_degree_index else random.choice(range(7))
+        self.melodic_scale_degree_index = melodic_scale_degree_index if melodic_scale_degree_index else random.choice(range(8))
+        self.compound_interval_index = compound_interval_index if compound_interval_index else random.choice(range(13,24))
+        self.minor_scale_degree = scale_degrees[self.minor_scale_degree_index]
+        self.melodic_scale_degree = scale_degrees[self.melodic_scale_degree_index]
+        self.minor_scale = scale.MinorScale(self.minor_tonic)
+        self.melodic_scale = scale.MelodicMinorScale(self.melodic_tonic)
+        self.compound_interval = interval.Interval(self.compound_interval_index)
+        super().__init__()
+
+    def _generate_question(self):
+        self._question = f"When compounded, the interval produced by combining the " \
+                         f"{self.minor_scale_degree['name']} scale degree of a/an {self.minor_scale.getTonic().unicodeName} minor scale " \
+                         f"with the {self.melodic_scale_degree['name']} scale degree of a/an {self.melodic_scale.getTonic().unicodeName} melodic minor scale " \
+                         f"bears what relation to the interval of a {self.compound_interval.niceName}"
+
+    def _generate_answer(self):
+        n1 = self.minor_scale.pitches[self.minor_scale_degree_index]
+        n2 = self.melodic_scale.pitches[self.melodic_scale_degree_index]
+        compare_first = interval.Interval(noteStart=n1, noteEnd=n2)
+        compare_second = interval.Interval(self.compound_interval_index)
+        if int(abs(compare_first.semitones)) <= 12:
+            compounded_first = int(abs(compare_first.semitones)) + 12
+        else:
+            compounded_first = int(abs(compare_first.semitones))
+
+        if compounded_first == int(compare_second.semitones):
+            self._answer = 'It is the same quality'
+        elif compounded_first < int(compare_second.semitones):
+            self._answer = 'It is smaller'
+        elif compounded_first > int(compare_second.semitones):
+            self._answer = 'It is greater'
+        else:
+            self._answer = 'It is enharmonic'
+
+    def _generate_answer_options(self):
+        self._answer_options = ['It is greater', 'It is smaller', 'It is the same quality', 'It is enharmonic']
+
+    def _generate_help_steps_array(self):
+        n1 = self.minor_scale.pitches[self.minor_scale_degree_index]
+        n2 = self.melodic_scale.pitches[self.melodic_scale_degree_index]
+        self._help_steps = [
+            {
+                'prompt': 'What is a compound interval?',
+                'answer': 'An interval that is larger than an octave'
+            },
+            {
+                'prompt': f"What is the {self.minor_scale_degree['name']} scale degree of a/an {self.minor_scale.getTonic()} minor scale ",
+                'answer': f"{n1.name}"
+            },
+            {
+                'prompt': f"What is the {self.melodic_scale_degree['name']} scale degree of a/an {self.melodic_scale.getTonic().unicodeName} melodic minor scale ",
+                'answer': f"{n2.name}"
+            },
+            {
+                'prompt': f"What is the compound interval between {n1}, and {n2}?",
+                'answer': 'A minor 9th'
+            },
+
+        ]
+
+    def _generate_question_type(self):
+        self._question_type = 'minor_compound_interval_relationship'
+
+    def _generate_question_params(self):
+        self._question_params = {}

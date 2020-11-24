@@ -120,6 +120,14 @@
         }
     },
     {
+        "model": "questions.question",
+        "pk": 16,
+        "fields": {
+            "class_name": "MinorCompoundIntervalRelationship",
+            "module_name": "intervals"
+        }
+    },
+    {
         "model": "questions.tag",
         "pk": 3,
         "fields": {
@@ -145,7 +153,8 @@
                 10,
                 13,
                 14,
-                15
+                15,
+                16
             ]
         }
     },
@@ -180,7 +189,8 @@
                 6,
                 11,
                 14,
-                15
+                15,
+                16
             ]
         }
     },
